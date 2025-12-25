@@ -1,0 +1,87 @@
+{
+  "timestamp": "2025-12-25T20:55:19.564699",
+  "total_repos": 10,
+  "successful": 10,
+  "results": [
+    {
+      "student_id": "MarioAlonsoCuero",
+      "repo_url": "https://github.com/maaloncu/2025-control-1-parte-a1",
+      "timestamp": "2025-12-25T20:55:13.157297",
+      "success": true,
+      "local_path": "student_submissions\\MarioAlonsoCuero",
+      "error": null
+    },
+    {
+      "student_id": "SergioGismeraPino",
+      "repo_url": "https://github.com/SergioGismeraPino/2025-control-1-parte-a1",
+      "timestamp": "2025-12-25T20:55:13.780611",
+      "success": true,
+      "local_path": "student_submissions\\SergioGismeraPino",
+      "error": null
+    },
+    {
+      "student_id": "StefaniScott",
+      "repo_url": "https://github.com/stefaniscott/2025-control-1-parte-a1",
+      "timestamp": "2025-12-25T20:55:14.422884",
+      "success": true,
+      "local_path": "student_submissions\\StefaniScott",
+      "error": null
+    },
+    {
+      "student_id": "ADHunter",
+      "repo_url": "https://github.com/AD-HUNTER/2025-control-1-parte-a1",
+      "timestamp": "2025-12-25T20:55:15.071471",
+      "success": true,
+      "local_path": "student_submissions\\ADHunter",
+      "error": null
+    },
+    {
+      "student_id": "AlejandroBartolom\u00c3\u00a9",
+      "repo_url": "https://github.com/kohee-dev/2025-control-1-parte-a1",
+      "timestamp": "2025-12-25T20:55:15.719629",
+      "success": true,
+      "local_path": "student_submissions\\AlejandroBartolom\u00c3\u00a9",
+      "error": null
+    },
+    {
+      "student_id": "TaigaSeven",
+      "repo_url": "https://github.com/TaigaSeven/2025-control-1-parte-a1",
+      "timestamp": "2025-12-25T20:55:16.330586",
+      "success": true,
+      "local_path": "student_submissions\\TaigaSeven",
+      "error": null
+    },
+    {
+      "student_id": "SergioFern\u00c3\u00a1ndez",
+      "repo_url": "https://github.com/sfdez0/2025-control-1-parte-a1",
+      "timestamp": "2025-12-25T20:55:16.965909",
+      "success": true,
+      "local_path": "student_submissions\\SergioFern\u00c3\u00a1ndez",
+      "error": null
+    },
+    {
+      "student_id": "JorgeMoreno",
+      "repo_url": "https://github.com/JorgeMoreno6703/2025-control-1-parte-a1",
+      "timestamp": "2025-12-25T20:55:17.612647",
+      "success": true,
+      "local_path": "student_submissions\\JorgeMoreno",
+      "error": null
+    },
+    {
+      "student_id": "DavidGimenez",
+      "repo_url": "https://github.com/David-Gimenez-Hernandez/2025-control-1-parte-a1",
+      "timestamp": "2025-12-25T20:55:18.277282",
+      "success": true,
+      "local_path": "student_submissions\\DavidGimenez",
+      "error": null
+    },
+    {
+      "student_id": "ELiJuY",
+      "repo_url": "https://github.com/ELiJuY/2025-control-1-parte-a1",
+      "timestamp": "2025-12-25T20:55:18.934689",
+      "success": true,
+      "local_path": "student_submissions\\ELiJuY",
+      "error": null
+    }
+  ]
+}

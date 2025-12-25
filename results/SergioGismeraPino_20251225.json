@@ -1,0 +1,83 @@
+{
+  "student_id": "SergioGismeraPino",
+  "timestamp": "2025-12-25T21:50:17.749762",
+  "success": true,
+  "test_file": "student_submissions\\SergioGismeraPino\\src\\test\\java\\es\\upm\\grise\\profunduzacion\\cruiseController\\CruiseControlTest.java",
+  "implementation_file": "student_submissions\\SergioGismeraPino\\src\\main\\java\\es\\upm\\grise\\profundizacion\\cruiseControl\\CruiseControl.java",
+  "test_analysis": {
+    "success": true,
+    "test_file": "student_submissions\\SergioGismeraPino\\src\\test\\java\\es\\upm\\grise\\profunduzacion\\cruiseController\\CruiseControlTest.java",
+    "test_methods": [
+      {
+        "name": "getVelocidadCorrecta",
+        "requirements": [
+          "R3"
+        ]
+      },
+      {
+        "name": "getVelocidadNegatica",
+        "requirements": [
+          "R3",
+          "R4"
+        ]
+      },
+      {
+        "name": "getVelocidadMayorQueLaMaxima",
+        "requirements": [
+          "R3",
+          "R7"
+        ]
+      }
+    ],
+    "requirements_covered": [
+      "R3",
+      "R4",
+      "R7"
+    ],
+    "requirements_missing": [
+      "R1",
+      "R10",
+      "R11",
+      "R12",
+      "R13",
+      "R14",
+      "R15",
+      "R16",
+      "R17",
+      "R18",
+      "R19",
+      "R2",
+      "R5",
+      "R6",
+      "R8",
+      "R9"
+    ],
+    "total_requirements": 19,
+    "requirements_found": 3,
+    "coverage_percentage": 15.79,
+    "test_count": 3
+  },
+  "implementation_analysis": {
+    "success": false,
+    "error": "Compilation failed: Compilation failed:\nes\\upm\\grise\\profundizacion\\cruiseControl\\CruiseControl.java:24: error: ';' expected\n\tpublic void setSpeedSet(int speedSet) extends ExcepcionesCreadas{\n\t                                     ^\nes\\upm\\grise\\profundizacion\\cruiseControl\\CruiseControl.java:32: error: illegal start of type\n\t\t}else{\n\t\t ^\nes\\upm\\grise\\profundizacion\\cruiseControl\\CruiseControl.java:40: error: unnamed classes are a preview feature and are disabled by default.\n\tpublic Integer getSpeedLimit() {\n\t       ^\n  (use --enable-preview to enable unnamed classes)\nes\\upm\\grise\\profundizacion\\cruiseControl\\CruiseControl.java:52: error: class, interface, enum, or record expected\n}\n^\nes\\upm\\grise\\profundizacion\\cruiseControl\\CruiseControl.java:1: error: unnamed class should not have package declaration\npackage es.upm.grise.profundizacion.cruiseControl;\n^\n5 errors\n",
+    "requirements_satisfied": [],
+    "requirements_missing": [
+      "R1",
+      "R2",
+      "R3",
+      "R4",
+      "R5",
+      "R6",
+      "R7",
+      "R8",
+      "R9"
+    ],
+    "total_requirements": 19,
+    "requirements_found": 0,
+    "satisfaction_percentage": 0.0
+  },
+  "test_coverage_grade": 1.54,
+  "implementation_grade": 0.0,
+  "combined_grade": 0.77,
+  "error": null
+}

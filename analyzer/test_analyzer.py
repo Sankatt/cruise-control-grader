@@ -15,47 +15,60 @@ from typing import List, Dict, Set
 from pathlib import Path
 
 
-# Requirement keywords mapping
+# Requirement keywords mapping - improved patterns
 REQUIREMENT_PATTERNS = {
     'R1': [
         r'speedSet.*null',
         r'getSpeedSet\(\).*null',
         r'initialization.*speedSet',
-        r'constructor.*speedSet.*null'
+        r'constructor.*speedSet.*null',
+        r'default.*speedSet',
+        r'assertNull.*speedSet'
     ],
     'R2': [
         r'speedLimit.*null',
         r'getSpeedLimit\(\).*null', 
         r'initialization.*speedLimit',
-        r'constructor.*speedLimit.*null'
+        r'constructor.*speedLimit.*null',
+        r'default.*speedLimit',
+        r'assertNull.*speedLimit'
     ],
     'R3': [
         r'setSpeedSet.*positive',
-        r'setSpeedSet\(.*[1-9]',
-        r'valid.*speedSet'
+        r'setSpeedSet\s*\(\s*[1-9]',
+        r'valid.*speedSet',
+        r'setting.*valid.*speed',
+        r'assertEquals.*speedSet'
     ],
     'R4': [
         r'IncorrectSpeedSetException',
-        r'setSpeedSet.*[0-9-]',
+        r'setSpeedSet\s*\(\s*0',
+        r'setSpeedSet\s*\(\s*-',
         r'negative.*speedSet',
-        r'zero.*speedSet'
+        r'zero.*speedSet',
+        r'assertThrows.*setSpeedSet\s*\(\s*[0-]'
     ],
     'R5': [
         r'speedSet.*speedLimit',
-        r'setSpeedSet.*limit'
+        r'setSpeedSet.*limit',
+        r'above.*limit',
+        r'exceed.*limit',
+        r'setSpeedLimit.*setSpeedSet'
     ],
     'R6': [
         r'SpeedSetAboveSpeedLimitException',
-        r'speedSet.*exceed.*speedLimit'
+        r'speedSet.*exceed.*speedLimit',
+        r'assertThrows.*SpeedSetAbove',
+        r'above.*limit.*exception'
     ],
     'R7': [
         r'setSpeedLimit.*positive',
-        r'setSpeedLimit\(.*[1-9]',
+        r'setSpeedLimit\s*\(\s*[1-9]',
         r'valid.*speedLimit'
     ],
     'R8': [
         r'IncorrectSpeedLimitException',
-        r'setSpeedLimit.*[0-9-]',
+        r'setSpeedLimit\s*\(\s*[0-]',
         r'negative.*speedLimit',
         r'zero.*speedLimit'
     ],
@@ -127,19 +140,21 @@ class TestAnalyzer:
     
     def extract_test_methods(self) -> List[Dict]:
         """Extract individual test methods from the file"""
-        # Match JUnit test methods (@Test annotation or test* method names)
-        test_pattern = r'(@Test|public\s+void\s+test\w+)\s*\([^)]*\)\s*(?:throws\s+\w+(?:,\s*\w+)*)?\s*\{([^}]*(?:\{[^}]*\}[^}]*)*)\}'
+        # Match JUnit test methods - both JUnit 4 and JUnit 5
+        # Improved pattern to catch methods with @Test annotation regardless of naming
+        test_pattern = r'@Test[^{]*?(?:void|public\s+void)\s+(\w+)\s*\([^)]*\)\s*(?:throws\s+[\w\s,]+)?\s*\{((?:[^{}]|\{(?:[^{}]|\{[^{}]*\})*\})*)\}'
         
         matches = re.finditer(test_pattern, self.test_content, re.MULTILINE | re.DOTALL)
         
         methods = []
         for match in matches:
-            method_name_match = re.search(r'test\w+', match.group(0))
-            method_name = method_name_match.group(0) if method_name_match else "unknown"
+            method_name = match.group(1)
+            method_body = match.group(2)
             
             methods.append({
                 'name': method_name,
                 'code': match.group(0),
+                'body': method_body,
                 'requirements': set()
             })
         
@@ -149,11 +164,19 @@ class TestAnalyzer:
     def analyze_method_for_requirements(self, method: Dict) -> Set[str]:
         """Analyze a single test method to identify covered requirements"""
         covered = set()
-        method_text = (method['name'] + ' ' + method['code']).lower()
+        
+        # Analyze both method name and full code
+        method_name_lower = method['name'].lower()
+        method_code_lower = method['code'].lower()
+        method_body_lower = method.get('body', '').lower()
+        
+        # Combine all text for analysis
+        combined_text = f"{method_name_lower} {method_code_lower} {method_body_lower}"
         
         for req_id, patterns in REQUIREMENT_PATTERNS.items():
             for pattern in patterns:
-                if re.search(pattern, method_text, re.IGNORECASE):
+                # Search in combined text
+                if re.search(pattern, combined_text, re.IGNORECASE):
                     covered.add(req_id)
                     break  # Found this requirement, move to next
         

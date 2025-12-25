@@ -1,0 +1,76 @@
+{
+  "student_id": "student001",
+  "timestamp": "2025-12-25T19:29:45.883997",
+  "success": true,
+  "test_file": "student_submissions\\student001\\src\\test\\java\\es\\upm\\grise\\profunduzacion\\cruiseController\\CruiseControlTest.java",
+  "analysis": {
+    "success": true,
+    "test_file": "student_submissions\\student001\\src\\test\\java\\es\\upm\\grise\\profunduzacion\\cruiseController\\CruiseControlTest.java",
+    "test_methods": [
+      {
+        "name": "defaultValuesAreNull",
+        "requirements": [
+          "R1",
+          "R2"
+        ]
+      },
+      {
+        "name": "settingValidSpeedStoresValue",
+        "requirements": [
+          "R3"
+        ]
+      },
+      {
+        "name": "settingZeroOrNegativeThrowsIncorrectSpeedSetException",
+        "requirements": [
+          "R4"
+        ]
+      },
+      {
+        "name": "settingAboveLimitThrowsSpeedSetAboveSpeedLimitException",
+        "requirements": [
+          "R3",
+          "R5",
+          "R6",
+          "R7"
+        ]
+      },
+      {
+        "name": "settingAtOrBelowLimitAllowed",
+        "requirements": [
+          "R3",
+          "R7"
+        ]
+      }
+    ],
+    "requirements_covered": [
+      "R1",
+      "R2",
+      "R3",
+      "R4",
+      "R5",
+      "R6",
+      "R7"
+    ],
+    "requirements_missing": [
+      "R10",
+      "R11",
+      "R12",
+      "R13",
+      "R14",
+      "R15",
+      "R16",
+      "R17",
+      "R18",
+      "R19",
+      "R8",
+      "R9"
+    ],
+    "total_requirements": 19,
+    "requirements_found": 7,
+    "coverage_percentage": 36.84,
+    "test_count": 5
+  },
+  "grade": 3.46,
+  "error": null
+}

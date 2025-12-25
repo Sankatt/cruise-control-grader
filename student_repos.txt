@@ -1,12 +1,13 @@
 # Student Repository List
-# Format: student_id,github_repo_url
-# or: student_id github_repo_url
-
-# Example entries (replace with actual student repositories):
-student001,https://github.com/student001/cruise-control-exam
-student002,https://github.com/student002/cruise-control
-student003 https://github.com/student003/profundizacion-cruise
-student004,https://github.com/student004/cc-project
 
 # You can also add comments like this
-# student005,https://github.com/student005/cruise-control-submission
+MarioAlonsoCuero,https://github.com/maaloncu/2025-control-1-parte-a1
+SergioGismeraPino,https://github.com/SergioGismeraPino/2025-control-1-parte-a1
+StefaniScott,https://github.com/stefaniscott/2025-control-1-parte-a1
+ADHunter,https://github.com/AD-HUNTER/2025-control-1-parte-a1
+AlejandroBartolomé,https://github.com/kohee-dev/2025-control-1-parte-a1
+TaigaSeven,https://github.com/TaigaSeven/2025-control-1-parte-a1
+SergioFernández,https://github.com/sfdez0/2025-control-1-parte-a1
+JorgeMoreno,https://github.com/JorgeMoreno6703/2025-control-1-parte-a1
+DavidGimenez,https://github.com/David-Gimenez-Hernandez/2025-control-1-parte-a1
+ELiJuY,https://github.com/ELiJuY/2025-control-1-parte-a1
