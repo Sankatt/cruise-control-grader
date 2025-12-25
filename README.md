@@ -440,8 +440,6 @@ python -m http.server 8000
 
 - **[REQUIREMENTS.md](REQUIREMENTS.md)** - Complete requirement specifications
 - **[DUAL_GRADING_GUIDE.md](DUAL_GRADING_GUIDE.md)** - In-depth grading methodology
-- **[PROJECT_REPORT.md](PROJECT_REPORT.md)** - Development journey & lessons learned
-- **[QUICK_START.md](QUICK_START.md)** - Command-line reference
 
 ---
 
@@ -462,40 +460,9 @@ python -m http.server 8000
 
 ---
 
-## 🎯 Use Cases
-
-### For Instructors
-✅ Grade entire class in minutes instead of hours  
-✅ Identify common mistakes across all students  
-✅ Generate consistent, fair evaluations  
-✅ Track which requirements students find hardest  
-✅ Spot potential plagiarism through pattern analysis  
-
-### For Teaching Assistants
-✅ Reduce grading workload by 95%+  
-✅ Focus on providing qualitative feedback  
-✅ Quickly assess submission quality  
-✅ Generate data-driven insights  
-
-### For Students (Self-Assessment)
-✅ Check coverage before submission  
-✅ Understand grading criteria  
-✅ Identify gaps in implementation  
-✅ Verify tests are comprehensive  
-
----
 
 ## 🔮 Roadmap
 
-### Planned Enhancements
-- [ ] Complete R10-R19 execution testing (disable, nextCommand methods)
-- [ ] Code quality metrics integration (Checkstyle, PMD)
-- [ ] Plagiarism detection (code similarity analysis)
-- [ ] Web-based UI (no local server needed)
-- [ ] CI/CD integration (GitHub Actions)
-- [ ] Machine learning pattern detection
-- [ ] Student feedback generation
-- [ ] Performance benchmarking
 
 ### Extensibility
 The system is designed for easy extension:
@@ -516,19 +483,6 @@ Contributions welcome! Here's how:
 4. **Push** to branch (`git push origin feature/amazing-feature`)
 5. **Open** a Pull Request
 
-**Areas for Contribution:**
-- Additional test pattern detection
-- More programming language support
-- Dashboard enhancements
-- Documentation improvements
-
----
-
-## 📄 License
-
-This project is provided for educational purposes.
-
----
 
 ## 👤 Author
 
@@ -538,47 +492,13 @@ This project is provided for educational purposes.
 
 ---
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - Built with assistance from **Claude** (Anthropic)
 - Based on CruiseControl assignment from **UPM GRISE**
-- Inspired by traditional execution-based grading approaches
-- Special thanks to all students whose code helped refine the system
 
----
 
-## 📞 Support
 
-**Having issues?**
-1. Check the [Troubleshooting](#-troubleshooting) section
-2. Review [DUAL_GRADING_GUIDE.md](DUAL_GRADING_GUIDE.md)
-3. Read [PROJECT_REPORT.md](PROJECT_REPORT.md) for insights
-4. Create a GitHub issue with:
-   - System info (OS, Python version, Java version)
-   - Error messages
-   - Steps to reproduce
-
----
-
-## 📈 Statistics
-
-**Project Metrics:**
-- **Lines of Code**: ~2,000+
-- **Files**: 15+
-- **Development Time**: ~6 hours
-- **Iterations**: 25+
-- **Success Stories**: 9 students graded automatically
-- **Time Saved**: 8 hours → 2 minutes
-
-**Grading Insights (Current Dataset):**
-- Average test coverage: 27.6%
-- Average implementation quality: 31.1%
-- Most commonly missed: disable() and nextCommand() methods
-- Best performing student: MarioAlonso (3.46/10)
-
----
-
-**Version:** 2.0.0 (Dual Grading System)  
 **Status:** ✅ Production Ready  
 **Last Updated:** December 25, 2025
 
