@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CruiseControl Exam Results Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+        }
+        
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            opacity: 0.9;
+            font-size: 1.1em;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 30px;
+            background: #f8f9fa;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .stat-value {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 0.9em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .controls {
+            padding: 20px 30px;
+            background: white;
+            border-bottom: 1px solid #e0e0e0;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        
+        select, input {
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+        
+        .results-table {
+            padding: 30px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        thead {
+            background: #f8f9fa;
+        }
+        
+        th {
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+            color: #333;
+            border-bottom: 2px solid #e0e0e0;
+            cursor: pointer;
+            user-select: none;
+        }
+        
+        th:hover {
+            background: #e9ecef;
+        }
+        
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        tbody tr:hover {
+            background: #f8f9fa;
+        }
+        
+        .grade {
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        
+        .grade-excellent {
+            color: #28a745;
+        }
+        
+        .grade-good {
+            color: #17a2b8;
+        }
+        
+        .grade-average {
+            color: #ffc107;
+        }
+        
+        .grade-poor {
+            color: #dc3545;
+        }
+        
+        .coverage-bar {
+            width: 100%;
+            height: 8px;
+            background: #e0e0e0;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .coverage-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            transition: width 0.3s ease;
+        }
+        
+        .requirements {
+            font-size: 0.85em;
+            color: #666;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.75em;
+            font-weight: 600;
+            margin: 2px;
+        }
+        
+        .badge-success {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .badge-missing {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 60px;
+            color: #666;
+        }
+        
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 20px 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📊 CruiseControl Exam Results</h1>
+            <div class="subtitle">Automated Grading Dashboard</div>
+        </header>
+        
+        <div class="stats" id="stats">
+            <div class="stat-card">
+                <div class="stat-value" id="totalStudents">-</div>
+                <div class="stat-label">Total Students</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="avgGrade">-</div>
+                <div class="stat-label">Average Grade</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="avgCoverage">-</div>
+                <div class="stat-label">Avg Coverage</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="passRate">-</div>
+                <div class="stat-label">Pass Rate</div>
+            </div>
+        </div>
+        
+        <div class="controls">
+            <label>Sort by:</label>
+            <select id="sortSelect">
+                <option value="grade">Grade (High to Low)</option>
+                <option value="coverage">Coverage (High to Low)</option>
+                <option value="student">Student ID</option>
+            </select>
+            
+            <label>Filter:</label>
+            <input type="text" id="filterInput" placeholder="Search student ID...">
+        </div>
+        
+        <div class="results-table">
+            <div id="loading" class="loading">Loading results...</div>
+            <div id="error" class="error" style="display: none;"></div>
+            <table id="resultsTable" style="display: none;">
+                <thead>
+                    <tr>
+                        <th onclick="sortTable('student')">Student ID</th>
+                        <th onclick="sortTable('grade')">Grade</th>
+                        <th onclick="sortTable('coverage')">Coverage</th>
+                        <th>Requirements</th>
+                        <th>Details</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <script>
+        let allResults = [];
+        let currentSort = 'grade';
+        
+        // Load results
+        async function loadResults() {
+            try {
+                const response = await fetch('../results/grading_summary.json');
+                const data = await response.json();
+                allResults = data.results;
+                
+                updateStats(data);
+                displayResults(allResults);
+                
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('resultsTable').style.display = 'table';
+            } catch (error) {
+                document.getElementById('loading').style.display = 'none';
+                const errorDiv = document.getElementById('error');
+                errorDiv.textContent = 'Error loading results: ' + error.message;
+                errorDiv.style.display = 'block';
+            }
+        }
+        
+        function updateStats(data) {
+            document.getElementById('totalStudents').textContent = data.total_students;
+            document.getElementById('avgGrade').textContent = data.average_grade.toFixed(1);
+            
+            const avgCoverage = data.results
+                .filter(r => r.success)
+                .reduce((sum, r) => sum + r.analysis.coverage_percentage, 0) / data.successful;
+            document.getElementById('avgCoverage').textContent = avgCoverage.toFixed(1) + '%';
+            
+            const passRate = (data.results.filter(r => r.grade >= 5).length / data.total_students * 100).toFixed(0);
+            document.getElementById('passRate').textContent = passRate + '%';
+        }
+        
+        function displayResults(results) {
+            const tbody = document.getElementById('tableBody');
+            tbody.innerHTML = '';
+            
+            results.forEach(result => {
+                if (!result.success) return;
+                
+                const row = tbody.insertRow();
+                
+                // Student ID
+                row.insertCell().textContent = result.student_id;
+                
+                // Grade
+                const gradeCell = row.insertCell();
+                const gradeClass = result.grade >= 9 ? 'excellent' : 
+                                  result.grade >= 7 ? 'good' :
+                                  result.grade >= 5 ? 'average' : 'poor';
+                gradeCell.innerHTML = `<span class="grade grade-${gradeClass}">${result.grade.toFixed(1)}/10</span>`;
+                
+                // Coverage
+                const coverageCell = row.insertCell();
+                const coverage = result.analysis.coverage_percentage;
+                coverageCell.innerHTML = `
+                    <div>${coverage.toFixed(1)}%</div>
+                    <div class="coverage-bar">
+                        <div class="coverage-fill" style="width: ${coverage}%"></div>
+                    </div>
+                `;
+                
+                // Requirements
+                const reqCell = row.insertCell();
+                reqCell.innerHTML = `
+                    <div class="requirements">
+                        <div>✓ ${result.analysis.requirements_found}/19 covered</div>
+                        ${result.analysis.requirements_covered.slice(0, 5).map(r => 
+                            `<span class="badge badge-success">${r}</span>`
+                        ).join('')}
+                        ${result.analysis.requirements_covered.length > 5 ? '...' : ''}
+                    </div>
+                `;
+                
+                // Details
+                const detailsCell = row.insertCell();
+                detailsCell.innerHTML = `<button onclick="showDetails('${result.student_id}')">View Details</button>`;
+            });
+        }
+        
+        function sortTable(column) {
+            currentSort = column;
+            const sorted = [...allResults].sort((a, b) => {
+                if (column === 'grade') return b.grade - a.grade;
+                if (column === 'coverage') return b.analysis?.coverage_percentage - a.analysis?.coverage_percentage;
+                if (column === 'student') return a.student_id.localeCompare(b.student_id);
+            });
+            displayResults(sorted);
+        }
+        
+        // Filter functionality
+        document.getElementById('filterInput').addEventListener('input', (e) => {
+            const filter = e.target.value.toLowerCase();
+            const filtered = allResults.filter(r => r.student_id.toLowerCase().includes(filter));
+            displayResults(filtered);
+        });
+        
+        // Sort select
+        document.getElementById('sortSelect').addEventListener('change', (e) => {
+            sortTable(e.target.value);
+        });
+        
+        function showDetails(studentId) {
+            alert(`Details for ${studentId} - Full implementation coming soon!`);
+        }
+        
+        // Load results on page load
+        loadResults();
+    </script>
+</body>
+</html>

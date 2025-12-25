@@ -1,0 +1,115 @@
+# Configuration for CruiseControl Automated Grading System
+
+# GitHub Settings
+github:
+  # Personal access token for cloning private repos (if needed)
+  # Store this in environment variable: GITHUB_TOKEN
+  token: "${GITHUB_TOKEN}"
+  
+  # Timeout for clone operations (seconds)
+  clone_timeout: 60
+  
+  # Directory to clone student repos into
+  clone_directory: "./student_submissions"
+
+# Grading Settings
+grading:
+  # Maximum possible grade
+  max_grade: 10.0
+  
+  # Minimum passing grade
+  passing_grade: 5.0
+  
+  # Requirement weights (sum should be 100)
+  requirement_weights:
+    # Critical requirements (40%)
+    R1: 2.0   # Initialization
+    R2: 2.0   # Initialization
+    R3: 3.0   # Basic setSpeedSet
+    R4: 3.0   # Exception handling
+    R7: 2.0   # Basic setSpeedLimit
+    R8: 2.0   # Exception handling
+    
+    # High priority requirements (35%)
+    R5: 3.0   # speedSet vs speedLimit
+    R6: 3.0   # Exception handling
+    R9: 3.0   # CannotSetSpeedLimit
+    R10: 2.5  # disable speedSet
+    R11: 2.5  # disable speedLimit
+    R12: 3.0  # IDLE behavior
+    R13: 3.0  # IDLE after disable
+    R19: 3.0  # KEEP behavior
+    
+    # Medium priority requirements (25%)
+    R14: 3.0  # REDUCE behavior
+    R15: 3.0  # Road minimum override
+    R16: 3.0  # INCREASE behavior
+    R17: 3.0  # speedLimit override
+    R18: 3.0  # Road maximum override
+  
+  # Bonus points for exceptional work
+  bonus:
+    all_requirements_covered: 1.0
+    exceptional_test_quality: 0.5
+
+# Test Execution Settings
+testing:
+  # Timeout for test execution (seconds)
+  timeout: 120
+  
+  # Java compiler settings
+  java_version: "11"
+  
+  # Required test file name pattern
+  test_file_pattern: "*Test.java"
+  
+  # JUnit version
+  junit_version: "4.13.2"
+
+# Output Settings
+output:
+  # Directory for JSON results
+  results_directory: "./results"
+  
+  # Directory for dashboard files
+  dashboard_directory: "./dashboard"
+  
+  # Result file naming: {student_id}_{timestamp}.json
+  result_filename_format: "{student_id}_{timestamp}.json"
+  
+  # Summary file for all students
+  summary_file: "grading_summary.json"
+
+# Dashboard Settings
+dashboard:
+  # Port for local dashboard server
+  port: 8080
+  
+  # Dashboard title
+  title: "CruiseControl Exam Results"
+  
+  # Show student names (vs anonymized IDs)
+  show_names: true
+  
+  # Sort order: "grade", "coverage", "name"
+  default_sort: "grade"
+
+# Analysis Settings
+analysis:
+  # Minimum confidence for requirement detection (0-1)
+  confidence_threshold: 0.7
+  
+  # Enable detailed logging
+  verbose: true
+  
+  # Generate individual test method reports
+  detailed_reports: true
+
+# Email Settings (optional - for automated notifications)
+email:
+  enabled: false
+  smtp_server: "smtp.gmail.com"
+  smtp_port: 587
+  from_address: "grader@university.edu"
+  # Store password in environment: EMAIL_PASSWORD
+  password: "${EMAIL_PASSWORD}"

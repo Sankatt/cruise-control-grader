@@ -1,0 +1,12 @@
+# Student Repository List
+# Format: student_id,github_repo_url
+# or: student_id github_repo_url
+
+# Example entries (replace with actual student repositories):
+student001,https://github.com/student001/cruise-control-exam
+student002,https://github.com/student002/cruise-control
+student003 https://github.com/student003/profundizacion-cruise
+student004,https://github.com/student004/cc-project
+
+# You can also add comments like this
+# student005,https://github.com/student005/cruise-control-submission
