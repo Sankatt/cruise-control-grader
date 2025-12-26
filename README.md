@@ -15,10 +15,6 @@ This system automatically grades student submissions for a CruiseControl program
 
 ### Why Dual Grading?
 
-**Single-metric grading misses the full picture:**
-- A student might write great tests but have broken implementation
-- A student might have working code but inadequate test coverage
-
 **Dual grading provides:**
 ✅ Complete assessment of both testing skills AND coding ability  
 ✅ Fair partial credit for incomplete work  
