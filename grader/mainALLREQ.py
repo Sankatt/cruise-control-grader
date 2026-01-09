@@ -4,9 +4,6 @@ Main Grading System
 Orchestrates cloning, testing, analysis, and report generation
 Now includes both TEST COVERAGE and IMPLEMENTATION QUALITY grading
 Implementation grading uses actual code execution for maximum accuracy
-
-Based on ESP-CruiseControlSpecificationForExperimenters document
-Only grades requirements R1-R6 (what students are given in the exam)
 """
 
 import os
@@ -42,18 +39,11 @@ class GradingSystem:
             return self.get_default_config()
     
     def get_default_config(self) -> dict:
-        """Return default configuration - R1-R6 only"""
+        """Return default configuration"""
         return {
             'grading': {
                 'max_grade': 10.0,
-                'requirement_weights': {
-                    'R1': 1.67,  # Points, not percentages
-                    'R2': 1.67,
-                    'R3': 1.67,
-                    'R4': 1.67,
-                    'R5': 1.67,
-                    'R6': 1.65   # Sums to exactly 10.0
-                }
+                'requirement_weights': {f'R{i}': 5.26 for i in range(1, 20)}
             },
             'output': {
                 'results_directory': './results',
@@ -128,28 +118,23 @@ class GradingSystem:
         weights = self.config['grading']['requirement_weights']
         max_grade = self.config['grading']['max_grade']
         
-        # Direct point addition - weights are already in points (e.g., 1.67 points each)
-        earned_points = 0.0
+        # Calculate weighted score
+        total_weight = sum(weights.values())
+        earned_weight = 0.0
         
         # Handle both test analysis (requirements_covered) and implementation analysis (requirements_satisfied)
         requirements = analysis.get('requirements_covered', analysis.get('requirements_satisfied', []))
         
-        # CRITICAL: Ensure requirements are unique (convert to set to remove duplicates)
-        unique_requirements = set(requirements) if isinstance(requirements, list) else requirements
+        for req in requirements:
+            earned_weight += weights.get(req, 0)
         
-        for req in unique_requirements:
-            earned_points += weights.get(req, 0)
-        
-        # Grade is the sum of earned points
-        grade = earned_points
+        # Calculate final grade
+        grade = (earned_weight / total_weight) * max_grade
         
         # Apply bonus if all requirements covered/satisfied
-        if len(unique_requirements) == analysis['total_requirements']:
+        if len(requirements) == analysis['total_requirements']:
             bonus = self.config['grading'].get('bonus', {}).get('all_requirements_covered', 0)
             grade = min(grade + bonus, max_grade)
-        
-        # CRITICAL: Always cap at max_grade to prevent scores over 10.0
-        grade = min(grade, max_grade)
         
         return round(grade, 2)
     
@@ -249,7 +234,6 @@ class GradingSystem:
         student_dirs = [d for d in submissions_path.iterdir() if d.is_dir()]
         
         print(f"\nFound {len(student_dirs)} student submissions")
-        print("Specification: ESP-CruiseControlSpecificationForExperimenters (R1-R6)")
         print("=" * 70)
         
         for student_dir in student_dirs:
@@ -289,7 +273,7 @@ class GradingSystem:
         
         max_grade = self.config['grading']['max_grade']
         
-        print(f"\nGrading Summary (R1-R6 only):")
+        print(f"\nGrading Summary:")
         print(f"  Total Students: {total}")
         print(f"  Successfully Graded: {successful}")
         print(f"  Failed: {failed}")
@@ -339,7 +323,6 @@ class GradingSystem:
         
         summary = {
             'timestamp': datetime.now().isoformat(),
-            'specification': 'ESP-CruiseControlSpecificationForExperimenters (R1-R6)',
             'total_students': len(self.results),
             'successful': total_successful,
             'average_test_grade': round(avg_test_grade, 2),
@@ -364,7 +347,7 @@ def main():
         print("\nThis will:")
         print("  1. Find all student directories")
         print("  2. Locate their test files")
-        print("  3. Analyze requirement coverage (R1-R6)")
+        print("  3. Analyze requirement coverage")
         print("  4. Calculate grades")
         print("  5. Generate reports")
         sys.exit(1)

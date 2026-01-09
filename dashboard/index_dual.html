@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CruiseControl Exam Results - Dual Grading Dashboard</title>
+    <title>CruiseControl Exam Results (R1-R6) - Dual Grading Dashboard</title>
     <style>
         * {
             margin: 0;
@@ -191,7 +191,7 @@
     <div class="container">
         <header>
             <h1>📊 CruiseControl Exam Results</h1>
-            <div class="subtitle">Dual Grading: Test Coverage + Implementation Quality</div>
+            <div class="subtitle">Dual Grading: Test Coverage + Implementation Quality | ESP Specification (R1-R6)</div>
         </header>
         
         <div class="stats" id="stats">
@@ -229,7 +229,7 @@
             <div class="section-header">
                 <h2>📝 Table 1: Test Coverage Analysis</h2>
                 <div style="font-size: 0.9em; opacity: 0.9; margin-top: 5px;">
-                    Evaluates which requirements students wrote tests for
+                    Evaluates which requirements students wrote tests for (R1-R6 from ESP specification)
                 </div>
             </div>
             <table id="testTable">
@@ -250,7 +250,7 @@
             <div class="section-header">
                 <h2>⚙️ Table 2: Implementation Quality Analysis</h2>
                 <div style="font-size: 0.9em; opacity: 0.9; margin-top: 5px;">
-                    Evaluates if CruiseControl.java correctly implements requirements
+                    Evaluates if CruiseControl.java correctly implements requirements (R1-R6 from ESP specification)
                 </div>
             </div>
             <table id="implTable">
@@ -363,7 +363,7 @@
                 const coverage = result.test_analysis?.coverage_percentage || 0;
                 const reqCovered = result.test_analysis?.requirements_found || 0;
                 coverageCell.innerHTML = `
-                    <div>${coverage.toFixed(1)}% (${reqCovered}/19)</div>
+                    <div>${coverage.toFixed(1)}% (${reqCovered}/6)</div>
                     <div class="coverage-bar">
                         <div class="coverage-fill" style="width: ${coverage}%"></div>
                     </div>
@@ -394,7 +394,7 @@
                 const satisfaction = result.implementation_analysis?.satisfaction_percentage || 0;
                 const reqSatisfied = result.implementation_analysis?.requirements_found || 0;
                 satisfactionCell.innerHTML = `
-                    <div>${satisfaction.toFixed(1)}% (${reqSatisfied}/19)</div>
+                    <div>${satisfaction.toFixed(1)}% (${reqSatisfied}/6)</div>
                     <div class="coverage-bar">
                         <div class="coverage-fill" style="width: ${satisfaction}%"></div>
                     </div>
@@ -434,7 +434,7 @@
                 const implSat = result.implementation_analysis?.requirements_found || 0;
                 summaryCell.innerHTML = `
                     <div style="font-size: 0.9em;">
-                        Tests: ${testCov}/19 | Impl: ${implSat}/19
+                        Tests: ${testCov}/6 | Impl: ${implSat}/6
                     </div>
                 `;
             });

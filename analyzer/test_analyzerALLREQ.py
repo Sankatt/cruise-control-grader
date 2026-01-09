@@ -7,9 +7,6 @@ the requirements it covers based on:
 1. Test method names
 2. Code patterns (exceptions, assertions, etc.)
 3. Comments/annotations
-
-Based on ESP-CruiseControlSpecificationForExperimenters document
-Only checks requirements R1-R6 (what students are given in the exam)
 """
 
 import re
@@ -18,13 +15,12 @@ from typing import List, Dict, Set
 from pathlib import Path
 
 
-# Requirement keywords mapping - ONLY R1-R6 from ESP document
+# Requirement keywords mapping - improved patterns
 REQUIREMENT_PATTERNS = {
     'R1': [
         r'speedSet.*null',
         r'getSpeedSet\(\).*null',
         r'initialization.*speedSet',
-        r'inicializ.*speedSet',
         r'constructor.*speedSet.*null',
         r'default.*speedSet',
         r'assertNull.*speedSet'
@@ -33,60 +29,93 @@ REQUIREMENT_PATTERNS = {
         r'speedLimit.*null',
         r'getSpeedLimit\(\).*null', 
         r'initialization.*speedLimit',
-        r'inicializ.*speedLimit',
         r'constructor.*speedLimit.*null',
         r'default.*speedLimit',
         r'assertNull.*speedLimit'
     ],
     'R3': [
         r'setSpeedSet.*positive',
-        r'setSpeedSet.*positiv',
         r'setSpeedSet\s*\(\s*[1-9]',
         r'valid.*speedSet',
         r'setting.*valid.*speed',
-        r'assertEquals.*speedSet',
-        r'valor.*positivo'
+        r'assertEquals.*speedSet'
     ],
     'R4': [
         r'IncorrectSpeedSetException',
         r'setSpeedSet\s*\(\s*0',
         r'setSpeedSet\s*\(\s*-',
         r'negative.*speedSet',
-        r'negativ.*speedSet',
         r'zero.*speedSet',
-        r'cero.*speedSet',
-        r'assertThrows.*setSpeedSet\s*\(\s*[0-]',
-        r'assertThrows.*IncorrectSpeedSet'
+        r'assertThrows.*setSpeedSet\s*\(\s*[0-]'
     ],
     'R5': [
         r'speedSet.*speedLimit',
-        r'speedSet.*no.*superar',
-        r'speedSet.*cannot.*exceed',
-        r'speedSet.*limit',
         r'setSpeedSet.*limit',
         r'above.*limit',
         r'exceed.*limit',
-        r'setSpeedLimit.*setSpeedSet',
-        r'speedLimit.*before.*speedSet'
+        r'setSpeedLimit.*setSpeedSet'
     ],
     'R6': [
         r'SpeedSetAboveSpeedLimitException',
         r'speedSet.*exceed.*speedLimit',
-        r'speedSet.*supera.*speedLimit',
         r'assertThrows.*SpeedSetAbove',
-        r'above.*limit.*exception',
-        r'excepcion.*SpeedSetAbove'
+        r'above.*limit.*exception'
+    ],
+    'R7': [
+        r'setSpeedLimit.*positive',
+        r'setSpeedLimit\s*\(\s*[1-9]',
+        r'valid.*speedLimit'
+    ],
+    'R8': [
+        r'IncorrectSpeedLimitException',
+        r'setSpeedLimit\s*\(\s*[0-]',
+        r'negative.*speedLimit',
+        r'zero.*speedLimit'
+    ],
+    'R9': [
+        r'CannotSetSpeedLimitException',
+        r'setSpeedLimit.*after.*speedSet'
+    ],
+    'R10': [
+        r'disable.*speedSet.*null',
+        r'disable.*getSpeedSet'
+    ],
+    'R11': [
+        r'disable.*speedLimit.*not',
+        r'disable.*speedLimit.*unchanged'
+    ],
+    'R12': [
+        r'nextCommand.*IDLE.*not.*initialized',
+        r'IDLE.*speedSet.*null'
+    ],
+    'R13': [
+        r'nextCommand.*IDLE.*disable',
+        r'disable.*IDLE'
+    ],
+    'R14': [
+        r'REDUCE.*speed.*greater',
+        r'current.*speed.*>.*speedSet'
+    ],
+    'R15': [
+        r'INCREASE.*minimum.*road',
+        r'road.*minimum.*speed'
+    ],
+    'R16': [
+        r'INCREASE.*speed.*less',
+        r'current.*speed.*<.*speedSet'
+    ],
+    'R17': [
+        r'REDUCE.*speedLimit.*exceed',
+        r'speed.*>.*speedLimit'
+    ],
+    'R18': [
+        r'REDUCE.*maximum.*road',
+        r'road.*maximum.*speed'
+    ],
+    'R19': [
+        r'KEEP.*equal',
+        r'current.*speed.*==.*speedSet'
     ]
-}
-
-# Requirement descriptions for reporting
-REQUIREMENT_DESCRIPTIONS = {
-    'R1': 'R1-INICIALIZACION: speedSet should initialize to null',
-    'R2': 'R2-INICIALIZACION: speedLimit should initialize to null',
-    'R3': 'R3: speedSet can adopt any positive value (> 0)',
-    'R4': 'R4-ERROR: Throw IncorrectSpeedSetException if speedSet is <= 0',
-    'R5': 'R5-ALTERNATIVO: If speedLimit is set, speedSet cannot exceed it',
-    'R6': 'R6-ERROR: Throw SpeedSetAboveSpeedLimitException if speedSet > speedLimit'
 }
 
 
@@ -173,19 +202,6 @@ class TestAnalyzer:
         missing_requirements = all_requirements - self.requirements_covered
         coverage_percentage = (len(self.requirements_covered) / len(all_requirements)) * 100
         
-        # Build detailed requirement breakdown
-        requirement_details = {}
-        for req_id in all_requirements:
-            tested = req_id in self.requirements_covered
-            # Find which tests cover this requirement
-            covering_tests = [m['name'] for m in self.test_methods if req_id in m['requirements']]
-            requirement_details[req_id] = {
-                'tested': tested,
-                'status': 'PASS' if tested else 'NOT_TESTED',
-                'covered_by_tests': covering_tests,
-                'description': REQUIREMENT_DESCRIPTIONS.get(req_id, '')
-            }
-        
         return {
             'success': True,
             'test_file': str(self.test_file_path),
@@ -198,7 +214,6 @@ class TestAnalyzer:
             ],
             'requirements_covered': sorted(list(self.requirements_covered)),
             'requirements_missing': sorted(list(missing_requirements)),
-            'requirement_details': requirement_details,
             'total_requirements': len(all_requirements),
             'requirements_found': len(self.requirements_covered),
             'coverage_percentage': round(coverage_percentage, 2),
@@ -216,7 +231,6 @@ class TestAnalyzer:
         report.append("=" * 70)
         report.append("TEST ANALYSIS REPORT")
         report.append("=" * 70)
-        report.append("Specification: ESP-CruiseControlSpecificationForExperimenters")
         report.append(f"Test File: {analysis['test_file']}")
         report.append(f"Test Methods Found: {analysis['test_count']}")
         report.append("")
@@ -227,7 +241,7 @@ class TestAnalyzer:
         report.append("COVERED REQUIREMENTS:")
         if analysis['requirements_covered']:
             for req in analysis['requirements_covered']:
-                report.append(f"  ✓ {req}: {REQUIREMENT_DESCRIPTIONS[req]}")
+                report.append(f"  ✓ {req}")
         else:
             report.append("  (none)")
         report.append("")
@@ -235,19 +249,18 @@ class TestAnalyzer:
         report.append("MISSING REQUIREMENTS:")
         if analysis['requirements_missing']:
             for req in analysis['requirements_missing']:
-                report.append(f"  ✗ {req}: {REQUIREMENT_DESCRIPTIONS[req]}")
+                report.append(f"  ✗ {req}")
         else:
-            report.append("  (none - ALL requirements covered!)")
+            report.append("  (none)")
         report.append("")
         
-        report.append("TEST METHODS BREAKDOWN:")
+        report.append("TEST METHODS:")
         for method in analysis['test_methods']:
             report.append(f"  • {method['name']}")
             if method['requirements']:
-                for req in method['requirements']:
-                    report.append(f"    - {req}: {REQUIREMENT_DESCRIPTIONS[req]}")
+                report.append(f"    Requirements: {', '.join(method['requirements'])}")
             else:
-                report.append("    - No requirements identified")
+                report.append("    Requirements: (none identified)")
         
         report.append("=" * 70)
         
@@ -259,10 +272,9 @@ def main():
     import sys
     
     if len(sys.argv) < 2:
-        print("Usage: python test_analyzer_updated.py <path_to_test_file>")
-        print("\nThis analyzer checks only R1-R6 from ESP specification")
+        print("Usage: python test_analyzer.py <path_to_test_file>")
         print("\nExample:")
-        print("  python test_analyzer_updated.py StudentTest.java")
+        print("  python test_analyzer.py StudentTest.java")
         sys.exit(1)
     
     test_file = sys.argv[1]

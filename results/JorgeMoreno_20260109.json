@@ -1,0 +1,155 @@
+{
+  "student_id": "JorgeMoreno",
+  "timestamp": "2026-01-09T10:53:08.879741",
+  "success": true,
+  "test_file": "student_submissions\\JorgeMoreno\\src\\test\\java\\es\\upm\\grise\\profunduzacion\\cruiseController\\CruiseControlTest.java",
+  "implementation_file": "student_submissions\\JorgeMoreno\\src\\main\\java\\es\\upm\\grise\\profundizacion\\cruiseControl\\CruiseControl.java",
+  "test_analysis": {
+    "success": true,
+    "test_file": "student_submissions\\JorgeMoreno\\src\\test\\java\\es\\upm\\grise\\profunduzacion\\cruiseController\\CruiseControlTest.java",
+    "test_methods": [
+      {
+        "name": "testSetSpeedSetWithinLimit",
+        "requirements": [
+          "R3",
+          "R5",
+          "R6"
+        ]
+      },
+      {
+        "name": "testSetSpeedSetAboveLimitThrowsException",
+        "requirements": [
+          "R3",
+          "R5",
+          "R6"
+        ]
+      },
+      {
+        "name": "testSetSpeedSetBelowCurrentSpeedThrowsException",
+        "requirements": [
+          "R3"
+        ]
+      }
+    ],
+    "requirements_covered": [
+      "R3",
+      "R5",
+      "R6"
+    ],
+    "requirements_missing": [
+      "R1",
+      "R2",
+      "R4"
+    ],
+    "requirement_details": {
+      "R1": {
+        "tested": false,
+        "status": "NOT_TESTED",
+        "covered_by_tests": [],
+        "description": "R1-INICIALIZACION: speedSet should initialize to null"
+      },
+      "R6": {
+        "tested": true,
+        "status": "PASS",
+        "covered_by_tests": [
+          "testSetSpeedSetWithinLimit",
+          "testSetSpeedSetAboveLimitThrowsException"
+        ],
+        "description": "R6-ERROR: Throw SpeedSetAboveSpeedLimitException if speedSet > speedLimit"
+      },
+      "R2": {
+        "tested": false,
+        "status": "NOT_TESTED",
+        "covered_by_tests": [],
+        "description": "R2-INICIALIZACION: speedLimit should initialize to null"
+      },
+      "R4": {
+        "tested": false,
+        "status": "NOT_TESTED",
+        "covered_by_tests": [],
+        "description": "R4-ERROR: Throw IncorrectSpeedSetException if speedSet is <= 0"
+      },
+      "R3": {
+        "tested": true,
+        "status": "PASS",
+        "covered_by_tests": [
+          "testSetSpeedSetWithinLimit",
+          "testSetSpeedSetAboveLimitThrowsException",
+          "testSetSpeedSetBelowCurrentSpeedThrowsException"
+        ],
+        "description": "R3: speedSet can adopt any positive value (> 0)"
+      },
+      "R5": {
+        "tested": true,
+        "status": "PASS",
+        "covered_by_tests": [
+          "testSetSpeedSetWithinLimit",
+          "testSetSpeedSetAboveLimitThrowsException"
+        ],
+        "description": "R5-ALTERNATIVO: If speedLimit is set, speedSet cannot exceed it"
+      }
+    },
+    "total_requirements": 6,
+    "requirements_found": 3,
+    "coverage_percentage": 50.0,
+    "test_count": 3
+  },
+  "implementation_analysis": {
+    "success": true,
+    "requirements_satisfied": [
+      "R1",
+      "R2",
+      "R3",
+      "R4",
+      "R5",
+      "R6"
+    ],
+    "requirements_missing": [],
+    "requirement_details": {
+      "R1": {
+        "satisfied": true,
+        "status": "PASS",
+        "description": "speedSet initializes to null",
+        "reason": "Implementation correct"
+      },
+      "R2": {
+        "satisfied": true,
+        "status": "PASS",
+        "description": "speedLimit initializes to null",
+        "reason": "Implementation correct"
+      },
+      "R3": {
+        "satisfied": true,
+        "status": "PASS",
+        "description": "setSpeedSet accepts positive values",
+        "reason": "Implementation correct"
+      },
+      "R4": {
+        "satisfied": true,
+        "status": "PASS",
+        "description": "Throws IncorrectSpeedSetException for zero/negative",
+        "reason": "Implementation correct"
+      },
+      "R5": {
+        "satisfied": true,
+        "status": "PASS",
+        "description": "speedSet respects speedLimit",
+        "reason": "Implementation correct"
+      },
+      "R6": {
+        "satisfied": true,
+        "status": "PASS",
+        "description": "Throws SpeedSetAboveSpeedLimitException when exceeding",
+        "reason": "Implementation correct"
+      }
+    },
+    "total_requirements": 6,
+    "requirements_found": 6,
+    "satisfaction_percentage": 100.0,
+    "test_details": []
+  },
+  "test_coverage_grade": 4.99,
+  "implementation_grade": 10.0,
+  "combined_grade": 7.5,
+  "error": null
+}

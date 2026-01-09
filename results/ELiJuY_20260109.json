@@ -1,0 +1,167 @@
+{
+  "student_id": "ELiJuY",
+  "timestamp": "2026-01-09T10:53:07.781803",
+  "success": true,
+  "test_file": "student_submissions\\ELiJuY\\src\\test\\java\\es\\upm\\grise\\profunduzacion\\cruiseController\\CruiseControlTest.java",
+  "implementation_file": "student_submissions\\ELiJuY\\src\\main\\java\\es\\upm\\grise\\profundizacion\\cruiseControl\\CruiseControl.java",
+  "test_analysis": {
+    "success": true,
+    "test_file": "student_submissions\\ELiJuY\\src\\test\\java\\es\\upm\\grise\\profunduzacion\\cruiseController\\CruiseControlTest.java",
+    "test_methods": [
+      {
+        "name": "validSpeedSet",
+        "requirements": [
+          "R3"
+        ]
+      },
+      {
+        "name": "speedSetCantBeNegativeOrCero",
+        "requirements": [
+          "R4"
+        ]
+      },
+      {
+        "name": "speedSetOverSpeedLimit",
+        "requirements": [
+          "R5",
+          "R6"
+        ]
+      },
+      {
+        "name": "speedSetEqualsSpeedLimit",
+        "requirements": [
+          "R5"
+        ]
+      }
+    ],
+    "requirements_covered": [
+      "R3",
+      "R4",
+      "R5",
+      "R6"
+    ],
+    "requirements_missing": [
+      "R1",
+      "R2"
+    ],
+    "requirement_details": {
+      "R1": {
+        "tested": false,
+        "status": "NOT_TESTED",
+        "covered_by_tests": [],
+        "description": "R1-INICIALIZACION: speedSet should initialize to null"
+      },
+      "R6": {
+        "tested": true,
+        "status": "PASS",
+        "covered_by_tests": [
+          "speedSetOverSpeedLimit"
+        ],
+        "description": "R6-ERROR: Throw SpeedSetAboveSpeedLimitException if speedSet > speedLimit"
+      },
+      "R2": {
+        "tested": false,
+        "status": "NOT_TESTED",
+        "covered_by_tests": [],
+        "description": "R2-INICIALIZACION: speedLimit should initialize to null"
+      },
+      "R4": {
+        "tested": true,
+        "status": "PASS",
+        "covered_by_tests": [
+          "speedSetCantBeNegativeOrCero"
+        ],
+        "description": "R4-ERROR: Throw IncorrectSpeedSetException if speedSet is <= 0"
+      },
+      "R3": {
+        "tested": true,
+        "status": "PASS",
+        "covered_by_tests": [
+          "validSpeedSet"
+        ],
+        "description": "R3: speedSet can adopt any positive value (> 0)"
+      },
+      "R5": {
+        "tested": true,
+        "status": "PASS",
+        "covered_by_tests": [
+          "speedSetOverSpeedLimit",
+          "speedSetEqualsSpeedLimit"
+        ],
+        "description": "R5-ALTERNATIVO: If speedLimit is set, speedSet cannot exceed it"
+      }
+    },
+    "total_requirements": 6,
+    "requirements_found": 4,
+    "coverage_percentage": 66.67,
+    "test_count": 4
+  },
+  "implementation_analysis": {
+    "success": true,
+    "requirements_satisfied": [
+      "R1",
+      "R2",
+      "R4",
+      "R6"
+    ],
+    "requirements_missing": [
+      "R3",
+      "R5"
+    ],
+    "requirement_details": {
+      "R1": {
+        "satisfied": true,
+        "status": "PASS",
+        "description": "speedSet initializes to null",
+        "reason": "Implementation correct"
+      },
+      "R2": {
+        "satisfied": true,
+        "status": "PASS",
+        "description": "speedLimit initializes to null",
+        "reason": "Implementation correct"
+      },
+      "R3": {
+        "satisfied": false,
+        "status": "FAIL",
+        "description": "setSpeedSet accepts positive values",
+        "reason": "NOT_SET"
+      },
+      "R4": {
+        "satisfied": true,
+        "status": "PASS",
+        "description": "Throws IncorrectSpeedSetException for zero/negative",
+        "reason": "Implementation correct"
+      },
+      "R5": {
+        "satisfied": false,
+        "status": "FAIL",
+        "description": "speedSet respects speedLimit",
+        "reason": "NOT_SET"
+      },
+      "R6": {
+        "satisfied": true,
+        "status": "PASS",
+        "description": "Throws SpeedSetAboveSpeedLimitException when exceeding",
+        "reason": "Implementation correct"
+      }
+    },
+    "total_requirements": 6,
+    "requirements_found": 4,
+    "satisfaction_percentage": 66.67,
+    "test_details": [
+      {
+        "requirement": "R3",
+        "reason": "NOT_SET"
+      },
+      {
+        "requirement": "R5",
+        "reason": "NOT_SET"
+      }
+    ]
+  },
+  "test_coverage_grade": 6.66,
+  "implementation_grade": 6.66,
+  "combined_grade": 6.66,
+  "error": null
+}

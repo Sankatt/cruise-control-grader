@@ -1,6 +1,6 @@
 {
   "student_id": "SergioGismeraPino",
-  "timestamp": "2025-12-25T21:50:17.749762",
+  "timestamp": "2026-01-09T10:53:12.268155",
   "success": true,
   "test_file": "student_submissions\\SergioGismeraPino\\src\\test\\java\\es\\upm\\grise\\profunduzacion\\cruiseController\\CruiseControlTest.java",
   "implementation_file": "student_submissions\\SergioGismeraPino\\src\\main\\java\\es\\upm\\grise\\profundizacion\\cruiseControl\\CruiseControl.java",
@@ -24,37 +24,67 @@
       {
         "name": "getVelocidadMayorQueLaMaxima",
         "requirements": [
-          "R3",
-          "R7"
+          "R3"
         ]
       }
     ],
     "requirements_covered": [
       "R3",
-      "R4",
-      "R7"
+      "R4"
     ],
     "requirements_missing": [
       "R1",
-      "R10",
-      "R11",
-      "R12",
-      "R13",
-      "R14",
-      "R15",
-      "R16",
-      "R17",
-      "R18",
-      "R19",
       "R2",
       "R5",
-      "R6",
-      "R8",
-      "R9"
+      "R6"
     ],
-    "total_requirements": 19,
-    "requirements_found": 3,
-    "coverage_percentage": 15.79,
+    "requirement_details": {
+      "R1": {
+        "tested": false,
+        "status": "NOT_TESTED",
+        "covered_by_tests": [],
+        "description": "R1-INICIALIZACION: speedSet should initialize to null"
+      },
+      "R6": {
+        "tested": false,
+        "status": "NOT_TESTED",
+        "covered_by_tests": [],
+        "description": "R6-ERROR: Throw SpeedSetAboveSpeedLimitException if speedSet > speedLimit"
+      },
+      "R2": {
+        "tested": false,
+        "status": "NOT_TESTED",
+        "covered_by_tests": [],
+        "description": "R2-INICIALIZACION: speedLimit should initialize to null"
+      },
+      "R4": {
+        "tested": true,
+        "status": "PASS",
+        "covered_by_tests": [
+          "getVelocidadNegatica"
+        ],
+        "description": "R4-ERROR: Throw IncorrectSpeedSetException if speedSet is <= 0"
+      },
+      "R3": {
+        "tested": true,
+        "status": "PASS",
+        "covered_by_tests": [
+          "getVelocidadCorrecta",
+          "getVelocidadNegatica",
+          "getVelocidadMayorQueLaMaxima"
+        ],
+        "description": "R3: speedSet can adopt any positive value (> 0)"
+      },
+      "R5": {
+        "tested": false,
+        "status": "NOT_TESTED",
+        "covered_by_tests": [],
+        "description": "R5-ALTERNATIVO: If speedLimit is set, speedSet cannot exceed it"
+      }
+    },
+    "total_requirements": 6,
+    "requirements_found": 2,
+    "coverage_percentage": 33.33,
     "test_count": 3
   },
   "implementation_analysis": {
@@ -67,17 +97,14 @@
       "R3",
       "R4",
       "R5",
-      "R6",
-      "R7",
-      "R8",
-      "R9"
+      "R6"
     ],
-    "total_requirements": 19,
+    "total_requirements": 6,
     "requirements_found": 0,
     "satisfaction_percentage": 0.0
   },
-  "test_coverage_grade": 1.54,
+  "test_coverage_grade": 3.34,
   "implementation_grade": 0.0,
-  "combined_grade": 0.77,
+  "combined_grade": 1.67,
   "error": null
 }
