@@ -1,0 +1,244 @@
+{
+  "student_id": "AlejandroBartolom\u00c3\u00a9",
+  "grader_type": "Pattern-Based Execution Grader",
+  "timestamp": "2026-02-19T14:25:00.076271",
+  "test_coverage": {
+    "grade": 10.0,
+    "requirements_covered": [
+      "R1",
+      "R2",
+      "R3",
+      "R4",
+      "R5",
+      "R6"
+    ],
+    "requirements_missing": [],
+    "coverage_percentage": 100.0,
+    "requirement_details": {
+      "R1": {
+        "tested": true,
+        "pattern_matching": {
+          "verified": false,
+          "test_methods": []
+        },
+        "holistic_coverage": {
+          "verified": true,
+          "confidence": 0.9,
+          "details": [
+            "Methods called: ['CruiseControl']",
+            "Code paths exercised"
+          ]
+        },
+        "verification_method": "holistic_coverage"
+      },
+      "R2": {
+        "tested": true,
+        "pattern_matching": {
+          "verified": false,
+          "test_methods": []
+        },
+        "holistic_coverage": {
+          "verified": true,
+          "confidence": 0.9,
+          "details": [
+            "Methods called: ['CruiseControl']",
+            "Code paths exercised"
+          ]
+        },
+        "verification_method": "holistic_coverage"
+      },
+      "R3": {
+        "tested": true,
+        "pattern_matching": {
+          "verified": false,
+          "test_methods": []
+        },
+        "holistic_coverage": {
+          "verified": true,
+          "confidence": 0.9,
+          "details": [
+            "Methods called: ['setSpeedSet']",
+            "Code paths exercised"
+          ]
+        },
+        "verification_method": "holistic_coverage"
+      },
+      "R4": {
+        "tested": true,
+        "pattern_matching": {
+          "verified": true,
+          "test_methods": [
+            "setSpeedIncorrectValueTest"
+          ]
+        },
+        "holistic_coverage": {
+          "verified": true,
+          "confidence": 0.9,
+          "details": [
+            "Methods called: ['setSpeedSet']",
+            "Code paths exercised"
+          ]
+        },
+        "verification_method": "pattern_matching"
+      },
+      "R5": {
+        "tested": true,
+        "pattern_matching": {
+          "verified": false,
+          "test_methods": []
+        },
+        "holistic_coverage": {
+          "verified": true,
+          "confidence": 0.7,
+          "details": [
+            "Methods called: ['setSpeedSet']",
+            "Warning: Code path verification inconclusive"
+          ]
+        },
+        "verification_method": "holistic_coverage"
+      },
+      "R6": {
+        "tested": true,
+        "pattern_matching": {
+          "verified": true,
+          "test_methods": [
+            "setSpeedAboveSpeedLimitTest"
+          ]
+        },
+        "holistic_coverage": {
+          "verified": true,
+          "confidence": 0.9,
+          "details": [
+            "Methods called: ['setSpeedSet']",
+            "Code paths exercised"
+          ]
+        },
+        "verification_method": "pattern_matching"
+      }
+    }
+  },
+  "implementation": {
+    "success": true,
+    "requirements_satisfied": [
+      "R1",
+      "R2",
+      "R3",
+      "R5",
+      "R6"
+    ],
+    "requirements_missing": [
+      "R4"
+    ],
+    "requirement_details": {
+      "R1": {
+        "satisfied": true,
+        "status": "PASS",
+        "description": "speedSet initializes to null",
+        "pattern_matched": true,
+        "pattern_details": {
+          "by_lines": false,
+          "by_paths": true,
+          "by_entirety": false,
+          "matched_patterns": [
+            "constructor:parsed"
+          ]
+        },
+        "execution_passed": true,
+        "reason": "Implementation correct"
+      },
+      "R2": {
+        "satisfied": true,
+        "status": "PASS",
+        "description": "speedLimit initializes to null",
+        "pattern_matched": true,
+        "pattern_details": {
+          "by_lines": false,
+          "by_paths": true,
+          "by_entirety": false,
+          "matched_patterns": [
+            "constructor:parsed"
+          ]
+        },
+        "execution_passed": true,
+        "reason": "Implementation correct"
+      },
+      "R3": {
+        "satisfied": true,
+        "status": "PASS",
+        "description": "setSpeedSet accepts positive values",
+        "pattern_matched": true,
+        "pattern_details": {
+          "by_lines": true,
+          "by_paths": false,
+          "by_entirety": true,
+          "matched_patterns": [
+            "method_signature:found",
+            "assignment:found"
+          ]
+        },
+        "execution_passed": true,
+        "reason": "Implementation correct"
+      },
+      "R4": {
+        "satisfied": false,
+        "status": "FAIL",
+        "description": "Throws IncorrectSpeedSetException for zero/negative",
+        "pattern_matched": true,
+        "pattern_details": {
+          "by_lines": false,
+          "by_paths": false,
+          "by_entirety": true,
+          "matched_patterns": [
+            "exception:found"
+          ]
+        },
+        "execution_passed": false,
+        "reason": "NO_EXCEPTION"
+      },
+      "R5": {
+        "satisfied": true,
+        "status": "PASS",
+        "description": "speedSet respects speedLimit",
+        "pattern_matched": true,
+        "pattern_details": {
+          "by_lines": false,
+          "by_paths": false,
+          "by_entirety": true,
+          "matched_patterns": [
+            "null_check:found"
+          ]
+        },
+        "execution_passed": true,
+        "reason": "Implementation correct"
+      },
+      "R6": {
+        "satisfied": true,
+        "status": "PASS",
+        "description": "Throws SpeedSetAboveSpeedLimitException when exceeding",
+        "pattern_matched": true,
+        "pattern_details": {
+          "by_lines": false,
+          "by_paths": false,
+          "by_entirety": true,
+          "matched_patterns": [
+            "exception:found"
+          ]
+        },
+        "execution_passed": true,
+        "reason": "Implementation correct"
+      }
+    },
+    "total_requirements": 6,
+    "requirements_found": 5,
+    "satisfaction_percentage": 83.33,
+    "pattern_matching_used": true,
+    "test_details": [
+      {
+        "requirement": "R4",
+        "reason": "NO_EXCEPTION"
+      }
+    ]
+  },
+  "implementation_grade": 8.33,
+  "combined_grade": 9.16
+}

@@ -1,0 +1,395 @@
+test_candidate_001:
+  date: '2026-02-11'
+  reason: Test method found but no patterns matched
+  status: NEEDS_MANUAL_REVIEW
+  student: Unknown
+  test_code: "\n        CruiseControl cruiseControl = new CruiseControl(speedometer);\n\
+    \        cruiseControl.setSpeedLimit(100);\n        assertTrue(cruiseControl.getSpeedLimit()\
+    \ == 100);\n    "
+  test_method: testSetSpeedLimit
+test_candidate_002:
+  date: '2026-02-11'
+  reason: Test method found but no patterns matched
+  status: NEEDS_MANUAL_REVIEW
+  student: Unknown
+  test_code: "\n        CruiseControl cruiseControl = new CruiseControl(speedometer);\n\
+    \        try{\n            cruiseControl.setSpeedSet(-100);\n        "
+  test_method: testSetNegativeSpeed
+test_candidate_003:
+  date: '2026-02-11'
+  reason: Test method found but no patterns matched
+  status: NEEDS_MANUAL_REVIEW
+  student: Unknown
+  test_code: "\n        CruiseControl cruiseControl = new CruiseControl(speedometer);\n\
+    \        cruiseControl.setSpeedSet(0);\n        assertEquals(0, cruiseControl.getSpeedSet());\n\
+    \    "
+  test_method: correctSpeedSetTest
+test_candidate_004:
+  date: '2026-02-11'
+  reason: Test method found but no patterns matched
+  status: NEEDS_MANUAL_REVIEW
+  student: Unknown
+  test_code: "\n        cruiseControl.setSpeedLimit(SPEED_LIMIT);\n        assertDoesNotThrow(()\
+    \ -> cruiseControl.setSpeedSet(SPEED_LIMIT));\n    "
+  test_method: speedSetEqualsSpeedLimit
+test_candidate_005:
+  date: '2026-02-11'
+  reason: Test method found but no patterns matched
+  status: NEEDS_MANUAL_REVIEW
+  student: Unknown
+  test_code: "\n        assertNull(cc.getSpeedSet(), \"speedSet debería ser null por\
+    \ defecto\");\n        assertNull(cc.getSpeedLimit(), \"speedLimit debería ser\
+    \ null por defecto\");\n    "
+  test_method: defaultValuesAreNull
+test_candidate_006:
+  date: '2026-02-11'
+  reason: Test method found but no patterns matched
+  status: NEEDS_MANUAL_REVIEW
+  student: Unknown
+  test_code: "\n        assertThrows(Exception.class, () -> cc.setSpeedSet(0));\n\
+    \        assertThrows(Exception.class, () -> cc.setSpeedSet(-10));\n    "
+  test_method: settingZeroOrNegativeThrowsIncorrectSpeedSetException
+test_candidate_007:
+  date: '2026-02-11'
+  reason: Test method found but no patterns matched
+  status: NEEDS_MANUAL_REVIEW
+  student: Unknown
+  test_code: "\n        CruiseControl.setSpeedSet(-90);\n        assertEquals(null,CruiseControl.getSpeedSet(),\"\
+    la velocidad indicada es negativa\");\n\n    "
+  test_method: getVelocidadNegatica
+test_candidate_008:
+  date: '2026-02-11'
+  reason: Test method found but no patterns matched
+  status: NEEDS_MANUAL_REVIEW
+  student: Unknown
+  test_code: "\n        exceptionRule.expect(IncorrectSpeedSetException.class);\n\
+    \        exceptionRule.expectMessage(\"La velocidad tiene que ser mayor que cero.\"\
+    );\n\n        control.setSpeedSet(0);\n    "
+  test_method: testIncorrectSpeedSetException
+test_candidate_009:
+  date: '2026-02-11'
+  reason: Test method found but no patterns matched
+  status: NEEDS_MANUAL_REVIEW
+  student: Unknown
+  test_code: "\n        assertAll(\n            () -> {assertEquals(null, cControl.getSpeedLimit());"
+  test_method: valoresNulosTest
+test_candidate_010:
+  date: '2026-02-11'
+  reason: Test method found but no patterns matched
+  status: NEEDS_MANUAL_REVIEW
+  student: Unknown
+  test_code: "\n        final Integer speedSet = 40;\n        cControl.setSpeedSet(speedSet);\n\
+    \        assertEquals(speedSet, cControl.getSpeedSet());\n    "
+  test_method: speedSetCorrectTest
+test_candidate_011:
+  date: '2026-02-11'
+  reason: Test method found but no patterns matched
+  status: NEEDS_MANUAL_REVIEW
+  student: Unknown
+  test_code: "\n        CruiseControl cruiseControl = new CruiseControl(speedometer);\n\
+    \        cruiseControl.setSpeedLimit(100);\n        assertTrue(cruiseControl.getSpeedLimit()\
+    \ == 100);\n    "
+  test_method: testSetSpeedLimit
+test_candidate_012:
+  date: '2026-02-11'
+  reason: Test method found but no patterns matched
+  status: NEEDS_MANUAL_REVIEW
+  student: Unknown
+  test_code: "\n        CruiseControl cruiseControl = new CruiseControl(speedometer);\n\
+    \        try{\n            cruiseControl.setSpeedSet(-100);\n        "
+  test_method: testSetNegativeSpeed
+test_candidate_013:
+  date: '2026-02-11'
+  reason: Test method found but no patterns matched
+  status: NEEDS_MANUAL_REVIEW
+  student: Unknown
+  test_code: "\n        CruiseControl cruiseControl = new CruiseControl(speedometer);\n\
+    \        cruiseControl.setSpeedLimit(50);\n        assertTrue(cruiseControl.getSpeedLimit()\
+    \ == 50);\n        try {\n        cruiseCon"
+  test_method: testSpeedLimitSurpassed
+test_candidate_014:
+  date: '2026-02-11'
+  reason: Test method found but no patterns matched
+  status: NEEDS_MANUAL_REVIEW
+  student: Unknown
+  test_code: "\n        CruiseControl cruiseControl = new CruiseControl(speedometer);\n\
+    \        assertThrows(IncorrectSpeedSetException.class, () -> {cruiseControl.setSpeedSet(-1);"
+  test_method: setSpeedIncorrectValueTest
+test_candidate_015:
+  date: '2026-02-11'
+  reason: Test method found but no patterns matched
+  status: NEEDS_MANUAL_REVIEW
+  student: Unknown
+  test_code: "\n        CruiseControl cruiseControl = new CruiseControl(speedometer);\n\
+    \        cruiseControl.setSpeedSet(0);\n        assertEquals(0, cruiseControl.getSpeedSet());\n\
+    \    "
+  test_method: correctSpeedSetTest
+test_candidate_016:
+  date: '2026-02-11'
+  reason: Test method found but no patterns matched
+  status: NEEDS_MANUAL_REVIEW
+  student: Unknown
+  test_code: "\n        Speedometer mockSpeedometer = Mockito.mock(Speedometer.class);\n\
+    \        when(mockSpeedometer.getCurrentSpeed()).thenReturn(100);\n\n        CruiseControl\
+    \ cruiseControl = new CruiseControl(mockSp"
+  test_method: negativeCruiseControlTest
+test_candidate_017:
+  date: '2026-02-11'
+  reason: Test method found but no patterns matched
+  status: NEEDS_MANUAL_REVIEW
+  student: Unknown
+  test_code: "\n        assertDoesNotThrow(() -> cruiseControl.setSpeedSet(60));\n\
+    \    "
+  test_method: validSpeedSet
+test_candidate_018:
+  date: '2026-02-11'
+  reason: Test method found but no patterns matched
+  status: NEEDS_MANUAL_REVIEW
+  student: Unknown
+  test_code: "\n        cruiseControl.setSpeedLimit(SPEED_LIMIT);\n        assertThrows(SpeedSetAboveSpeedLimitException.class,\
+    \ () -> cruiseControl.setSpeedSet(SPEED_LIMIT + 10));\n    "
+  test_method: speedSetOverSpeedLimit
+test_candidate_019:
+  date: '2026-02-11'
+  reason: Test method found but no patterns matched
+  status: NEEDS_MANUAL_REVIEW
+  student: Unknown
+  test_code: "\n        cruiseControl.setSpeedLimit(SPEED_LIMIT);\n        assertDoesNotThrow(()\
+    \ -> cruiseControl.setSpeedSet(SPEED_LIMIT));\n    "
+  test_method: speedSetEqualsSpeedLimit
+test_candidate_020:
+  date: '2026-02-11'
+  reason: Test method found but no patterns matched
+  status: NEEDS_MANUAL_REVIEW
+  student: Unknown
+  test_code: "\n        when(speedometer.getCurrentSpeed()).thenReturn(90);\n    \
+    \    assertThrows(SpeedSetAboveSpeedLimitException.class, () -> {\n          \
+    \  cruiseControl.setSpeedSet(130);\n        "
+  test_method: testSetSpeedSetAboveLimitThrowsException
+test_candidate_021:
+  date: '2026-02-11'
+  reason: Test method found but no patterns matched
+  status: NEEDS_MANUAL_REVIEW
+  student: Unknown
+  test_code: "\n        when(speedometer.getCurrentSpeed()).thenReturn(90);\n    \
+    \    assertThrows(IncorrectSpeedException.class, () -> {\n            cruiseControl.setSpeedSet(70);\n\
+    \        "
+  test_method: testSetSpeedSetBelowCurrentSpeedThrowsException
+test_candidate_022:
+  date: '2026-02-11'
+  reason: Test method found but no patterns matched
+  status: NEEDS_MANUAL_REVIEW
+  student: Unknown
+  test_code: "\n        assertNull(cc.getSpeedSet(), \"speedSet debería ser null por\
+    \ defecto\");\n        assertNull(cc.getSpeedLimit(), \"speedLimit debería ser\
+    \ null por defecto\");\n    "
+  test_method: defaultValuesAreNull
+test_candidate_023:
+  date: '2026-02-11'
+  reason: Test method found but no patterns matched
+  status: NEEDS_MANUAL_REVIEW
+  student: Unknown
+  test_code: "\n        cc.setSpeedLimit(100);\n        assertThrows(Exception.class,\
+    \ () -> cc.setSpeedSet(120));\n    "
+  test_method: settingAboveLimitThrowsSpeedSetAboveSpeedLimitException
+test_candidate_024:
+  date: '2026-02-11'
+  reason: Test method found but no patterns matched
+  status: NEEDS_MANUAL_REVIEW
+  student: Unknown
+  test_code: "\n        CruiseControl.setSpeedSet(-90);\n        assertEquals(null,CruiseControl.getSpeedSet(),\"\
+    la velocidad indicada es negativa\");\n\n    "
+  test_method: getVelocidadNegatica
+test_candidate_025:
+  date: '2026-02-11'
+  reason: Test method found but no patterns matched
+  status: NEEDS_MANUAL_REVIEW
+  student: Unknown
+  test_code: "\n        control.setSpeedLimit(20);\n\n        exceptionRule.expect(SpeedSetAboveSpeedLimitException.class);\n\
+    \        exceptionRule.expectMessage(\"La velocidad no debe sobrepasar el límite\
+    \ de velocidad e"
+  test_method: testSpeedSetAboveSpeedLimitException
+test_candidate_026:
+  date: '2026-02-11'
+  reason: Test method found but no patterns matched
+  status: NEEDS_MANUAL_REVIEW
+  student: Unknown
+  test_code: "\n        exceptionRule.expect(IncorrectSpeedSetException.class);\n\
+    \        exceptionRule.expectMessage(\"La velocidad tiene que ser mayor que cero.\"\
+    );\n\n        control.setSpeedSet(0);\n    "
+  test_method: testIncorrectSpeedSetException
+test_candidate_027:
+  date: '2026-02-11'
+  reason: Test method found but no patterns matched
+  status: NEEDS_MANUAL_REVIEW
+  student: Unknown
+  test_code: "\n        assertAll(\n            () -> {assertEquals(null, cControl.getSpeedLimit());"
+  test_method: valoresNulosTest
+test_candidate_028:
+  date: '2026-02-11'
+  reason: Test method found but no patterns matched
+  status: NEEDS_MANUAL_REVIEW
+  student: Unknown
+  test_code: "\n        final Integer speedNegativo = -10;\n        final Integer\
+    \ speedCero = 0;\n        assertAll(\n            () -> {assertThrows(IncorrectSpeedSetException.class,\
+    \ () -> {cControl.setSpeedSet(speedN"
+  test_method: incorrectSpeedSetTest
+test_candidate_029:
+  date: '2026-02-11'
+  reason: Test method found but no patterns matched
+  status: NEEDS_MANUAL_REVIEW
+  student: Unknown
+  test_code: "\n        final Integer speedSet = 60;\n        cControl.setSpeedLimit(speedLimit);\n\
+    \        assertThrows(SpeedSetAboveSpeedLimitException.class, () -> {cControl.setSpeedSet(speedSet);"
+  test_method: speedSetAboveSpeedLimitTest
+test_candidate_030:
+  date: '2026-02-11'
+  reason: Test method found but no patterns matched
+  status: NEEDS_MANUAL_REVIEW
+  student: Unknown
+  test_code: "\n        final Integer speedSet = 40;\n        cControl.setSpeedSet(speedSet);\n\
+    \        assertEquals(speedSet, cControl.getSpeedSet());\n    "
+  test_method: speedSetCorrectTest
+test_candidate_031:
+  date: '2026-02-19'
+  reason: Test method found but no patterns matched
+  status: NEEDS_MANUAL_REVIEW
+  student: Unknown
+  test_code: "\n        CruiseControl cruiseControl = new CruiseControl(speedometer);\n\
+    \        cruiseControl.setSpeedLimit(100);\n        assertTrue(cruiseControl.getSpeedLimit()\
+    \ == 100);\n    "
+  test_method: testSetSpeedLimit
+test_candidate_032:
+  date: '2026-02-19'
+  reason: Test method found but no patterns matched
+  status: NEEDS_MANUAL_REVIEW
+  student: Unknown
+  test_code: "\n        CruiseControl cruiseControl = new CruiseControl(speedometer);\n\
+    \        try{\n            cruiseControl.setSpeedSet(-100);\n        "
+  test_method: testSetNegativeSpeed
+test_candidate_033:
+  date: '2026-02-19'
+  reason: Test method found but no patterns matched
+  status: NEEDS_MANUAL_REVIEW
+  student: Unknown
+  test_code: "\n        CruiseControl cruiseControl = new CruiseControl(speedometer);\n\
+    \        cruiseControl.setSpeedLimit(50);\n        assertTrue(cruiseControl.getSpeedLimit()\
+    \ == 50);\n        try {\n        cruiseCon"
+  test_method: testSpeedLimitSurpassed
+test_candidate_034:
+  date: '2026-02-19'
+  reason: Test method found but no patterns matched
+  status: NEEDS_MANUAL_REVIEW
+  student: Unknown
+  test_code: "\n        CruiseControl cruiseControl = new CruiseControl(speedometer);\n\
+    \        cruiseControl.setSpeedSet(0);\n        assertEquals(0, cruiseControl.getSpeedSet());\n\
+    \    "
+  test_method: correctSpeedSetTest
+test_candidate_035:
+  date: '2026-02-19'
+  reason: Test method found but no patterns matched
+  status: NEEDS_MANUAL_REVIEW
+  student: Unknown
+  test_code: "\n        assertDoesNotThrow(() -> cruiseControl.setSpeedSet(60));\n\
+    \    "
+  test_method: validSpeedSet
+test_candidate_036:
+  date: '2026-02-19'
+  reason: Test method found but no patterns matched
+  status: NEEDS_MANUAL_REVIEW
+  student: Unknown
+  test_code: "\n        cruiseControl.setSpeedLimit(SPEED_LIMIT);\n        assertThrows(SpeedSetAboveSpeedLimitException.class,\
+    \ () -> cruiseControl.setSpeedSet(SPEED_LIMIT + 10));\n    "
+  test_method: speedSetOverSpeedLimit
+test_candidate_037:
+  date: '2026-02-19'
+  reason: Test method found but no patterns matched
+  status: NEEDS_MANUAL_REVIEW
+  student: Unknown
+  test_code: "\n        cruiseControl.setSpeedLimit(SPEED_LIMIT);\n        assertDoesNotThrow(()\
+    \ -> cruiseControl.setSpeedSet(SPEED_LIMIT));\n    "
+  test_method: speedSetEqualsSpeedLimit
+test_candidate_038:
+  date: '2026-02-19'
+  reason: Test method found but no patterns matched
+  status: NEEDS_MANUAL_REVIEW
+  student: Unknown
+  test_code: "\n        when(speedometer.getCurrentSpeed()).thenReturn(90);\n    \
+    \    assertThrows(SpeedSetAboveSpeedLimitException.class, () -> {\n          \
+    \  cruiseControl.setSpeedSet(130);\n        "
+  test_method: testSetSpeedSetAboveLimitThrowsException
+test_candidate_039:
+  date: '2026-02-19'
+  reason: Test method found but no patterns matched
+  status: NEEDS_MANUAL_REVIEW
+  student: Unknown
+  test_code: "\n        when(speedometer.getCurrentSpeed()).thenReturn(90);\n    \
+    \    assertThrows(IncorrectSpeedException.class, () -> {\n            cruiseControl.setSpeedSet(70);\n\
+    \        "
+  test_method: testSetSpeedSetBelowCurrentSpeedThrowsException
+test_candidate_040:
+  date: '2026-02-19'
+  reason: Test method found but no patterns matched
+  status: NEEDS_MANUAL_REVIEW
+  student: Unknown
+  test_code: "\n        assertNull(cc.getSpeedSet(), \"speedSet debería ser null por\
+    \ defecto\");\n        assertNull(cc.getSpeedLimit(), \"speedLimit debería ser\
+    \ null por defecto\");\n    "
+  test_method: defaultValuesAreNull
+test_candidate_041:
+  date: '2026-02-19'
+  reason: Test method found but no patterns matched
+  status: NEEDS_MANUAL_REVIEW
+  student: Unknown
+  test_code: "\n        cc.setSpeedLimit(100);\n        assertThrows(Exception.class,\
+    \ () -> cc.setSpeedSet(120));\n    "
+  test_method: settingAboveLimitThrowsSpeedSetAboveSpeedLimitException
+test_candidate_042:
+  date: '2026-02-19'
+  reason: Test method found but no patterns matched
+  status: NEEDS_MANUAL_REVIEW
+  student: Unknown
+  test_code: "\n        CruiseControl.setSpeedSet(-90);\n        assertEquals(null,CruiseControl.getSpeedSet(),\"\
+    la velocidad indicada es negativa\");\n\n    "
+  test_method: getVelocidadNegatica
+test_candidate_043:
+  date: '2026-02-19'
+  reason: Test method found but no patterns matched
+  status: NEEDS_MANUAL_REVIEW
+  student: Unknown
+  test_code: "\n        control.setSpeedLimit(20);\n\n        exceptionRule.expect(SpeedSetAboveSpeedLimitException.class);\n\
+    \        exceptionRule.expectMessage(\"La velocidad no debe sobrepasar el límite\
+    \ de velocidad e"
+  test_method: testSpeedSetAboveSpeedLimitException
+test_candidate_044:
+  date: '2026-02-19'
+  reason: Test method found but no patterns matched
+  status: NEEDS_MANUAL_REVIEW
+  student: Unknown
+  test_code: "\n        assertAll(\n            () -> {assertEquals(null, cControl.getSpeedLimit());"
+  test_method: valoresNulosTest
+test_candidate_045:
+  date: '2026-02-19'
+  reason: Test method found but no patterns matched
+  status: NEEDS_MANUAL_REVIEW
+  student: Unknown
+  test_code: "\n        final Integer speedNegativo = -10;\n        final Integer\
+    \ speedCero = 0;\n        assertAll(\n            () -> {assertThrows(IncorrectSpeedSetException.class,\
+    \ () -> {cControl.setSpeedSet(speedN"
+  test_method: incorrectSpeedSetTest
+test_candidate_046:
+  date: '2026-02-19'
+  reason: Test method found but no patterns matched
+  status: NEEDS_MANUAL_REVIEW
+  student: Unknown
+  test_code: "\n        final Integer speedSet = 60;\n        cControl.setSpeedLimit(speedLimit);\n\
+    \        assertThrows(SpeedSetAboveSpeedLimitException.class, () -> {cControl.setSpeedSet(speedSet);"
+  test_method: speedSetAboveSpeedLimitTest
+test_candidate_047:
+  date: '2026-02-19'
+  reason: Test method found but no patterns matched
+  status: NEEDS_MANUAL_REVIEW
+  student: Unknown
+  test_code: "\n        final Integer speedSet = 40;\n        cControl.setSpeedSet(speedSet);\n\
+    \        assertEquals(speedSet, cControl.getSpeedSet());\n    "
+  test_method: speedSetCorrectTest

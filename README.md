@@ -1,5 +1,30 @@
+<<<<<<< HEAD
 # CruiseControl Grading System - Complete Update Package
 ## January 9, 2026 - All Fixes and Enhancements
+=======
+# CruiseControl Automated Grading System v2.0
+
+**Dual-metric automated grading system for Java CruiseControl programming assignments.**
+
+[![Status](https://img.shields.io/badge/status-production-green)]()
+[![Success Rate](https://img.shields.io/badge/success_rate-90%25-brightgreen)]()
+[![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20Mac%20%7C%20Linux-blue)]()
+
+## 🎯 Overview
+
+This system automatically grades student submissions for a CruiseControl programming exam by evaluating **two key dimensions**:
+
+1. **Test Coverage** (Pattern-Based) - Did students write tests for all requirements?
+2. **Implementation Quality** (Execution-Based) - Does their code actually work when executed?
+
+### Why Dual Grading?
+
+**Dual grading provides:**
+✅ Complete assessment of both testing skills AND coding ability  
+✅ Fair partial credit for incomplete work  
+✅ Insights into student strengths/weaknesses  
+✅ Protection against "looks right but doesn't work" code  
+>>>>>>> 8694c98fea0a0a58085e949cd82cb9ae3e8fd396
 
 ---
 
@@ -236,10 +261,166 @@ python -c "import json; d=json.load(open('results/student.json')); print('requir
 # If False, re-run grader with updated analyzers
 ```
 
+<<<<<<< HEAD
+---
+=======
+### Export to CSV
+
+```python
+import json
+import csv
+
+with open('results/grading_summary.json') as f:
+    data = json.load(f)
+
+with open('grades.csv', 'w', newline='') as f:
+    writer = csv.writer(f)
+    writer.writerow(['Student', 'Test Grade', 'Impl Grade', 'Combined'])
+    
+    for result in data['results']:
+        if result['success']:
+            writer.writerow([
+                result['student_id'],
+                result['test_coverage_grade'],
+                result['implementation_grade'],
+                result['combined_grade']
+            ])
+```
+
 ---
 
-## 📞 Support
+## 🐛 Troubleshooting
 
+### Issue: No tests detected (0/19)
+
+**Possible Causes:**
+- Test file not named `CruiseControlTest.java`
+- Missing `@Test` annotations
+- Test file in unexpected location
+
+**Solution:**
+```bash
+# Check test file location
+find student_submissions -name "*Test.java"
+
+# Verify test file content
+cat student_submissions/StudentName/src/test/java/.../CruiseControlTest.java
+```
+
+### Issue: Compilation failed
+
+**Possible Causes:**
+- Student has syntax errors
+- Missing exception class files
+- Wrong package declaration
+
+**Solution:**
+```bash
+# Check compilation error details
+python grader/main.py ./student_submissions/StudentName 2>&1 | grep "error:"
+
+# Verify package structure
+ls -R student_submissions/StudentName/src/
+```
+
+### Issue: Zero implementation grade
+
+**Possible Causes:**
+- Code doesn't compile
+- Exceptions not thrown correctly
+- Logic errors in implementation
+
+**Solution:**
+```bash
+# Run grader with verbose output
+python grader/main.py ./student_submissions/StudentName
+
+# Check generated test output
+cat student_submissions/StudentName/GraderTest.java
+```
+
+### Issue: Dashboard shows all zeros
+
+**Cause:** Browser cached old JSON
+
+**Solution:**
+```bash
+# Hard refresh browser
+# Windows/Linux: Ctrl + F5
+# Mac: Cmd + Shift + R
+
+# Or restart server
+# Ctrl+C to stop
+python -m http.server 8000
+```
+
+---
+
+## 📚 Documentation
+
+- **[REQUIREMENTS.md](REQUIREMENTS.md)** - Complete requirement specifications
+- **[DUAL_GRADING_GUIDE.md](DUAL_GRADING_GUIDE.md)** - In-depth grading methodology
+
+---
+
+## 📊 Performance Metrics
+
+**System Performance (v2.0):**
+- ⚡ **Grading Speed**: ~10 seconds per student
+- ✅ **Success Rate**: 90% (9/10 students)
+- 🎯 **Accuracy**: Verified through manual spot-checks
+- 🔄 **Reliability**: Handles edge cases gracefully
+
+**Supported Configurations:**
+- JUnit 4, JUnit 5, or mixed
+- Inner exception classes or separate files
+- Checked exceptions (extends Exception)
+- Unchecked exceptions (extends RuntimeException)
+- Maven, Gradle, or flat project structures
+
+---
+
+
+## 🔮 Roadmap
+
+
+### Extensibility
+The system is designed for easy extension:
+- Add new requirements in `config.yaml`
+- Create custom analyzers in `analyzer/`
+- Extend dashboard with new visualizations
+- Integrate with LMS (Canvas, Moodle, etc.)
+
+---
+
+## 🤝 Contributing
+
+Contributions welcome! Here's how:
+
+1. **Fork** the repository
+2. **Create** a feature branch (`git checkout -b feature/amazing-feature`)
+3. **Commit** your changes (`git commit -m 'Add amazing feature'`)
+4. **Push** to branch (`git push origin feature/amazing-feature`)
+5. **Open** a Pull Request
+
+
+## 👤 Author
+
+**Sankatt**
+- GitHub: [@Sankatt](https://github.com/Sankatt)
+- Repository: [cruise-control-grader](https://github.com/Sankatt/cruise-control-grader)
+
+---
+
+## Acknowledgments
+
+- Built with assistance from **Claude** (Anthropic)
+- Based on CruiseControl assignment from **UPM GRISE**
+
+>>>>>>> 8694c98fea0a0a58085e949cd82cb9ae3e8fd396
+
+
+<<<<<<< HEAD
 ### Need Help?
 
 1. **Read the documentation**
@@ -292,6 +473,10 @@ The grading system now correctly evaluates only these 6 requirements:
 | R5 | speedSet respects speedLimit | 1.67 |
 | R6 | Throws exception when exceeding limit | 1.65 |
 | **Total** | | **10.00** |
+=======
+**Status:** ✅ Production Ready  
+**Last Updated:** December 25, 2025
+>>>>>>> 8694c98fea0a0a58085e949cd82cb9ae3e8fd396
 
 ---
 

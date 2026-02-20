@@ -1,0 +1,220 @@
+{
+  "student_id": "StefaniScott",
+  "grader_type": "Pattern-Based Execution Grader",
+  "timestamp": "2026-02-11T19:46:38.484884",
+  "test_coverage": {
+    "grade": 1.67,
+    "requirements_covered": [
+      "R3"
+    ],
+    "requirements_missing": [
+      "R1",
+      "R2",
+      "R4",
+      "R5",
+      "R6"
+    ],
+    "coverage_percentage": 16.67,
+    "requirement_details": {
+      "R1": {
+        "tested": false,
+        "status": "NOT_TESTED",
+        "covered_by_tests": [],
+        "description": "R1-INICIALIZACION: speedSet should initialize to null",
+        "pattern_matching": {
+          "patterns_matched": 0,
+          "details": []
+        }
+      },
+      "R2": {
+        "tested": false,
+        "status": "NOT_TESTED",
+        "covered_by_tests": [],
+        "description": "R2-INICIALIZACION: speedLimit should initialize to null",
+        "pattern_matching": {
+          "patterns_matched": 0,
+          "details": []
+        }
+      },
+      "R3": {
+        "tested": true,
+        "status": "PASS",
+        "covered_by_tests": [
+          "testsetSpeedSetCorrect"
+        ],
+        "description": "R3: speedSet can adopt any positive value (> 0)",
+        "pattern_matching": {
+          "patterns_matched": 1,
+          "details": [
+            {
+              "tested": true,
+              "method_name": "testsetSpeedSetCorrect",
+              "matched_patterns": [
+                "method_calls:setSpeedSet\\s*\\(\\s*[1-9]\\d*\\s*"
+              ],
+              "confidence": 1,
+              "by_lines": true,
+              "by_paths": false,
+              "by_entirety": false,
+              "logic_verified": true,
+              "verification_reason": "Sets positive value (15) and verifies storage"
+            }
+          ]
+        }
+      },
+      "R4": {
+        "tested": false,
+        "status": "NOT_TESTED",
+        "covered_by_tests": [],
+        "description": "R4-ERROR: Throw IncorrectSpeedSetException if speedSet <= 0",
+        "pattern_matching": {
+          "patterns_matched": 0,
+          "details": []
+        }
+      },
+      "R5": {
+        "tested": false,
+        "status": "NOT_TESTED",
+        "covered_by_tests": [],
+        "description": "R5-ALTERNATIVO: If speedLimit is set, speedSet cannot exceed it",
+        "pattern_matching": {
+          "patterns_matched": 0,
+          "details": []
+        }
+      },
+      "R6": {
+        "tested": false,
+        "status": "NOT_TESTED",
+        "covered_by_tests": [],
+        "description": "R6-ERROR: Throw SpeedSetAboveSpeedLimitException if speedSet > speedLimit",
+        "pattern_matching": {
+          "patterns_matched": 0,
+          "details": []
+        }
+      }
+    }
+  },
+  "implementation": {
+    "success": true,
+    "requirements_satisfied": [
+      "R1",
+      "R2",
+      "R3",
+      "R4",
+      "R5",
+      "R6"
+    ],
+    "requirements_missing": [],
+    "requirement_details": {
+      "R1": {
+        "satisfied": true,
+        "status": "PASS",
+        "description": "speedSet initializes to null",
+        "pattern_matched": true,
+        "pattern_details": {
+          "by_lines": false,
+          "by_paths": true,
+          "by_entirety": false,
+          "matched_patterns": [
+            "constructor:parsed"
+          ]
+        },
+        "execution_passed": true,
+        "reason": "Implementation correct"
+      },
+      "R2": {
+        "satisfied": true,
+        "status": "PASS",
+        "description": "speedLimit initializes to null",
+        "pattern_matched": true,
+        "pattern_details": {
+          "by_lines": false,
+          "by_paths": true,
+          "by_entirety": false,
+          "matched_patterns": [
+            "constructor:parsed"
+          ]
+        },
+        "execution_passed": true,
+        "reason": "Implementation correct"
+      },
+      "R3": {
+        "satisfied": true,
+        "status": "PASS",
+        "description": "setSpeedSet accepts positive values",
+        "pattern_matched": true,
+        "pattern_details": {
+          "by_lines": true,
+          "by_paths": false,
+          "by_entirety": true,
+          "matched_patterns": [
+            "method_signature:found",
+            "assignment:found"
+          ]
+        },
+        "execution_passed": true,
+        "reason": "Implementation correct"
+      },
+      "R4": {
+        "satisfied": true,
+        "status": "PASS",
+        "description": "Throws IncorrectSpeedSetException for zero/negative",
+        "pattern_matched": true,
+        "pattern_details": {
+          "by_lines": false,
+          "by_paths": true,
+          "by_entirety": false,
+          "matched_patterns": [
+            "validation:found",
+            "exception:found"
+          ]
+        },
+        "execution_passed": true,
+        "reason": "Implementation correct"
+      },
+      "R5": {
+        "satisfied": true,
+        "status": "PASS",
+        "description": "speedSet respects speedLimit",
+        "pattern_matched": true,
+        "pattern_details": {
+          "by_lines": false,
+          "by_paths": true,
+          "by_entirety": false,
+          "matched_patterns": [
+            "null_check:found",
+            "comparison:found",
+            "combined:found"
+          ]
+        },
+        "execution_passed": true,
+        "reason": "Implementation correct"
+      },
+      "R6": {
+        "satisfied": true,
+        "status": "PASS",
+        "description": "Throws SpeedSetAboveSpeedLimitException when exceeding",
+        "pattern_matched": true,
+        "pattern_details": {
+          "by_lines": false,
+          "by_paths": true,
+          "by_entirety": false,
+          "matched_patterns": [
+            "validation:found",
+            "exception:found",
+            "combined:found"
+          ]
+        },
+        "execution_passed": true,
+        "reason": "Implementation correct"
+      }
+    },
+    "total_requirements": 6,
+    "requirements_found": 6,
+    "satisfaction_percentage": 100.0,
+    "pattern_matching_used": true,
+    "test_details": []
+  },
+  "implementation_grade": 10.0,
+  "combined_grade": 5.83
+}

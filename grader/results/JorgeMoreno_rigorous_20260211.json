@@ -1,0 +1,393 @@
+{
+  "student_id": "JorgeMoreno",
+  "grader_type": "Rigorous Property-Based Grader",
+  "timestamp": "2026-02-11T19:46:30.819713",
+  "test_coverage": {
+    "grade": 1.67,
+    "requirements_covered": [
+      "R3"
+    ],
+    "requirements_missing": [
+      "R1",
+      "R2",
+      "R4",
+      "R5",
+      "R6"
+    ],
+    "coverage_percentage": 16.67,
+    "requirement_details": {
+      "R1": {
+        "tested": false,
+        "status": "NOT_TESTED",
+        "covered_by_tests": [],
+        "description": "R1-INICIALIZACION: speedSet should initialize to null",
+        "pattern_matching": {
+          "patterns_matched": 0,
+          "details": []
+        }
+      },
+      "R2": {
+        "tested": false,
+        "status": "NOT_TESTED",
+        "covered_by_tests": [],
+        "description": "R2-INICIALIZACION: speedLimit should initialize to null",
+        "pattern_matching": {
+          "patterns_matched": 0,
+          "details": []
+        }
+      },
+      "R3": {
+        "tested": true,
+        "status": "PASS",
+        "covered_by_tests": [
+          "testSetSpeedSetWithinLimit"
+        ],
+        "description": "R3: speedSet can adopt any positive value (> 0)",
+        "pattern_matching": {
+          "patterns_matched": 1,
+          "details": [
+            {
+              "tested": true,
+              "method_name": "testSetSpeedSetWithinLimit",
+              "matched_patterns": [
+                "method_calls:setSpeedSet\\s*\\(\\s*[1-9]\\d*\\s*"
+              ],
+              "confidence": 1,
+              "by_lines": true,
+              "by_paths": false,
+              "by_entirety": false,
+              "logic_verified": true,
+              "verification_reason": "Sets positive value (100) and verifies storage"
+            }
+          ]
+        }
+      },
+      "R4": {
+        "tested": false,
+        "status": "NOT_TESTED",
+        "covered_by_tests": [],
+        "description": "R4-ERROR: Throw IncorrectSpeedSetException if speedSet <= 0",
+        "pattern_matching": {
+          "patterns_matched": 0,
+          "details": []
+        }
+      },
+      "R5": {
+        "tested": false,
+        "status": "NOT_TESTED",
+        "covered_by_tests": [],
+        "description": "R5-ALTERNATIVO: If speedLimit is set, speedSet cannot exceed it",
+        "pattern_matching": {
+          "patterns_matched": 0,
+          "details": []
+        }
+      },
+      "R6": {
+        "tested": false,
+        "status": "NOT_TESTED",
+        "covered_by_tests": [],
+        "description": "R6-ERROR: Throw SpeedSetAboveSpeedLimitException if speedSet > speedLimit",
+        "pattern_matching": {
+          "patterns_matched": 0,
+          "details": []
+        }
+      }
+    }
+  },
+  "implementation": {
+    "overall_result": {
+      "grade": 8.33,
+      "requirements_satisfied": [
+        "R1",
+        "R2",
+        "R3",
+        "R5",
+        "R6"
+      ],
+      "requirements_missing": [
+        "R4"
+      ],
+      "total_test_cases_run": 19,
+      "satisfaction_percentage": 83.33
+    },
+    "detailed_requirements": {
+      "R1": {
+        "requirement": "R1",
+        "description": "speedSet initializes to null",
+        "status": "\u2713 SATISFIED",
+        "satisfied": true,
+        "tests_run": 1,
+        "tests_passed": 1,
+        "tests_failed": 0,
+        "pass_rate": "100.0%",
+        "threshold": "80% required",
+        "result": "Checked that speedSet initializes to null in constructor",
+        "what_was_checked": [
+          "Different types of input values (valid/invalid partitions)"
+        ],
+        "what_passed": [
+          "Constructor correctly sets speedSet = null"
+        ],
+        "what_failed": [],
+        "explanation": ""
+      },
+      "R2": {
+        "requirement": "R2",
+        "description": "speedLimit initializes to null",
+        "status": "\u2713 SATISFIED",
+        "satisfied": true,
+        "tests_run": 1,
+        "tests_passed": 1,
+        "tests_failed": 0,
+        "pass_rate": "100.0%",
+        "threshold": "80% required",
+        "result": "Checked that speedLimit initializes to null in constructor",
+        "what_was_checked": [
+          "Different types of input values (valid/invalid partitions)"
+        ],
+        "what_passed": [
+          "Constructor correctly sets speedLimit = null"
+        ],
+        "what_failed": [],
+        "explanation": ""
+      },
+      "R3": {
+        "requirement": "R3",
+        "description": "setSpeedSet accepts positive values",
+        "status": "\u2713 SATISFIED",
+        "satisfied": true,
+        "tests_run": 4,
+        "tests_passed": 4,
+        "tests_failed": 0,
+        "pass_rate": "100.0%",
+        "threshold": "80% required",
+        "result": "Tested 4 positive values (1, 50, 100, 1000)",
+        "what_was_checked": [
+          "Different types of input values (valid/invalid partitions)"
+        ],
+        "what_passed": [
+          "All 4 positive values were accepted correctly"
+        ],
+        "what_failed": [],
+        "explanation": ""
+      },
+      "R4": {
+        "requirement": "R4",
+        "description": "Throws IncorrectSpeedSetException for speedSet <= 0",
+        "status": "\u2717 NOT SATISFIED",
+        "satisfied": false,
+        "tests_run": 5,
+        "tests_passed": 0,
+        "tests_failed": 5,
+        "pass_rate": "0.0%",
+        "threshold": "80% required",
+        "result": "Tested 5 invalid values including negatives and zero",
+        "what_was_checked": [
+          "Edge cases at boundaries (e.g., zero, limit\u00b11)",
+          "State consistency after operations"
+        ],
+        "what_passed": [],
+        "what_failed": [
+          "Only 0/5 tests passed (below 80% threshold)",
+          "\u26a0\ufe0f CRITICAL: Zero (0) does not throw exception - likely using < instead of <="
+        ],
+        "explanation": "Common bug: Code uses 'if (speedSet < 0)' instead of 'if (speedSet <= 0)', missing the zero case"
+      },
+      "R5": {
+        "requirement": "R5",
+        "description": "speedSet respects speedLimit when set",
+        "status": "\u2713 SATISFIED",
+        "satisfied": true,
+        "tests_run": 4,
+        "tests_passed": 4,
+        "tests_failed": 0,
+        "pass_rate": "100.0%",
+        "threshold": "80% required",
+        "result": "Tested 4 scenarios with speedLimit set",
+        "what_was_checked": [
+          "Different types of input values (valid/invalid partitions)",
+          "Edge cases at boundaries (e.g., zero, limit\u00b11)"
+        ],
+        "what_passed": [
+          "speedSet correctly stays below or equal to speedLimit",
+          "Boundary case (speedSet = speedLimit) handled correctly"
+        ],
+        "what_failed": [],
+        "explanation": ""
+      },
+      "R6": {
+        "requirement": "R6",
+        "description": "Throws SpeedSetAboveSpeedLimitException when speedSet > speedLimit",
+        "status": "\u2713 SATISFIED",
+        "satisfied": true,
+        "tests_run": 3,
+        "tests_passed": 3,
+        "tests_failed": 0,
+        "pass_rate": "100.0%",
+        "threshold": "80% required",
+        "result": "Tested 3 scenarios exceeding speedLimit",
+        "what_was_checked": [
+          "Edge cases at boundaries (e.g., zero, limit\u00b11)"
+        ],
+        "what_passed": [
+          "Correctly throws SpeedSetAboveSpeedLimitException when speedSet > speedLimit",
+          "Boundary test passed (limit + 1)"
+        ],
+        "what_failed": [],
+        "explanation": ""
+      }
+    },
+    "testing_methodology": {
+      "name": "Rigorous Property-Based Testing",
+      "test_cases": 19,
+      "techniques_used": [
+        "Equivalence Partitioning - Tests different classes of inputs",
+        "Boundary Value Analysis - Tests edge cases like 0, -1, limit\u00b11",
+        "Property-Based Testing - Verifies mathematical invariants",
+        "State Verification - Ensures object state consistency"
+      ],
+      "properties_verified": [
+        "PROP_R4_01",
+        "PROP_R6_01",
+        "PROP_R3_01",
+        "PROP_STATE_01"
+      ]
+    },
+    "raw_data": {
+      "success": true,
+      "verification_method": "Rigorous Property-Based Testing",
+      "total_test_cases": 19,
+      "requirements_satisfied": [
+        "R1",
+        "R2",
+        "R3",
+        "R5",
+        "R6"
+      ],
+      "requirements_missing": [
+        "R4"
+      ],
+      "requirement_analysis": {
+        "R1": {
+          "satisfied": true,
+          "total_tests": 1,
+          "passed_tests": 1,
+          "failed_tests": 0,
+          "satisfaction_rate": 100.0,
+          "categories_tested": [
+            "equivalence_partition"
+          ],
+          "failure_details": [],
+          "verification_method": "Property-Based + Equivalence Partitioning + Boundary Analysis",
+          "description": "speedSet initializes to null"
+        },
+        "R2": {
+          "satisfied": true,
+          "total_tests": 1,
+          "passed_tests": 1,
+          "failed_tests": 0,
+          "satisfaction_rate": 100.0,
+          "categories_tested": [
+            "equivalence_partition"
+          ],
+          "failure_details": [],
+          "verification_method": "Property-Based + Equivalence Partitioning + Boundary Analysis",
+          "description": "speedLimit initializes to null"
+        },
+        "R3": {
+          "satisfied": true,
+          "total_tests": 4,
+          "passed_tests": 4,
+          "failed_tests": 0,
+          "satisfaction_rate": 100.0,
+          "categories_tested": [
+            "equivalence_partition"
+          ],
+          "failure_details": [],
+          "verification_method": "Property-Based + Equivalence Partitioning + Boundary Analysis",
+          "description": "setSpeedSet accepts positive values"
+        },
+        "R4": {
+          "satisfied": false,
+          "total_tests": 5,
+          "passed_tests": 0,
+          "failed_tests": 5,
+          "satisfaction_rate": 0.0,
+          "categories_tested": [
+            "boundary_value",
+            "state_transition"
+          ],
+          "failure_details": [
+            {
+              "test_id": "R4_INVALID_0100",
+              "reason": "WRONG_EXCEPTION:IncorrectSpeedException"
+            },
+            {
+              "test_id": "R4_INVALID_0010",
+              "reason": "WRONG_EXCEPTION:IncorrectSpeedException"
+            },
+            {
+              "test_id": "R4_INVALID_0001",
+              "reason": "WRONG_EXCEPTION:IncorrectSpeedException"
+            },
+            {
+              "test_id": "R4_INVALID_0000",
+              "reason": "WRONG_EXCEPTION:IncorrectSpeedException"
+            },
+            {
+              "test_id": "STATE_TRANS_01",
+              "reason": "WRONG_EXCEPTION:IncorrectSpeedException"
+            }
+          ],
+          "verification_method": "Property-Based + Equivalence Partitioning + Boundary Analysis",
+          "description": "Throws IncorrectSpeedSetException for speedSet <= 0"
+        },
+        "R5": {
+          "satisfied": true,
+          "total_tests": 4,
+          "passed_tests": 4,
+          "failed_tests": 0,
+          "satisfaction_rate": 100.0,
+          "categories_tested": [
+            "boundary_value",
+            "equivalence_partition"
+          ],
+          "failure_details": [],
+          "verification_method": "Property-Based + Equivalence Partitioning + Boundary Analysis",
+          "description": "speedSet respects speedLimit when set"
+        },
+        "R6": {
+          "satisfied": true,
+          "total_tests": 3,
+          "passed_tests": 3,
+          "failed_tests": 0,
+          "satisfaction_rate": 100.0,
+          "categories_tested": [
+            "boundary_value"
+          ],
+          "failure_details": [],
+          "verification_method": "Property-Based + Equivalence Partitioning + Boundary Analysis",
+          "description": "Throws SpeedSetAboveSpeedLimitException when speedSet > speedLimit"
+        }
+      },
+      "properties_verified": [
+        "PROP_R4_01",
+        "PROP_R6_01",
+        "PROP_R3_01",
+        "PROP_STATE_01"
+      ],
+      "total_requirements": 6,
+      "requirements_found": 5,
+      "satisfaction_percentage": 83.33,
+      "grade": 8.33,
+      "test_categories_used": [
+        "equivalence_partition",
+        "boundary_value",
+        "property_based",
+        "state_transition"
+      ]
+    }
+  },
+  "implementation_grade": 8.33,
+  "combined_grade": 5.0
+}

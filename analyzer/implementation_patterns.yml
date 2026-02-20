@@ -1,0 +1,159 @@
+# Implementation Patterns for CruiseControl Requirements
+# Organized by requirement with multiple pattern types per requirement
+# Patterns support:
+# - Normal text matching (normalized, whitespace-insensitive)
+# - 'regex:' prefix for regex patterns
+# - 'i:' prefix for case-insensitive matching
+
+R1:
+  requirement: "speedSet should initialize to null"
+  description: "Check that speedSet is initialized to null in constructor"
+  
+  test_patterns:
+    check_method: "getSpeedSet()"
+    expected_result: "null"
+    test_values: []
+  
+  code_patterns:
+    lines:
+      - "speedSet = null"
+      - "this.speedSet = null"
+      - "regex:speedSet\\s*=\\s*null"
+    
+    declarations:
+      - "private Integer speedSet"
+      - "Integer speedSet"
+      - "regex:private\\s+Integer\\s+speedSet"
+
+R2:
+  requirement: "speedLimit should initialize to null"
+  description: "Check that speedLimit is initialized to null in constructor"
+  
+  test_patterns:
+    check_method: "getSpeedLimit()"
+    expected_result: "null"
+    test_values: []
+  
+  code_patterns:
+    lines:
+      - "speedLimit = null"
+      - "this.speedLimit = null"
+      - "regex:speedLimit\\s*=\\s*null"
+    
+    declarations:
+      - "private Integer speedLimit"
+      - "Integer speedLimit"
+      - "regex:private\\s+Integer\\s+speedLimit"
+
+R3:
+  requirement: "setSpeedSet can accept any positive value (> 0)"
+  description: "Check that setSpeedSet accepts positive values"
+  
+  test_patterns:
+    method_call: "setSpeedSet"
+    test_values: [50, 100]
+    check_method: "getSpeedSet()"
+    expected_result: "equals_input"
+  
+  code_patterns:
+    lines:
+      - "this.speedSet = speedSet"
+      - "speedSet = speedSet"
+      - "regex:this\\.speedSet\\s*=\\s*speedSet"
+    
+    method_signature:
+      - "void setSpeedSet(int speedSet)"
+      - "public void setSpeedSet(int speedSet)"
+      - "regex:void\\s+setSpeedSet\\s*\\(\\s*int\\s+speedSet\\s*\\)"
+
+R4:
+  requirement: "Throw IncorrectSpeedSetException for speedSet <= 0"
+  description: "Check that exception is thrown for zero or negative values"
+  
+  test_patterns:
+    method_call: "setSpeedSet"
+    test_values: [0, -10]
+    expected_exception: "IncorrectSpeed"
+    exception_variants:
+      - "IncorrectSpeedSetException"
+      - "IncorrectSpeedException"
+  
+  code_patterns:
+    lines:
+      - "throw new IncorrectSpeedSetException"
+      - "throw new IncorrectSpeedException"
+      - "regex:throw\\s+new\\s+IncorrectSpeed.*Exception"
+    
+    validation_checks:
+      - "speedSet <= 0"
+      - "speedSet < 1"
+      - "if (speedSet <= 0)"
+      - "if(speedSet <= 0)"
+      - "regex:if\\s*\\(\\s*speedSet\\s*<=\\s*0\\s*\\)"
+      - "regex:if\\s*\\(\\s*speedSet\\s*<\\s*1\\s*\\)"
+    
+    method_signature:
+      - "throws IncorrectSpeedSetException"
+      - "throws IncorrectSpeedException"
+      - "regex:throws\\s+IncorrectSpeed.*Exception"
+
+R5:
+  requirement: "If speedLimit is set, speedSet cannot exceed it"
+  description: "Check that speedSet respects speedLimit when set"
+  
+  test_patterns:
+    setup:
+      - method: "setSpeedLimit"
+        value: 100
+    method_call: "setSpeedSet"
+    test_values: [80, 100]
+    check_method: "getSpeedSet()"
+    expected_result: "equals_input"
+  
+  code_patterns:
+    lines:
+      - "speedSet <= speedLimit"
+      - "speedSet > speedLimit"
+      - "regex:speedSet\\s*<=\\s*speedLimit"
+      - "regex:speedSet\\s*>\\s*speedLimit"
+    
+    null_checks:
+      - "speedLimit != null"
+      - "speedLimit == null"
+      - "regex:speedLimit\\s*!=\\s*null"
+    
+    combined_validation:
+      - "speedLimit != null && speedSet <= speedLimit"
+      - "speedLimit != null && speedSet > speedLimit"
+      - "regex:speedLimit\\s*!=\\s*null\\s*&&\\s*speedSet\\s*[<>]=?\\s*speedLimit"
+
+R6:
+  requirement: "Throw SpeedSetAboveSpeedLimitException when speedSet > speedLimit"
+  description: "Check that exception is thrown when exceeding limit"
+  
+  test_patterns:
+    setup:
+      - method: "setSpeedLimit"
+        value: 80
+    method_call: "setSpeedSet"
+    test_values: [100]
+    expected_exception: "SpeedSetAboveSpeedLimit"
+    exception_variants:
+      - "SpeedSetAboveSpeedLimitException"
+      - "AboveLimit"
+  
+  code_patterns:
+    lines:
+      - "throw new SpeedSetAboveSpeedLimitException"
+      - "regex:throw\\s+new\\s+SpeedSetAboveSpeedLimitException"
+    
+    validation_checks:
+      - "speedSet > speedLimit"
+      - "if (speedSet > speedLimit)"
+      - "regex:if\\s*\\(.*speedSet\\s*>\\s*speedLimit.*\\)"
+    
+    combined_checks:
+      - "speedLimit != null && speedSet > speedLimit"
+      - "regex:speedLimit\\s*!=\\s*null\\s*&&\\s*speedSet\\s*>\\s*speedLimit"
+
+

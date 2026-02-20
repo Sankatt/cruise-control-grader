@@ -1,6 +1,6 @@
 {
   "student_id": "JorgeMoreno",
-  "timestamp": "2026-01-09T10:53:08.879741",
+  "timestamp": "2026-01-09T11:49:06.310756",
   "success": true,
   "test_file": "student_submissions\\JorgeMoreno\\src\\test\\java\\es\\upm\\grise\\profunduzacion\\cruiseController\\CruiseControlTest.java",
   "implementation_file": "student_submissions\\JorgeMoreno\\src\\main\\java\\es\\upm\\grise\\profundizacion\\cruiseControl\\CruiseControl.java",
@@ -42,33 +42,6 @@
       "R4"
     ],
     "requirement_details": {
-      "R1": {
-        "tested": false,
-        "status": "NOT_TESTED",
-        "covered_by_tests": [],
-        "description": "R1-INICIALIZACION: speedSet should initialize to null"
-      },
-      "R6": {
-        "tested": true,
-        "status": "PASS",
-        "covered_by_tests": [
-          "testSetSpeedSetWithinLimit",
-          "testSetSpeedSetAboveLimitThrowsException"
-        ],
-        "description": "R6-ERROR: Throw SpeedSetAboveSpeedLimitException if speedSet > speedLimit"
-      },
-      "R2": {
-        "tested": false,
-        "status": "NOT_TESTED",
-        "covered_by_tests": [],
-        "description": "R2-INICIALIZACION: speedLimit should initialize to null"
-      },
-      "R4": {
-        "tested": false,
-        "status": "NOT_TESTED",
-        "covered_by_tests": [],
-        "description": "R4-ERROR: Throw IncorrectSpeedSetException if speedSet is <= 0"
-      },
       "R3": {
         "tested": true,
         "status": "PASS",
@@ -87,6 +60,33 @@
           "testSetSpeedSetAboveLimitThrowsException"
         ],
         "description": "R5-ALTERNATIVO: If speedLimit is set, speedSet cannot exceed it"
+      },
+      "R6": {
+        "tested": true,
+        "status": "PASS",
+        "covered_by_tests": [
+          "testSetSpeedSetWithinLimit",
+          "testSetSpeedSetAboveLimitThrowsException"
+        ],
+        "description": "R6-ERROR: Throw SpeedSetAboveSpeedLimitException if speedSet > speedLimit"
+      },
+      "R1": {
+        "tested": false,
+        "status": "NOT_TESTED",
+        "covered_by_tests": [],
+        "description": "R1-INICIALIZACION: speedSet should initialize to null"
+      },
+      "R4": {
+        "tested": false,
+        "status": "NOT_TESTED",
+        "covered_by_tests": [],
+        "description": "R4-ERROR: Throw IncorrectSpeedSetException if speedSet is <= 0"
+      },
+      "R2": {
+        "tested": false,
+        "status": "NOT_TESTED",
+        "covered_by_tests": [],
+        "description": "R2-INICIALIZACION: speedLimit should initialize to null"
       }
     },
     "total_requirements": 6,

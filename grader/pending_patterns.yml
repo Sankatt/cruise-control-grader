@@ -1,0 +1,22 @@
+# Pending Patterns - Code that passed execution but didn't match known patterns
+# Review these and add valid ones to implementation_patterns.yml
+
+# Example entries (to be populated during grading):
+
+# R4_candidate_001:
+#   student: "StudentName"
+#   requirement: "R4"
+#   code_snippet: "if (speedSet <= 0) throw new IncorrectSpeedException();"
+#   execution_result: "PASSED"
+#   status: "NEEDS_MANUAL_REVIEW"
+#   date: "2026-02-11"
+#   reason: "Code passed execution tests but pattern not in implementation_patterns.yml"
+
+# R5_candidate_001:
+#   student: "StudentName"
+#   requirement: "R5"
+#   code_snippet: "if (this.speedLimit != null && speedSet <= this.speedLimit)"
+#   execution_result: "PASSED"
+#   status: "NEEDS_MANUAL_REVIEW"
+#   date: "2026-02-11"
+#   reason: "Uses 'this.' prefix not in patterns"

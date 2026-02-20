@@ -1,0 +1,13 @@
+# Pending Test Patterns - Tests that passed but didn't match known patterns
+# Review these and add valid ones to test_patterns.yml
+
+# Example entries (to be populated during grading):
+
+# R1_test_candidate_001:
+#   student: "StudentName"
+#   requirement: "R1"
+#   test_method: "testInitialization"
+#   test_code: "assertEquals(cc.getSpeedSet(), null);"
+#   status: "NEEDS_MANUAL_REVIEW"
+#   date: "2026-02-11"
+#   reason: "Test found but pattern not in test_patterns.yml"

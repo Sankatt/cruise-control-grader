@@ -1,0 +1,79 @@
+# STRICT Test Patterns for CruiseControl Requirements
+# Requires multiple pattern matches to avoid false positives
+# Removed generic keywords that caused false matches
+
+R1:
+  requirement: "Test that speedSet initializes to null"
+  description: "Check test verifies speedSet is null after construction"
+  
+  patterns:
+    assertion_patterns:
+      - "regex:assertEquals\\s*\\(\\s*cc\\.getSpeedSet\\(\\)\\s*,\\s*null\\s*\\)"
+      - "regex:assertEquals\\s*\\(\\s*null\\s*,\\s*cc\\.getSpeedSet\\(\\)\\s*\\)"
+      - "regex:assertNull\\s*\\(\\s*cc\\.getSpeedSet\\(\\)\\s*\\)"
+      - "regex:getSpeedSet\\(\\)\\s*==\\s*null"
+
+R2:
+  requirement: "Test that speedLimit initializes to null"
+  description: "Check test verifies speedLimit is null after construction"
+  
+  patterns:
+    assertion_patterns:
+      - "regex:assertEquals\\s*\\(\\s*cc\\.getSpeedLimit\\(\\)\\s*,\\s*null\\s*\\)"
+      - "regex:assertEquals\\s*\\(\\s*null\\s*,\\s*cc\\.getSpeedLimit\\(\\)\\s*\\)"
+      - "regex:assertNull\\s*\\(\\s*cc\\.getSpeedLimit\\(\\)\\s*\\)"
+      - "regex:getSpeedLimit\\(\\)\\s*==\\s*null"
+
+R3:
+  requirement: "Test that setSpeedSet accepts positive values"
+  description: "Check test verifies positive values are accepted and stored"
+  
+  patterns:
+    method_calls:
+      - "regex:setSpeedSet\\s*\\(\\s*[1-9]\\d*\\s*\\)"
+    
+    assertion_patterns:
+      - "regex:assertEquals\\s*\\(\\s*\\d+\\s*,\\s*cc\\.getSpeedSet\\(\\)\\s*\\)"
+      - "regex:assertEquals\\s*\\(\\s*cc\\.getSpeedSet\\(\\)\\s*,\\s*\\d+\\s*\\)"
+
+R4:
+  requirement: "Test that exception is thrown for speedSet <= 0"
+  description: "Check test verifies IncorrectSpeedSetException for zero or negative"
+  
+  patterns:
+    exception_patterns:
+      - "regex:assertThrows\\s*\\(\\s*IncorrectSpeed.*Exception\\.class"
+      - "regex:@Test\\s*\\(\\s*expected\\s*=\\s*IncorrectSpeed"
+    
+    method_calls:
+      - "regex:setSpeedSet\\s*\\(\\s*0\\s*\\)"
+      - "regex:setSpeedSet\\s*\\(\\s*-\\d+\\s*\\)"
+
+R5:
+  requirement: "Test that speedSet respects speedLimit"
+  description: "STRICT: Must test boundary (speedSet == limit) or show restriction enforcement"
+  
+  patterns:
+    method_calls:
+      - "setSpeedLimit"
+    
+    # CRITICAL: Must show boundary testing or actual restriction
+    boundary_or_restriction:
+      - "regex:setSpeedSet\\s*\\(\\s*120\\s*\\).*setSpeedLimit\\s*\\(\\s*120\\s*\\)"  # Exact boundary
+      - "regex:setSpeedLimit\\s*\\(\\s*(\\d+)\\s*\\).*setSpeedSet\\s*\\(\\s*\\1\\s*\\)"  # Same value
+      - "regex:getSpeedLimit\\(\\).*setSpeedSet"  # Uses getSpeedLimit() value
+      - "equal.*limit"  # Comment about equal to limit
+      - "boundary.*limit"  # Comment about boundary
+
+R6:
+  requirement: "Test that exception is thrown when speedSet > speedLimit"
+  description: "Check test verifies SpeedSetAboveSpeedLimitException"
+  
+  patterns:
+    exception_patterns:
+      - "regex:assertThrows\\s*\\(\\s*SpeedSetAboveSpeedLimit.*Exception\\.class"
+      - "regex:@Test\\s*\\(\\s*expected\\s*=\\s*SpeedSetAboveSpeedLimit"
+    
+    method_calls:
+      - "setSpeedLimit"
+      - "setSpeedSet"

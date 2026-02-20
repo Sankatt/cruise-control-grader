@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CruiseControl Exam Results (R1-R6) - Dual Grading Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+        }
+        
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        h2 {
+            font-size: 1.8em;
+            margin: 20px 0 15px 0;
+            color: #333;
+        }
+        
+        .subtitle {
+            opacity: 0.9;
+            font-size: 1.1em;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            padding: 30px;
+            background: #f8f9fa;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .stat-value {
+            font-size: 2em;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 0.85em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .section {
+            padding: 30px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        
+        .section:last-child {
+            border-bottom: none;
+        }
+        
+        .section-header {
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 30px;
+            margin: -30px -30px 20px -30px;
+            border-radius: 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        
+        thead {
+            background: #f8f9fa;
+        }
+        
+        th {
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+            color: #333;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        tbody tr:hover {
+            background: #f8f9fa;
+        }
+        
+        .grade {
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        
+        .grade-excellent { color: #28a745; }
+        .grade-good { color: #17a2b8; }
+        .grade-average { color: #ffc107; }
+        .grade-poor { color: #dc3545; }
+        
+        .coverage-bar {
+            width: 100%;
+            height: 8px;
+            background: #e0e0e0;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 5px;
+        }
+        
+        .coverage-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            transition: width 0.3s ease;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.75em;
+            font-weight: 600;
+            margin: 2px;
+        }
+        
+        .badge-success { background: #d4edda; color: #155724; }
+        .badge-missing { background: #f8d7da; color: #721c24; }
+        
+        .loading {
+            text-align: center;
+            padding: 60px;
+            color: #666;
+        }
+        
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 20px;
+        }
+        
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 10px;
+            align-items: center;
+        }
+        
+        .comparison-label {
+            font-size: 0.85em;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📊 CruiseControl Exam Results</h1>
+            <div class="subtitle">Dual Grading: Test Coverage + Implementation Quality | ESP Specification (R1-R6)</div>
+        </header>
+        
+        <div class="stats" id="stats">
+            <div class="stat-card">
+                <div class="stat-value" id="totalStudents">-</div>
+                <div class="stat-label">Total Students</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="avgTestGrade">-</div>
+                <div class="stat-label">Avg Test Grade</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="avgImplGrade">-</div>
+                <div class="stat-label">Avg Impl Grade</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="avgCombined">-</div>
+                <div class="stat-label">Avg Combined</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="avgTestCoverage">-</div>
+                <div class="stat-label">Avg Test Coverage</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="avgImplSatisfaction">-</div>
+                <div class="stat-label">Avg Impl Satisfaction</div>
+            </div>
+        </div>
+        
+        <div id="loading" class="loading">Loading results...</div>
+        <div id="error" class="error" style="display: none;"></div>
+        
+        <!-- Table 1: Test Coverage -->
+        <div class="section" id="testSection" style="display: none;">
+            <div class="section-header">
+                <h2>📝 Table 1: Test Coverage Analysis</h2>
+                <div style="font-size: 0.9em; opacity: 0.9; margin-top: 5px;">
+                    Evaluates which requirements students wrote tests for (R1-R6 from ESP specification)
+                </div>
+            </div>
+            <table id="testTable">
+                <thead>
+                    <tr>
+                        <th>Student ID</th>
+                        <th>Test Grade</th>
+                        <th>Coverage</th>
+                        <th>Requirements Tested</th>
+                    </tr>
+                </thead>
+                <tbody id="testTableBody"></tbody>
+            </table>
+        </div>
+        
+        <!-- Table 2: Implementation Quality -->
+        <div class="section" id="implSection" style="display: none;">
+            <div class="section-header">
+                <h2>⚙️ Table 2: Implementation Quality Analysis</h2>
+                <div style="font-size: 0.9em; opacity: 0.9; margin-top: 5px;">
+                    Evaluates if CruiseControl.java correctly implements requirements (R1-R6 from ESP specification)
+                </div>
+            </div>
+            <table id="implTable">
+                <thead>
+                    <tr>
+                        <th>Student ID</th>
+                        <th>Impl Grade</th>
+                        <th>Satisfaction</th>
+                        <th>Requirements Implemented</th>
+                    </tr>
+                </thead>
+                <tbody id="implTableBody"></tbody>
+            </table>
+        </div>
+        
+        <!-- Table 3: Combined View -->
+        <div class="section" id="combinedSection" style="display: none;">
+            <div class="section-header">
+                <h2>🎯 Combined Grades</h2>
+                <div style="font-size: 0.9em; opacity: 0.9; margin-top: 5px;">
+                    Average of Test Coverage and Implementation Quality
+                </div>
+            </div>
+            <table id="combinedTable">
+                <thead>
+                    <tr>
+                        <th>Student ID</th>
+                        <th>Test Grade</th>
+                        <th>Impl Grade</th>
+                        <th>Combined Grade</th>
+                        <th>Summary</th>
+                    </tr>
+                </thead>
+                <tbody id="combinedTableBody"></tbody>
+            </table>
+        </div>
+    </div>
+    
+    <script>
+        let allResults = [];
+        
+        // Load JSON data directly via script tag to avoid CORS
+        async function loadResults() {
+            try {
+                // Try to load from script tag first
+                if (typeof GRADING_DATA !== 'undefined') {
+                    const data = GRADING_DATA;
+                    allResults = data.results;
+                    
+                    updateStats();
+                    displayTestTable();
+                    displayImplementationTable();
+                    displayCombinedTable();
+                    
+                    document.getElementById('loading').style.display = 'none';
+                    document.getElementById('testSection').style.display = 'block';
+                    document.getElementById('implSection').style.display = 'block';
+                    document.getElementById('combinedSection').style.display = 'block';
+                    return;
+                }
+                
+                // Fallback to fetch for http:// access
+                const response = await fetch('grader/results/grading_summary.json');
+                const data = await response.json();
+                allResults = data.results;
+                
+                updateStats();
+                displayTestTable();
+                displayImplementationTable();
+                displayCombinedTable();
+                
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('testSection').style.display = 'block';
+                document.getElementById('implSection').style.display = 'block';
+                document.getElementById('combinedSection').style.display = 'block';
+            } catch (error) {
+                document.getElementById('loading').style.display = 'none';
+                const errorDiv = document.getElementById('error');
+                errorDiv.innerHTML = `
+                    <strong>Error loading results: ${error.message}</strong><br><br>
+                    <p>To fix this CORS error, run a local HTTP server:</p>
+                    <pre>cd C:\\Users\\bings\\OneDrive\\Desktop\\cruise-control-grader
+python -m http.server 8000</pre>
+                    <p>Then open: <a href="http://localhost:8000/index_dual.html" target="_blank">http://localhost:8000/index_dual.html</a></p>
+                `;
+                errorDiv.style.display = 'block';
+            }
+        }
+        
+        function updateStats() {
+            const successful = allResults.filter(r => r.success);
+            const count = successful.length;
+            
+            document.getElementById('totalStudents').textContent = allResults.length;
+            
+            if (count > 0) {
+                const avgTest = successful.reduce((sum, r) => sum + (r.test_coverage_grade || 0), 0) / count;
+                const avgImpl = successful.reduce((sum, r) => sum + (r.implementation_grade || 0), 0) / count;
+                const avgComb = successful.reduce((sum, r) => sum + (r.combined_grade || 0), 0) / count;
+                
+                const avgTestCov = successful.reduce((sum, r) => 
+                    sum + (r.test_analysis?.coverage_percentage || 0), 0) / count;
+                const avgImplSat = successful.reduce((sum, r) => 
+                    sum + (r.implementation_analysis?.satisfaction_percentage || 0), 0) / count;
+                
+                document.getElementById('avgTestGrade').textContent = avgTest.toFixed(1);
+                document.getElementById('avgImplGrade').textContent = avgImpl.toFixed(1);
+                document.getElementById('avgCombined').textContent = avgComb.toFixed(1);
+                document.getElementById('avgTestCoverage').textContent = avgTestCov.toFixed(1) + '%';
+                document.getElementById('avgImplSatisfaction').textContent = avgImplSat.toFixed(1) + '%';
+            }
+        }
+        
+        function getGradeClass(grade) {
+            if (grade >= 9) return 'excellent';
+            if (grade >= 7) return 'good';
+            if (grade >= 5) return 'average';
+            return 'poor';
+        }
+        
+        function displayTestTable() {
+            const tbody = document.getElementById('testTableBody');
+            tbody.innerHTML = '';
+            
+            allResults.filter(r => r.success).forEach(result => {
+                const row = tbody.insertRow();
+                
+                row.insertCell().textContent = result.student_id;
+                
+                const gradeCell = row.insertCell();
+                const grade = result.test_coverage_grade || 0;
+                gradeCell.innerHTML = `<span class="grade grade-${getGradeClass(grade)}">${grade.toFixed(1)}/10</span>`;
+                
+                const coverageCell = row.insertCell();
+                const coverage = result.test_analysis?.coverage_percentage || 0;
+                const reqCovered = result.test_analysis?.requirements_found || 0;
+                coverageCell.innerHTML = `
+                    <div>${coverage.toFixed(1)}% (${reqCovered}/6)</div>
+                    <div class="coverage-bar">
+                        <div class="coverage-fill" style="width: ${coverage}%"></div>
+                    </div>
+                `;
+                
+                const reqCell = row.insertCell();
+                const reqs = result.test_analysis?.requirements_covered || [];
+                reqCell.innerHTML = reqs.slice(0, 8).map(r => 
+                    `<span class="badge badge-success">${r}</span>`
+                ).join('') + (reqs.length > 8 ? '...' : '');
+            });
+        }
+        
+        function displayImplementationTable() {
+            const tbody = document.getElementById('implTableBody');
+            tbody.innerHTML = '';
+            
+            allResults.filter(r => r.success).forEach(result => {
+                const row = tbody.insertRow();
+                
+                row.insertCell().textContent = result.student_id;
+                
+                const gradeCell = row.insertCell();
+                const grade = result.implementation_grade || 0;
+                gradeCell.innerHTML = `<span class="grade grade-${getGradeClass(grade)}">${grade.toFixed(1)}/10</span>`;
+                
+                const satisfactionCell = row.insertCell();
+                const satisfaction = result.implementation_analysis?.satisfaction_percentage || 0;
+                const reqSatisfied = result.implementation_analysis?.requirements_found || 0;
+                satisfactionCell.innerHTML = `
+                    <div>${satisfaction.toFixed(1)}% (${reqSatisfied}/6)</div>
+                    <div class="coverage-bar">
+                        <div class="coverage-fill" style="width: ${satisfaction}%"></div>
+                    </div>
+                `;
+                
+                const reqCell = row.insertCell();
+                const reqs = result.implementation_analysis?.requirements_satisfied || [];
+                reqCell.innerHTML = reqs.slice(0, 8).map(r => 
+                    `<span class="badge badge-success">${r}</span>`
+                ).join('') + (reqs.length > 8 ? '...' : '');
+            });
+        }
+        
+        function displayCombinedTable() {
+            const tbody = document.getElementById('combinedTableBody');
+            tbody.innerHTML = '';
+            
+            allResults.filter(r => r.success).forEach(result => {
+                const row = tbody.insertRow();
+                
+                row.insertCell().textContent = result.student_id;
+                
+                const testGradeCell = row.insertCell();
+                const testGrade = result.test_coverage_grade || 0;
+                testGradeCell.innerHTML = `<span class="grade grade-${getGradeClass(testGrade)}">${testGrade.toFixed(1)}</span>`;
+                
+                const implGradeCell = row.insertCell();
+                const implGrade = result.implementation_grade || 0;
+                implGradeCell.innerHTML = `<span class="grade grade-${getGradeClass(implGrade)}">${implGrade.toFixed(1)}</span>`;
+                
+                const combinedCell = row.insertCell();
+                const combined = result.combined_grade || 0;
+                combinedCell.innerHTML = `<span class="grade grade-${getGradeClass(combined)}">${combined.toFixed(1)}/10</span>`;
+                
+                const summaryCell = row.insertCell();
+                const testCov = result.test_analysis?.requirements_found || 0;
+                const implSat = result.implementation_analysis?.requirements_found || 0;
+                summaryCell.innerHTML = `
+                    <div style="font-size: 0.9em;">
+                        Tests: ${testCov}/6 | Impl: ${implSat}/6
+                    </div>
+                `;
+            });
+        }
+        
+        loadResults();
+    </script>
+</body>
+</html>

@@ -1,0 +1,271 @@
+{
+  "student_id": "SergioGismeraPino",
+  "grader_type": "Rigorous Property-Based Grader",
+  "timestamp": "2026-02-19T14:25:17.911883",
+  "test_coverage": {
+    "grade": 3.32,
+    "requirements_covered": [
+      "R3",
+      "R6"
+    ],
+    "requirements_missing": [
+      "R1",
+      "R2",
+      "R4",
+      "R5"
+    ],
+    "coverage_percentage": 33.33,
+    "requirement_details": {
+      "R1": {
+        "tested": false,
+        "pattern_matching": {
+          "verified": false,
+          "test_methods": []
+        },
+        "holistic_coverage": {
+          "verified": false,
+          "confidence": 0.0,
+          "details": [
+            "Required code not exercised by tests"
+          ]
+        },
+        "verification_method": "none"
+      },
+      "R2": {
+        "tested": false,
+        "pattern_matching": {
+          "verified": false,
+          "test_methods": []
+        },
+        "holistic_coverage": {
+          "verified": false,
+          "confidence": 0.0,
+          "details": [
+            "Required code not exercised by tests"
+          ]
+        },
+        "verification_method": "none"
+      },
+      "R3": {
+        "tested": true,
+        "pattern_matching": {
+          "verified": true,
+          "test_methods": [
+            "getVelocidadCorrecta",
+            "getVelocidadMayorQueLaMaxima"
+          ]
+        },
+        "holistic_coverage": {
+          "verified": false,
+          "confidence": 0.0,
+          "details": [
+            "Required code not exercised by tests"
+          ]
+        },
+        "verification_method": "pattern_matching"
+      },
+      "R4": {
+        "tested": false,
+        "pattern_matching": {
+          "verified": false,
+          "test_methods": []
+        },
+        "holistic_coverage": {
+          "verified": false,
+          "confidence": 0.0,
+          "details": [
+            "Required code not exercised by tests"
+          ]
+        },
+        "verification_method": "none"
+      },
+      "R5": {
+        "tested": false,
+        "pattern_matching": {
+          "verified": false,
+          "test_methods": []
+        },
+        "holistic_coverage": {
+          "verified": false,
+          "confidence": 0.0,
+          "details": [
+            "Required code not exercised by tests"
+          ]
+        },
+        "verification_method": "none"
+      },
+      "R6": {
+        "tested": true,
+        "pattern_matching": {
+          "verified": false,
+          "test_methods": []
+        },
+        "holistic_coverage": {
+          "verified": true,
+          "confidence": 0.7,
+          "details": [
+            "Methods called: ['setSpeedSet']",
+            "Warning: Code path verification inconclusive"
+          ]
+        },
+        "verification_method": "holistic_coverage"
+      }
+    }
+  },
+  "implementation": {
+    "overall_result": {
+      "grade": 0,
+      "requirements_satisfied": [],
+      "requirements_missing": [
+        "R1",
+        "R2",
+        "R3",
+        "R4",
+        "R5",
+        "R6"
+      ],
+      "total_test_cases_run": 0,
+      "satisfaction_percentage": 0.0
+    },
+    "detailed_requirements": {
+      "R1": {
+        "requirement": "R1",
+        "description": "",
+        "status": "\u2717 NOT SATISFIED",
+        "satisfied": false,
+        "tests_run": 0,
+        "tests_passed": 0,
+        "tests_failed": 0,
+        "pass_rate": "0%",
+        "threshold": "80% required",
+        "result": "Checked that speedSet initializes to null in constructor",
+        "what_was_checked": [],
+        "what_passed": [],
+        "what_failed": [
+          "speedSet is not null after construction"
+        ],
+        "explanation": "Pass rate 0% is below the 80% threshold needed to satisfy this requirement"
+      },
+      "R2": {
+        "requirement": "R2",
+        "description": "",
+        "status": "\u2717 NOT SATISFIED",
+        "satisfied": false,
+        "tests_run": 0,
+        "tests_passed": 0,
+        "tests_failed": 0,
+        "pass_rate": "0%",
+        "threshold": "80% required",
+        "result": "Checked that speedLimit initializes to null in constructor",
+        "what_was_checked": [],
+        "what_passed": [],
+        "what_failed": [
+          "speedLimit is not null after construction"
+        ],
+        "explanation": "Pass rate 0% is below the 80% threshold needed to satisfy this requirement"
+      },
+      "R3": {
+        "requirement": "R3",
+        "description": "",
+        "status": "\u2717 NOT SATISFIED",
+        "satisfied": false,
+        "tests_run": 0,
+        "tests_passed": 0,
+        "tests_failed": 0,
+        "pass_rate": "0%",
+        "threshold": "80% required",
+        "result": "Tested 0 positive values (1, 50, 100, 1000)",
+        "what_was_checked": [],
+        "what_passed": [],
+        "what_failed": [
+          "0 positive value(s) were rejected or caused errors"
+        ],
+        "explanation": "Pass rate 0% is below the 80% threshold needed to satisfy this requirement"
+      },
+      "R4": {
+        "requirement": "R4",
+        "description": "",
+        "status": "\u2717 NOT SATISFIED",
+        "satisfied": false,
+        "tests_run": 0,
+        "tests_passed": 0,
+        "tests_failed": 0,
+        "pass_rate": "0%",
+        "threshold": "80% required",
+        "result": "Tested 0 invalid values including negatives and zero",
+        "what_was_checked": [],
+        "what_passed": [],
+        "what_failed": [
+          "Only 0/0 tests passed (below 80% threshold)"
+        ],
+        "explanation": "Pass rate 0% is below the 80% threshold needed to satisfy this requirement"
+      },
+      "R5": {
+        "requirement": "R5",
+        "description": "",
+        "status": "\u2717 NOT SATISFIED",
+        "satisfied": false,
+        "tests_run": 0,
+        "tests_passed": 0,
+        "tests_failed": 0,
+        "pass_rate": "0%",
+        "threshold": "80% required",
+        "result": "Tested 0 scenarios with speedLimit set",
+        "what_was_checked": [],
+        "what_passed": [],
+        "what_failed": [
+          "Only 0/0 tests passed"
+        ],
+        "explanation": "Pass rate 0% is below the 80% threshold needed to satisfy this requirement"
+      },
+      "R6": {
+        "requirement": "R6",
+        "description": "",
+        "status": "\u2717 NOT SATISFIED",
+        "satisfied": false,
+        "tests_run": 0,
+        "tests_passed": 0,
+        "tests_failed": 0,
+        "pass_rate": "0%",
+        "threshold": "80% required",
+        "result": "Tested 0 scenarios exceeding speedLimit",
+        "what_was_checked": [],
+        "what_passed": [],
+        "what_failed": [
+          "Only 0/0 tests passed"
+        ],
+        "explanation": "Pass rate 0% is below the 80% threshold needed to satisfy this requirement"
+      }
+    },
+    "testing_methodology": {
+      "name": "Rigorous Property-Based Testing",
+      "test_cases": 23,
+      "techniques_used": [
+        "Equivalence Partitioning - Tests different classes of inputs",
+        "Boundary Value Analysis - Tests edge cases like 0, -1, limit\u00b11",
+        "Property-Based Testing - Verifies mathematical invariants",
+        "State Verification - Ensures object state consistency"
+      ],
+      "properties_verified": []
+    },
+    "raw_data": {
+      "success": false,
+      "error": "Compilation failed: Compilation failed:\nes\\upm\\grise\\profundizacion\\cruiseControl\\CruiseControl.java:24: error: ';' expected\n\tpublic void setSpeedSet(int speedSet) extends ExcepcionesCreadas{\n\t                                     ^\nes\\upm\\grise\\profundizacion\\cruiseControl\\CruiseControl.java:32: error: illegal start of type\n\t\t}else{\n\t\t ^\nes\\upm\\grise\\profundizacion\\cruiseControl\\CruiseControl.java:40: error: unnamed classes are a preview feature and are disabled by default.\n\tpublic Integer getSpeedLimit() {\n\t       ^\n  (use --enable-preview to enable unnamed classes)\nes\\upm\\grise\\profundizacion\\cruiseControl\\CruiseControl.java:52: error: class, interface, enum, or record expected\n}\n^\nes\\upm\\grise\\profundizacion\\cruiseControl\\CruiseControl.java:1: error: unnamed class should not have package declaration\npackage es.upm.grise.profundizacion.cruiseControl;\n^\n5 errors\n",
+      "requirements_satisfied": [],
+      "requirements_missing": [
+        "R1",
+        "R2",
+        "R3",
+        "R4",
+        "R5",
+        "R6"
+      ],
+      "total_requirements": 6,
+      "requirements_found": 0,
+      "satisfaction_percentage": 0.0,
+      "grade": 0.0
+    }
+  },
+  "implementation_grade": 0,
+  "combined_grade": 1.66
+}

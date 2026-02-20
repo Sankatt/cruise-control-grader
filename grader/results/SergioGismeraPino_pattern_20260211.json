@@ -1,0 +1,129 @@
+{
+  "student_id": "SergioGismeraPino",
+  "grader_type": "Pattern-Based Execution Grader",
+  "timestamp": "2026-02-11T19:46:36.153751",
+  "test_coverage": {
+    "grade": 1.67,
+    "requirements_covered": [
+      "R3"
+    ],
+    "requirements_missing": [
+      "R1",
+      "R2",
+      "R4",
+      "R5",
+      "R6"
+    ],
+    "coverage_percentage": 16.67,
+    "requirement_details": {
+      "R1": {
+        "tested": false,
+        "status": "NOT_TESTED",
+        "covered_by_tests": [],
+        "description": "R1-INICIALIZACION: speedSet should initialize to null",
+        "pattern_matching": {
+          "patterns_matched": 0,
+          "details": []
+        }
+      },
+      "R2": {
+        "tested": false,
+        "status": "NOT_TESTED",
+        "covered_by_tests": [],
+        "description": "R2-INICIALIZACION: speedLimit should initialize to null",
+        "pattern_matching": {
+          "patterns_matched": 0,
+          "details": []
+        }
+      },
+      "R3": {
+        "tested": true,
+        "status": "PASS",
+        "covered_by_tests": [
+          "getVelocidadCorrecta",
+          "getVelocidadMayorQueLaMaxima"
+        ],
+        "description": "R3: speedSet can adopt any positive value (> 0)",
+        "pattern_matching": {
+          "patterns_matched": 2,
+          "details": [
+            {
+              "tested": true,
+              "method_name": "getVelocidadCorrecta",
+              "matched_patterns": [
+                "method_calls:setSpeedSet\\s*\\(\\s*[1-9]\\d*\\s*"
+              ],
+              "confidence": 1,
+              "by_lines": true,
+              "by_paths": false,
+              "by_entirety": false,
+              "logic_verified": true,
+              "verification_reason": "Sets positive value (90) and verifies storage"
+            },
+            {
+              "tested": true,
+              "method_name": "getVelocidadMayorQueLaMaxima",
+              "matched_patterns": [
+                "method_calls:setSpeedSet\\s*\\(\\s*[1-9]\\d*\\s*"
+              ],
+              "confidence": 1,
+              "by_lines": true,
+              "by_paths": false,
+              "by_entirety": false,
+              "logic_verified": true,
+              "verification_reason": "Sets positive value (100) and verifies storage"
+            }
+          ]
+        }
+      },
+      "R4": {
+        "tested": false,
+        "status": "NOT_TESTED",
+        "covered_by_tests": [],
+        "description": "R4-ERROR: Throw IncorrectSpeedSetException if speedSet <= 0",
+        "pattern_matching": {
+          "patterns_matched": 0,
+          "details": []
+        }
+      },
+      "R5": {
+        "tested": false,
+        "status": "NOT_TESTED",
+        "covered_by_tests": [],
+        "description": "R5-ALTERNATIVO: If speedLimit is set, speedSet cannot exceed it",
+        "pattern_matching": {
+          "patterns_matched": 0,
+          "details": []
+        }
+      },
+      "R6": {
+        "tested": false,
+        "status": "NOT_TESTED",
+        "covered_by_tests": [],
+        "description": "R6-ERROR: Throw SpeedSetAboveSpeedLimitException if speedSet > speedLimit",
+        "pattern_matching": {
+          "patterns_matched": 0,
+          "details": []
+        }
+      }
+    }
+  },
+  "implementation": {
+    "success": false,
+    "error": "Compilation failed: Compilation failed:\nes\\upm\\grise\\profundizacion\\cruiseControl\\CruiseControl.java:24: error: ';' expected\n\tpublic void setSpeedSet(int speedSet) extends ExcepcionesCreadas{\n\t                                     ^\nes\\upm\\grise\\profundizacion\\cruiseControl\\CruiseControl.java:32: error: illegal start of type\n\t\t}else{\n\t\t ^\nes\\upm\\grise\\profundizacion\\cruiseControl\\CruiseControl.java:40: error: unnamed classes are a preview feature and are disabled by default.\n\tpublic Integer getSpeedLimit() {\n\t       ^\n  (use --enable-preview to enable unnamed classes)\nes\\upm\\grise\\profundizacion\\cruiseControl\\CruiseControl.java:52: error: class, interface, enum, or record expected\n}\n^\nes\\upm\\grise\\profundizacion\\cruiseControl\\CruiseControl.java:1: error: unnamed class should not have package declaration\npackage es.upm.grise.profundizacion.cruiseControl;\n^\n5 errors\n",
+    "requirements_satisfied": [],
+    "requirements_missing": [
+      "R1",
+      "R2",
+      "R3",
+      "R4",
+      "R5",
+      "R6"
+    ],
+    "total_requirements": 6,
+    "requirements_found": 0,
+    "satisfaction_percentage": 0.0
+  },
+  "implementation_grade": 0,
+  "combined_grade": 0.83
+}
