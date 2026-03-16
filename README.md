@@ -50,6 +50,15 @@ This grades all student submissions, prints a summary, and saves results to `gra
 
 ### View Results Dashboard
 
+After grading, regenerate the summary file so the dashboard shows the latest scores:
+
+```bash
+cd grader
+python generate_summary.py
+```
+
+Then serve and open:
+
 ```bash
 # From repository root
 python -m http.server 8000
@@ -83,6 +92,7 @@ cruise-control-grader/
 │   └── implementation_patterns.yml
 ├── grader/
 │   ├── main_dual.py                       # Main orchestrator
+│   ├── generate_summary.py                # Regenerates grading_summary.json for dashboard
 │   └── results/                           # Grading outputs
 ├── student_submissions/                   # Student code (not in repo)
 ├── index_dual.html                        # Results dashboard
