@@ -1,0 +1,97 @@
+{
+  "generated": "2026-03-15T21:26:01.634968",
+  "total_students": 10,
+  "students": [
+    {
+      "student_id": "ADHunter",
+      "test_grade": 0.0,
+      "impl_grade": 0.0,
+      "combined_grade": 0.0,
+      "test_covered": [],
+      "impl_satisfied": [],
+      "discrepancies": 0
+    },
+    {
+      "student_id": "AlejandroBartolom\u00c3\u00a9",
+      "test_grade": 0.0,
+      "impl_grade": 0.0,
+      "combined_grade": 0.0,
+      "test_covered": [],
+      "impl_satisfied": [],
+      "discrepancies": 0
+    },
+    {
+      "student_id": "DavidGimenez",
+      "test_grade": 0.0,
+      "impl_grade": 0.0,
+      "combined_grade": 0.0,
+      "test_covered": [],
+      "impl_satisfied": [],
+      "discrepancies": 0
+    },
+    {
+      "student_id": "ELiJuY",
+      "test_grade": 0.0,
+      "impl_grade": 0.0,
+      "combined_grade": 0.0,
+      "test_covered": [],
+      "impl_satisfied": [],
+      "discrepancies": 0
+    },
+    {
+      "student_id": "JorgeMoreno",
+      "test_grade": 0.0,
+      "impl_grade": 0.0,
+      "combined_grade": 0.0,
+      "test_covered": [],
+      "impl_satisfied": [],
+      "discrepancies": 0
+    },
+    {
+      "student_id": "MarioAlonsoCuero",
+      "test_grade": 0.0,
+      "impl_grade": 0.0,
+      "combined_grade": 0.0,
+      "test_covered": [],
+      "impl_satisfied": [],
+      "discrepancies": 0
+    },
+    {
+      "student_id": "SergioFern\u00c3\u00a1ndez",
+      "test_grade": 0.0,
+      "impl_grade": 0.0,
+      "combined_grade": 0.0,
+      "test_covered": [],
+      "impl_satisfied": [],
+      "discrepancies": 0
+    },
+    {
+      "student_id": "SergioGismeraPino",
+      "test_grade": 0.0,
+      "impl_grade": 0.0,
+      "combined_grade": 0.0,
+      "test_covered": [],
+      "impl_satisfied": [],
+      "discrepancies": 0
+    },
+    {
+      "student_id": "StefaniScott",
+      "test_grade": 0.0,
+      "impl_grade": 0.0,
+      "combined_grade": 0.0,
+      "test_covered": [],
+      "impl_satisfied": [],
+      "discrepancies": 0
+    },
+    {
+      "student_id": "TaigaSeven",
+      "test_grade": 0.0,
+      "impl_grade": 0.0,
+      "combined_grade": 0.0,
+      "test_covered": [],
+      "impl_satisfied": [],
+      "discrepancies": 0
+    }
+  ],
+  "class_average": 0.0
+}

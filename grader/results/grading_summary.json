@@ -1,5 +1,5 @@
 {
-  "generated": "2026-02-19T14:25:25.303856",
+  "generated": "2026-03-15T22:32:42.080796",
   "total_students": 10,
   "results": [
     {
@@ -247,7 +247,11 @@
             "execution_passed": true,
             "reason": "Implementation correct"
           }
-        }
+        },
+        "test_original_covered": [],
+        "test_improved_covered": [],
+        "test_mutation_covered": [],
+        "mutation_available": false
       },
       "rigorous": {
         "test_grade": 5.01,
@@ -498,7 +502,9 @@
             "what_failed": [],
             "explanation": ""
           }
-        }
+        },
+        "test_mutation_covered": [],
+        "mutation_available": false
       }
     },
     {
@@ -715,7 +721,11 @@
             "execution_passed": true,
             "reason": "Implementation correct"
           }
-        }
+        },
+        "test_original_covered": [],
+        "test_improved_covered": [],
+        "test_mutation_covered": [],
+        "mutation_available": false
       },
       "rigorous": {
         "test_grade": 1.65,
@@ -938,7 +948,9 @@
             "what_failed": [],
             "explanation": ""
           }
-        }
+        },
+        "test_mutation_covered": [],
+        "mutation_available": false
       }
     },
     {
@@ -1177,7 +1189,11 @@
             "execution_passed": true,
             "reason": "Implementation correct"
           }
-        }
+        },
+        "test_original_covered": [],
+        "test_improved_covered": [],
+        "test_mutation_covered": [],
+        "mutation_available": false
       },
       "rigorous": {
         "test_grade": 3.32,
@@ -1417,7 +1433,9 @@
             "what_failed": [],
             "explanation": ""
           }
-        }
+        },
+        "test_mutation_covered": [],
+        "mutation_available": false
       }
     },
     {
@@ -1636,7 +1654,11 @@
             "execution_passed": true,
             "reason": "Implementation correct"
           }
-        }
+        },
+        "test_original_covered": [],
+        "test_improved_covered": [],
+        "test_mutation_covered": [],
+        "mutation_available": false
       },
       "rigorous": {
         "test_grade": 1.67,
@@ -1849,7 +1871,9 @@
             "what_failed": [],
             "explanation": ""
           }
-        }
+        },
+        "test_mutation_covered": [],
+        "mutation_available": false
       }
     },
     {
@@ -2072,7 +2096,11 @@
             "execution_passed": true,
             "reason": "Implementation correct"
           }
-        }
+        },
+        "test_original_covered": [],
+        "test_improved_covered": [],
+        "test_mutation_covered": [],
+        "mutation_available": false
       },
       "rigorous": {
         "test_grade": 1.67,
@@ -2292,7 +2320,9 @@
             "what_failed": [],
             "explanation": ""
           }
-        }
+        },
+        "test_mutation_covered": [],
+        "mutation_available": false
       }
     },
     {
@@ -2559,7 +2589,11 @@
             "execution_passed": true,
             "reason": "Implementation correct"
           }
-        }
+        },
+        "test_original_covered": [],
+        "test_improved_covered": [],
+        "test_mutation_covered": [],
+        "mutation_available": false
       },
       "rigorous": {
         "test_grade": 5.01,
@@ -2825,7 +2859,9 @@
             "what_failed": [],
             "explanation": ""
           }
-        }
+        },
+        "test_mutation_covered": [],
+        "mutation_available": false
       }
     },
     {
@@ -3081,7 +3117,11 @@
             "execution_passed": true,
             "reason": "Implementation correct"
           }
-        }
+        },
+        "test_original_covered": [],
+        "test_improved_covered": [],
+        "test_mutation_covered": [],
+        "mutation_available": false
       },
       "rigorous": {
         "test_grade": 4.99,
@@ -3338,7 +3378,9 @@
             "what_failed": [],
             "explanation": ""
           }
-        }
+        },
+        "test_mutation_covered": [],
+        "mutation_available": false
       }
     },
     {
@@ -3458,7 +3500,11 @@
             }
           }
         },
-        "impl_details": {}
+        "impl_details": {},
+        "test_original_covered": [],
+        "test_improved_covered": [],
+        "test_mutation_covered": [],
+        "mutation_available": false
       },
       "rigorous": {
         "test_grade": 1.67,
@@ -3669,7 +3715,9 @@
             ],
             "explanation": "Pass rate 0% is below the 80% threshold needed to satisfy this requirement"
           }
-        }
+        },
+        "test_mutation_covered": [],
+        "mutation_available": false
       }
     },
     {
@@ -3892,7 +3940,11 @@
             "execution_passed": true,
             "reason": "Implementation correct"
           }
-        }
+        },
+        "test_original_covered": [],
+        "test_improved_covered": [],
+        "test_mutation_covered": [],
+        "mutation_available": false
       },
       "rigorous": {
         "test_grade": 1.67,
@@ -4112,7 +4164,9 @@
             "what_failed": [],
             "explanation": ""
           }
-        }
+        },
+        "test_mutation_covered": [],
+        "mutation_available": false
       }
     },
     {
@@ -4311,7 +4365,11 @@
             "execution_passed": true,
             "reason": "Implementation correct"
           }
-        }
+        },
+        "test_original_covered": [],
+        "test_improved_covered": [],
+        "test_mutation_covered": [],
+        "mutation_available": false
       },
       "rigorous": {
         "test_grade": 0,
@@ -4513,7 +4571,9 @@
             "what_failed": [],
             "explanation": ""
           }
-        }
+        },
+        "test_mutation_covered": [],
+        "mutation_available": false
       }
     }
   ],

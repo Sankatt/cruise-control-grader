@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 """
-Dual Grading System - Runs BOTH Pattern-Based and Rigorous Implementation Graders
-This is the WORKING VERSION from January 14, 2026
+Dual Grading System v3 - Pattern-Based + Rigorous Implementation Graders
+Now with three-layer test analysis:
+  1. TestAnalyzer           - original pattern + holistic (existing)
+  2. ImprovedTestAnalyzer   - strict combination rules (new, optional)
+  3. MutationTestAnalyzer   - execution-based mutation testing (new, optional)
 """
 
 import os
@@ -12,83 +15,172 @@ from datetime import datetime
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from analyzer.test_analyzer import TestAnalyzer
-from analyzer.execution_grader import PatternBasedGrader  # Updated to use new pattern-based grader
+# --- Existing analyzers (unchanged) ---
+from analyzer.test_analyzer import ImprovedTestAnalyzer as TestAnalyzer
+from analyzer.execution_grader import PatternBasedGrader
 from analyzer.rigorous_implementation_grader import RigorousImplementationGrader
+
+# --- New test analyzers (optional — system works without them) ---
+# Try to import the separate improved_test_analyzer if available
+try:
+    from analyzer.improved_test_analyzer import ImprovedTestAnalyzer as _ImprovedTA
+    IMPROVED_AVAILABLE = True
+    _ImprovedTestAnalyzerClass = _ImprovedTA
+except ImportError:
+    try:
+        # Maybe it uses a different class name inside
+        import importlib as _il
+        _mod = _il.import_module('analyzer.improved_test_analyzer')
+        _ImprovedTestAnalyzerClass = next(
+            (v for k, v in vars(_mod).items()
+             if isinstance(v, type) and not k.startswith('_')
+             and k not in ('Path', 'Dict', 'List', 'Tuple', 'Set')), None
+        )
+        IMPROVED_AVAILABLE = _ImprovedTestAnalyzerClass is not None
+    except Exception:
+        IMPROVED_AVAILABLE = False
+        _ImprovedTestAnalyzerClass = None
+
+try:
+    from analyzer.mutation_test_analyzer import MutationTestAnalyzer
+    MUTATION_AVAILABLE = True
+except ImportError:
+    MUTATION_AVAILABLE = False
 
 
 class DualGradingSystem:
-    """Runs both pattern-based and rigorous implementation graders"""
-    
     REQUIREMENT_WEIGHTS = {
-        'R1': 1.67,
-        'R2': 1.67,
-        'R3': 1.67,
-        'R4': 1.67,
-        'R5': 1.67,
-        'R6': 1.65
+        'R1': 1.67, 'R2': 1.67, 'R3': 1.67,
+        'R4': 1.67, 'R5': 1.67, 'R6': 1.65
     }
-    
+
     def __init__(self):
         self.results = []
-    
+
     def find_student_submissions(self, submissions_dir: str):
-        """Find all student submissions"""
         submissions_path = Path(submissions_dir)
-        
         if not submissions_path.exists():
             print(f"Error: Submissions directory '{submissions_dir}' not found.")
             return []
-        
         students = []
-        
         for student_dir in submissions_path.iterdir():
             if not student_dir.is_dir():
                 continue
-            
             student_id = student_dir.name
-            
-            test_file = None
-            impl_file = None
-            
+            test_file = impl_file = None
             for java_file in student_dir.rglob("*.java"):
                 if "Test" in java_file.stem or "test" in java_file.stem.lower():
                     test_file = java_file
                 elif "CruiseControl" in java_file.stem and "Test" not in java_file.stem:
                     impl_file = java_file
-            
             if test_file and impl_file:
                 students.append((student_id, student_dir, test_file, impl_file))
             else:
-                print(f"  ⚠ Skipping {student_id}: Missing files")
-        
+                print(f"  WARNING: Skipping {student_id}: Missing files")
         return sorted(students)
-    
+
     def calculate_grade(self, requirements):
-        """Calculate grade from requirements"""
         grade = sum(self.REQUIREMENT_WEIGHTS.get(req, 0) for req in requirements)
         return min(round(grade, 2), 10.0)
-    
-    def grade_student(self, student_id, student_dir, test_file, impl_file):
-        """Grade a single student"""
-        print(f"\nGrading {student_id}...")
-        
-        timestamp = datetime.now().strftime('%Y%m%d')
-        
-        # Test coverage analysis
-        test_result = None
-        test_grade = 0
+
+    def analyze_tests(self, test_file: Path, student_dir: Path, student_id: str = 'Unknown'):
+        """Run all available test analyzers and return a combined result."""
+        results = {}
+
+        # 1. Original TestAnalyzer
         try:
-            test_analyzer = TestAnalyzer(str(test_file))
-            test_result = test_analyzer.analyze()
-            if test_result['success']:
-                test_grade = self.calculate_grade(test_result.get('requirements_covered', []))
-                print(f"  Test Coverage: {test_result['requirements_found']}/6 ({test_result['coverage_percentage']}%)")
-                print(f"  Test Grade: {test_grade}/10.0")
+            # ImprovedTestAnalyzer: __init__ takes no args, file path goes to analyze()
+            ta = TestAnalyzer()
+            results['original'] = ta.analyze(str(test_file))
         except Exception as e:
-            print(f"  ✗ Test analysis error: {e}")
-        
-        # Pattern-based implementation
+            print(f"    WARNING: Original analyzer error: {e}")
+            results['original'] = None
+
+        # 2. ImprovedTestAnalyzer
+        if IMPROVED_AVAILABLE and _ImprovedTestAnalyzerClass:
+            try:
+                ita = _ImprovedTestAnalyzerClass()
+                results['improved'] = ita.analyze(str(test_file))
+            except Exception as e:
+                print(f"    WARNING: Improved analyzer error: {e}")
+                results['improved'] = None
+
+        # 3. MutationTestAnalyzer
+        if MUTATION_AVAILABLE:
+            src_dir = None
+            for root, dirs, files in os.walk(student_dir):
+                if "CruiseControl.java" in files and "Test" not in root:
+                    src_dir = root
+                    break
+            try:
+                mta = MutationTestAnalyzer()
+                results['mutation'] = mta.analyze(str(test_file), src_dir)
+                mut = results['mutation']
+                if mut.get('success'):
+                    print(f"    Mutation: {mut.get('requirements_covered', [])}  "
+                          f"grade={mut.get('grade', 0):.2f}")
+                else:
+                    print(f"    Mutation FAILED: {mut.get('error', 'unknown')[:100]}")
+            except Exception as e:
+                print(f"    WARNING: Mutation analyzer error: {e}")
+                results['mutation'] = None
+
+        # Combine results
+        covered_sets = []
+        orig = results.get('original')
+        if orig and orig.get('success'):
+            covered_sets.append(set(orig.get('requirements_covered', [])))
+        improved = results.get('improved')
+        if improved and improved.get('success'):
+            covered_sets.append(set(improved.get('requirements_covered', [])))
+
+        mut = results.get('mutation')
+        mutation_ran = mut and mut.get('success')
+
+        if mutation_ran:
+            mutation_covered = set(mut.get('requirements_covered', []))
+            both_static = set.intersection(*covered_sets) if len(covered_sets) >= 2 else (covered_sets[0] if covered_sets else set())
+            final_covered = sorted(mutation_covered | both_static)
+        elif covered_sets:
+            final_covered = sorted(set.union(*covered_sets))
+        else:
+            final_covered = []
+
+        grade = self.calculate_grade(final_covered)
+
+        return {
+            'success': True,
+            'grade': grade,
+            'requirements_covered': final_covered,
+            'requirements_missing': [r for r in ['R1','R2','R3','R4','R5','R6'] if r not in final_covered],
+            'requirements_found': len(final_covered),
+            'coverage_percentage': round(len(final_covered) / 6 * 100, 2),
+            'requirement_details': (orig or {}).get('requirement_details', {}),
+            'original_result': orig,
+            'improved_result': improved,
+            'mutation_result': mut,
+            'mutation_available': mutation_ran,
+        }
+
+    def grade_student(self, student_id, student_dir, test_file, impl_file):
+        print(f"\nGrading {student_id}...")
+        timestamp = datetime.now().strftime('%Y%m%d')
+
+        # Test analysis
+        print(f"\n  Running test analysis (all layers)...")
+        test_result = self.analyze_tests(test_file, student_dir, student_id)
+        test_grade = test_result['grade']
+
+        orig = test_result.get('original_result') or {}
+        print(f"    Original:  {orig.get('requirements_covered', [])}  "
+              f"grade={self.calculate_grade(orig.get('requirements_covered', [])):.2f}")
+        if IMPROVED_AVAILABLE:
+            imp = test_result.get('improved_result') or {}
+            print(f"    Improved:  {imp.get('requirements_covered', [])}  "
+                  f"grade={self.calculate_grade(imp.get('requirements_covered', [])):.2f}")
+        print(f"    COMBINED:  {test_result['requirements_covered']}  grade={test_grade:.2f}")
+
+        # Pattern implementation
         pattern_result = None
         pattern_grade = 0
         try:
@@ -97,15 +189,10 @@ class DualGradingSystem:
             pattern_result = pattern_grader.grade_implementation(impl_file, student_id)
             if pattern_result['success']:
                 pattern_grade = self.calculate_grade(pattern_result.get('requirements_satisfied', []))
-                print(f"    Pattern: {pattern_result['requirements_found']}/6")
-                print(f"    Pattern Grade: {pattern_grade}/10.0")
-                
-                # Show pattern matching details if available
-                if pattern_result.get('pattern_matching_used'):
-                    print(f"    Pattern Matching: Active (YAML-based)")
+                print(f"    Pattern: {pattern_result['requirements_found']}/6  grade={pattern_grade:.2f}")
         except Exception as e:
-            print(f"    ✗ Pattern error: {e}")
-        
+            print(f"    ERROR: {e}")
+
         # Rigorous implementation
         rigorous_result = None
         rigorous_grade = 0
@@ -115,24 +202,24 @@ class DualGradingSystem:
             rigorous_result = rigorous_grader.grade_implementation(impl_file)
             if rigorous_result['success']:
                 rigorous_grade = self.calculate_grade(rigorous_result.get('requirements_satisfied', []))
-                print(f"    Rigorous: {rigorous_result['requirements_found']}/6")
-                print(f"    Rigorous Grade: {rigorous_grade}/10.0")
-                print(f"    Test Cases Run: {rigorous_result.get('total_test_cases', 0)}")
+                print(f"    Rigorous: {rigorous_result['requirements_found']}/6  grade={rigorous_grade:.2f}  "
+                      f"({rigorous_result.get('total_test_cases', 0)} test cases)")
         except Exception as e:
-            print(f"    ✗ Rigorous error: {e}")
-        
-        # Calculate combined grades
-        pattern_combined = round((test_grade + pattern_grade) / 2, 2) if test_result and pattern_result else 0
-        rigorous_combined = round((test_grade + rigorous_grade) / 2, 2) if test_result and rigorous_result else 0
-        
+            print(f"    ERROR: {e}")
+
+        pattern_combined  = round((test_grade + pattern_grade)  / 2, 2)
+        rigorous_combined = round((test_grade + rigorous_grade) / 2, 2)
+
         if pattern_grade and rigorous_grade:
-            diff = abs(pattern_grade - rigorous_grade)
-            print(f"\n  📊 COMPARISON:")
+            print(f"\n  COMPARISON:")
+            print(f"    Test Coverage: {test_grade}/10.0")
             print(f"    Pattern Impl:  {pattern_grade}/10.0")
             print(f"    Rigorous Impl: {rigorous_grade}/10.0")
-            print(f"    Difference:    {diff:.2f}")
-        
-        # Save pattern JSON
+            print(f"    Difference:    {abs(pattern_grade - rigorous_grade):.2f}")
+
+        results_dir = Path(__file__).parent / "results"
+        results_dir.mkdir(exist_ok=True)
+
         if pattern_result:
             pattern_data = {
                 "student_id": student_id,
@@ -140,158 +227,62 @@ class DualGradingSystem:
                 "timestamp": datetime.now().isoformat(),
                 "test_coverage": {
                     "grade": test_grade,
-                    "requirements_covered": test_result.get('requirements_covered', []) if test_result else [],
-                    "requirements_missing": test_result.get('requirements_missing', []) if test_result else [],
-                    "coverage_percentage": test_result.get('coverage_percentage', 0) if test_result else 0,
-                    "requirement_details": test_result.get('requirement_details', {}) if test_result else {}
+                    "requirements_covered": test_result.get('requirements_covered', []),
+                    "requirements_missing": test_result.get('requirements_missing', []),
+                    "coverage_percentage": test_result.get('coverage_percentage', 0),
+                    "requirement_details": test_result.get('requirement_details', {}),
+                    "original_covered": (test_result.get('original_result') or {}).get('requirements_covered', []),
+                    "improved_covered": (test_result.get('improved_result') or {}).get('requirements_covered', []),
+                    "mutation_covered": (test_result.get('mutation_result') or {}).get('requirements_covered', []),
+                    "mutation_available": test_result.get('mutation_available', False),
                 },
                 "implementation": pattern_result,
                 "implementation_grade": pattern_grade,
                 "combined_grade": pattern_combined
             }
-            
-            pattern_file = Path("results") / f"{student_id}_pattern_{timestamp}.json"
-            pattern_file.parent.mkdir(exist_ok=True)
-            with open(pattern_file, 'w') as f:
-                json.dump(pattern_data, f, indent=2)
-            print(f"\n  ✓ Saved: {pattern_file.name}")
-        
-        # Save rigorous JSON
+            with open(results_dir / f"{student_id}_pattern_{timestamp}.json", 'w', encoding='utf-8') as f:
+                json.dump(pattern_data, f, indent=2, ensure_ascii=False)
+            print(f"\n  Saved: {student_id}_pattern_{timestamp}.json")
+
         if rigorous_result:
-            # Build detailed requirement explanations
+            req_descriptions = {
+                'R1': 'speedSet initializes to null', 'R2': 'speedLimit initializes to null',
+                'R3': 'setSpeedSet accepts positive values',
+                'R4': 'Throws IncorrectSpeedSetException for zero/negative',
+                'R5': 'speedSet respects speedLimit',
+                'R6': 'Throws SpeedSetAboveSpeedLimitException when exceeding'
+            }
             requirement_details = {}
-            for req in ['R1', 'R2', 'R3', 'R4', 'R5', 'R6']:
-                req_analysis = rigorous_result.get('requirement_analysis', {}).get(req, {})
-                
-                # Get basic info
+            for req in ['R1','R2','R3','R4','R5','R6']:
+                ra = rigorous_result.get('requirement_analysis', {}).get(req, {})
                 satisfied = req in rigorous_result.get('requirements_satisfied', [])
-                total_tests = req_analysis.get('total_tests', 0)
-                passed_tests = req_analysis.get('passed_tests', 0)
-                failed_tests = req_analysis.get('failed_tests', 0)
-                satisfaction_rate = req_analysis.get('satisfaction_rate', 0)
-                
-                # Build explanation
-                detail = {
+                requirement_details[req] = {
                     "requirement": req,
-                    "description": req_analysis.get('description', ''),
-                    "status": "✓ SATISFIED" if satisfied else "✗ NOT SATISFIED",
+                    "description": req_descriptions.get(req, ''),
+                    "status": "SATISFIED" if satisfied else "NOT SATISFIED",
                     "satisfied": satisfied,
-                    "tests_run": total_tests,
-                    "tests_passed": passed_tests,
-                    "tests_failed": failed_tests,
-                    "pass_rate": f"{satisfaction_rate}%",
+                    "tests_run": ra.get('total_tests', 0),
+                    "tests_passed": ra.get('passed_tests', 0),
+                    "tests_failed": ra.get('failed_tests', 0),
+                    "pass_rate": f"{ra.get('satisfaction_rate', 0)}%",
                     "threshold": "80% required",
-                    "result": "",
-                    "what_was_checked": [],
-                    "what_passed": [],
-                    "what_failed": [],
-                    "explanation": ""
+                    "failure_details": ra.get('failure_details', []),
                 }
-                
-                # Add what was checked (categories)
-                categories = req_analysis.get('categories_tested', [])
-                if 'equivalence_partition' in categories:
-                    detail["what_was_checked"].append("Different types of input values (valid/invalid partitions)")
-                if 'boundary_value' in categories:
-                    detail["what_was_checked"].append("Edge cases at boundaries (e.g., zero, limit±1)")
-                if 'property_based' in categories:
-                    detail["what_was_checked"].append("Mathematical properties that must always hold")
-                if 'state_transition' in categories:
-                    detail["what_was_checked"].append("State consistency after operations")
-                
-                # Add specific results based on requirement
-                if req == 'R1':
-                    detail["result"] = "Checked that speedSet initializes to null in constructor"
-                    if satisfied:
-                        detail["what_passed"].append("Constructor correctly sets speedSet = null")
-                    else:
-                        detail["what_failed"].append("speedSet is not null after construction")
-                
-                elif req == 'R2':
-                    detail["result"] = "Checked that speedLimit initializes to null in constructor"
-                    if satisfied:
-                        detail["what_passed"].append("Constructor correctly sets speedLimit = null")
-                    else:
-                        detail["what_failed"].append("speedLimit is not null after construction")
-                
-                elif req == 'R3':
-                    detail["result"] = f"Tested {total_tests} positive values (1, 50, 100, 1000)"
-                    if satisfied:
-                        detail["what_passed"].append(f"All {passed_tests} positive values were accepted correctly")
-                    else:
-                        detail["what_failed"].append(f"{failed_tests} positive value(s) were rejected or caused errors")
-                
-                elif req == 'R4':
-                    detail["result"] = f"Tested {total_tests} invalid values including negatives and zero"
-                    
-                    # Check specific failures
-                    failure_details = req_analysis.get('failure_details', [])
-                    zero_failed = any('0000' in f.get('test_id', '') for f in failure_details)
-                    
-                    if satisfied:
-                        if failed_tests > 0:
-                            detail["what_passed"].append(f"{passed_tests}/{total_tests} tests passed (≥80% threshold met)")
-                            for failure in failure_details:
-                                if 'NO_EXCEPTION' in failure.get('reason', ''):
-                                    detail["what_failed"].append(f"Test {failure['test_id']}: Did not throw exception")
-                        else:
-                            detail["what_passed"].append("All negative and zero values correctly throw IncorrectSpeedSetException")
-                    else:
-                        detail["what_failed"].append(f"Only {passed_tests}/{total_tests} tests passed (below 80% threshold)")
-                        if zero_failed:
-                            detail["what_failed"].append("⚠️ CRITICAL: Zero (0) does not throw exception - likely using < instead of <=")
-                        for failure in failure_details:
-                            if 'NO_EXCEPTION' in failure.get('reason', ''):
-                                test_id = failure.get('test_id', '')
-                                if '0000' in test_id:
-                                    detail["what_failed"].append("Test with value 0: Expected exception but none was thrown")
-                                elif '0001' in test_id:
-                                    detail["what_failed"].append("Test with value -1: Expected exception but none was thrown")
-                                else:
-                                    detail["what_failed"].append(f"{test_id}: Expected exception but none was thrown")
-                    
-                    # Add explanation
-                    if not satisfied and zero_failed:
-                        detail["explanation"] = "Common bug: Code uses 'if (speedSet < 0)' instead of 'if (speedSet <= 0)', missing the zero case"
-                
-                elif req == 'R5':
-                    detail["result"] = f"Tested {total_tests} scenarios with speedLimit set"
-                    if satisfied:
-                        detail["what_passed"].append("speedSet correctly stays below or equal to speedLimit")
-                        detail["what_passed"].append("Boundary case (speedSet = speedLimit) handled correctly")
-                    else:
-                        detail["what_failed"].append(f"Only {passed_tests}/{total_tests} tests passed")
-                        for failure in failure_details:
-                            detail["what_failed"].append(f"Failed: {failure.get('reason', 'Unknown')}")
-                
-                elif req == 'R6':
-                    detail["result"] = f"Tested {total_tests} scenarios exceeding speedLimit"
-                    if satisfied:
-                        detail["what_passed"].append("Correctly throws SpeedSetAboveSpeedLimitException when speedSet > speedLimit")
-                        detail["what_passed"].append("Boundary test passed (limit + 1)")
-                    else:
-                        detail["what_failed"].append(f"Only {passed_tests}/{total_tests} tests passed")
-                        for failure in failure_details:
-                            if 'NO_EXCEPTION' in failure.get('reason', ''):
-                                detail["what_failed"].append("Expected exception when exceeding limit but none was thrown")
-                
-                # Add overall explanation if not satisfied
-                if not satisfied and not detail["explanation"]:
-                    if satisfaction_rate < 80:
-                        detail["explanation"] = f"Pass rate {satisfaction_rate}% is below the 80% threshold needed to satisfy this requirement"
-                
-                requirement_details[req] = detail
-            
+
             rigorous_data = {
                 "student_id": student_id,
                 "grader_type": "Rigorous Property-Based Grader",
                 "timestamp": datetime.now().isoformat(),
                 "test_coverage": {
                     "grade": test_grade,
-                    "requirements_covered": test_result.get('requirements_covered', []) if test_result else [],
-                    "requirements_missing": test_result.get('requirements_missing', []) if test_result else [],
-                    "coverage_percentage": test_result.get('coverage_percentage', 0) if test_result else 0,
-                    "requirement_details": test_result.get('requirement_details', {}) if test_result else {}
+                    "requirements_covered": test_result.get('requirements_covered', []),
+                    "requirements_missing": test_result.get('requirements_missing', []),
+                    "coverage_percentage": test_result.get('coverage_percentage', 0),
+                    "requirement_details": test_result.get('requirement_details', {}),
+                    "original_covered": (test_result.get('original_result') or {}).get('requirements_covered', []),
+                    "improved_covered": (test_result.get('improved_result') or {}).get('requirements_covered', []),
+                    "mutation_covered": (test_result.get('mutation_result') or {}).get('requirements_covered', []),
+                    "mutation_available": test_result.get('mutation_available', False),
                 },
                 "implementation": {
                     "overall_result": {
@@ -306,10 +297,8 @@ class DualGradingSystem:
                         "name": "Rigorous Property-Based Testing",
                         "test_cases": rigorous_result.get('total_test_cases', 23),
                         "techniques_used": [
-                            "Equivalence Partitioning - Tests different classes of inputs",
-                            "Boundary Value Analysis - Tests edge cases like 0, -1, limit±1",
-                            "Property-Based Testing - Verifies mathematical invariants",
-                            "State Verification - Ensures object state consistency"
+                            "Equivalence Partitioning", "Boundary Value Analysis",
+                            "Property-Based Testing", "State Verification"
                         ],
                         "properties_verified": rigorous_result.get('properties_verified', [])
                     },
@@ -318,244 +307,141 @@ class DualGradingSystem:
                 "implementation_grade": rigorous_grade,
                 "combined_grade": rigorous_combined
             }
-            
-            rigorous_file = Path("results") / f"{student_id}_rigorous_{timestamp}.json"
-            with open(rigorous_file, 'w') as f:
-                json.dump(rigorous_data, f, indent=2)
-            print(f"  ✓ Saved: {rigorous_file.name}")
-    
+            with open(results_dir / f"{student_id}_rigorous_{timestamp}.json", 'w', encoding='utf-8') as f:
+                json.dump(rigorous_data, f, indent=2, ensure_ascii=False)
+            print(f"  Saved: {student_id}_rigorous_{timestamp}.json")
+
     def grade_all(self, submissions_dir):
-        """Grade all students"""
         students = self.find_student_submissions(submissions_dir)
-        
         if not students:
             print("No student submissions found.")
             return
-        
-        print(f"\n{'=' * 70}")
-        print(f"Found {len(students)} student submissions")
-        print(f"{'=' * 70}")
-        
+
+        print(f"\n{'='*70}")
+        print(f"Found {len(students)} student submission(s)")
+        print(f"  ImprovedTestAnalyzer: {'available' if IMPROVED_AVAILABLE else 'not found'}")
+        print(f"  MutationTestAnalyzer: {'available' if MUTATION_AVAILABLE else 'not found'}")
+        print(f"{'='*70}")
+
         for student_id, student_dir, test_file, impl_file in students:
             self.grade_student(student_id, student_dir, test_file, impl_file)
-        
-        print(f"\n{'=' * 70}")
-        print("✓ Grading complete!")
-        print(f"{'=' * 70}")
-        
-        # Generate dashboard summary automatically
-        print("\nGenerating dashboard summary...")
+
+        print(f"\n{'='*70}")
+        print("Grading complete!")
+        print(f"{'='*70}")
         self.generate_dashboard_summary()
-    
+
     def generate_dashboard_summary(self):
-        """Generate grading_summary.json for the HTML dashboard"""
-        results_dir = Path("results")
-        
+        results_dir = Path(__file__).parent / "results"
         if not results_dir.exists():
-            print("Error: results/ directory not found")
             return
-        
-        # Find all JSON files
-        pattern_files = list(results_dir.glob("*_pattern_*.json"))
+
+        pattern_files  = list(results_dir.glob("*_pattern_*.json"))
         rigorous_files = list(results_dir.glob("*_rigorous_*.json"))
-        
-        students = []
-        
-        # Get unique student names
+
         student_names = set()
         for f in pattern_files:
-            name = f.stem.split('_pattern_')[0]
-            student_names.add(name)
-        
-        # Process each student
+            student_names.add(f.stem.split('_pattern_')[0])
+
+        students = []
         for student_name in sorted(student_names):
-            pattern_file = None
-            rigorous_file = None
-            
-            for f in pattern_files:
-                if f.stem.startswith(student_name + '_pattern_'):
-                    pattern_file = f
-                    break
-            
-            for f in rigorous_files:
-                if f.stem.startswith(student_name + '_rigorous_'):
-                    rigorous_file = f
-                    break
-            
-            if not pattern_file and not rigorous_file:
-                continue
-            
-            student_data = {
-                'success': True,
-                'student_id': student_name,
+            pf = next((f for f in pattern_files  if f.stem.startswith(student_name + '_pattern_')),  None)
+            rf = next((f for f in rigorous_files if f.stem.startswith(student_name + '_rigorous_')), None)
+
+            sd = {
+                'success': True, 'student_id': student_name,
                 'test_coverage_grade': 0,
-                'test_analysis': {
-                    'coverage_percentage': 0,
-                    'requirements_found': 0,
-                    'requirements_covered': []
-                },
+                'test_analysis': {'coverage_percentage': 0, 'requirements_found': 0, 'requirements_covered': []},
                 'implementation_grade': 0,
-                'implementation_analysis': {
-                    'satisfaction_percentage': 0,
-                    'requirements_satisfied': []
-                },
-                'combined_grade': 0,
-                'pattern': None,
-                'rigorous': None
+                'implementation_analysis': {'satisfaction_percentage': 0, 'requirements_satisfied': []},
+                'combined_grade': 0, 'pattern': None, 'rigorous': None
             }
-            
-            # Load pattern data
-            if pattern_file:
-                with open(pattern_file, 'r', encoding='utf-8') as f:
-                    pattern_data = json.load(f)
-                    
-                    # Map to HTML expected structure
-                    student_data['test_coverage_grade'] = pattern_data.get('test_coverage', {}).get('grade', 0)
-                    student_data['test_analysis'] = {
-                        'coverage_percentage': pattern_data.get('test_coverage', {}).get('coverage_percentage', 0),
-                        'requirements_found': len(pattern_data.get('test_coverage', {}).get('requirements_covered', [])),
-                        'requirements_covered': pattern_data.get('test_coverage', {}).get('requirements_covered', [])
-                    }
-                    student_data['implementation_grade'] = pattern_data.get('implementation_grade', 0)
-                    student_data['implementation_analysis'] = {
-                        'satisfaction_percentage': pattern_data.get('implementation', {}).get('satisfaction_percentage', 0),
-                        'requirements_satisfied': pattern_data.get('implementation', {}).get('requirements_satisfied', [])
-                    }
-                    student_data['combined_grade'] = pattern_data.get('combined_grade', 0)
-                    
-                    # Keep full data for reference
-                    student_data['pattern'] = {
-                        'test_grade': pattern_data.get('test_coverage', {}).get('grade', 0),
-                        'implementation_grade': pattern_data.get('implementation_grade', 0),
-                        'combined_grade': pattern_data.get('combined_grade', 0),
-                        'requirements_covered': pattern_data.get('test_coverage', {}).get('requirements_covered', []),
-                        'requirements_satisfied': pattern_data.get('implementation', {}).get('requirements_satisfied', []),
-                        'test_details': pattern_data.get('test_coverage', {}).get('requirement_details', {}),
-                        'impl_details': pattern_data.get('implementation', {}).get('requirement_details', {})
-                    }
-            
-            # Load rigorous data
-            if rigorous_file:
-                with open(rigorous_file, 'r', encoding='utf-8') as f:
-                    rigorous_data = json.load(f)
-                    student_data['rigorous'] = {
-                        'test_grade': rigorous_data.get('test_coverage', {}).get('grade', 0),
-                        'implementation_grade': rigorous_data.get('implementation_grade', 0),
-                        'combined_grade': rigorous_data.get('combined_grade', 0),
-                        'requirements_covered': rigorous_data.get('test_coverage', {}).get('requirements_covered', []),
-                        'requirements_satisfied': rigorous_data.get('implementation', {}).get('overall_result', {}).get('requirements_satisfied', []),
-                        'test_details': rigorous_data.get('test_coverage', {}).get('requirement_details', {}),
-                        'impl_details': rigorous_data.get('implementation', {}).get('detailed_requirements', {})
-                    }
-            
-            students.append(student_data)
-        
-        # Calculate statistics
-        statistics = self.calculate_statistics(students)
-        
-        # Create summary with correct structure for dashboard
+
+            if pf:
+                with open(pf, 'r', encoding='utf-8') as f:
+                    pd = json.load(f)
+                sd['test_coverage_grade'] = pd.get('test_coverage', {}).get('grade', 0)
+                sd['test_analysis'] = {
+                    'coverage_percentage': pd.get('test_coverage', {}).get('coverage_percentage', 0),
+                    'requirements_found':  len(pd.get('test_coverage', {}).get('requirements_covered', [])),
+                    'requirements_covered': pd.get('test_coverage', {}).get('requirements_covered', [])
+                }
+                sd['implementation_grade']    = pd.get('implementation_grade', 0)
+                sd['implementation_analysis'] = {
+                    'satisfaction_percentage': pd.get('implementation', {}).get('satisfaction_percentage', 0),
+                    'requirements_satisfied':  pd.get('implementation', {}).get('requirements_satisfied', [])
+                }
+                sd['combined_grade'] = pd.get('combined_grade', 0)
+                sd['pattern'] = {
+                    'test_grade': pd.get('test_coverage', {}).get('grade', 0),
+                    'implementation_grade': pd.get('implementation_grade', 0),
+                    'combined_grade': pd.get('combined_grade', 0),
+                    'requirements_covered': pd.get('test_coverage', {}).get('requirements_covered', []),
+                    'requirements_satisfied': pd.get('implementation', {}).get('requirements_satisfied', []),
+                    'test_details': pd.get('test_coverage', {}).get('requirement_details', {}),
+                    'impl_details': pd.get('implementation', {}).get('requirement_details', {}),
+                    'test_original_covered': pd.get('test_coverage', {}).get('original_covered', []),
+                    'test_improved_covered': pd.get('test_coverage', {}).get('improved_covered', []),
+                    'test_mutation_covered': pd.get('test_coverage', {}).get('mutation_covered', []),
+                    'mutation_available':    pd.get('test_coverage', {}).get('mutation_available', False),
+                }
+
+            if rf:
+                with open(rf, 'r', encoding='utf-8') as f:
+                    rd = json.load(f)
+                sd['rigorous'] = {
+                    'test_grade': rd.get('test_coverage', {}).get('grade', 0),
+                    'implementation_grade': rd.get('implementation_grade', 0),
+                    'combined_grade': rd.get('combined_grade', 0),
+                    'requirements_covered': rd.get('test_coverage', {}).get('requirements_covered', []),
+                    'requirements_satisfied': rd.get('implementation', {}).get('overall_result', {}).get('requirements_satisfied', []),
+                    'test_details': rd.get('test_coverage', {}).get('requirement_details', {}),
+                    'impl_details': rd.get('implementation', {}).get('detailed_requirements', {}),
+                    'test_mutation_covered': rd.get('test_coverage', {}).get('mutation_covered', []),
+                    'mutation_available': rd.get('test_coverage', {}).get('mutation_available', False),
+                }
+
+            students.append(sd)
+
         summary = {
             'generated': datetime.now().isoformat(),
             'total_students': len(students),
-            'results': students,  # HTML expects 'results' not 'students'
-            'statistics': statistics
+            'results': students,
+            'statistics': self.calculate_statistics(students)
         }
-        
-        # Save summary
+
         output_file = results_dir / 'grading_summary.json'
         with open(output_file, 'w', encoding='utf-8') as f:
             json.dump(summary, f, indent=2, ensure_ascii=False)
-        
-        print(f"✓ Dashboard summary generated: {output_file}")
-        print(f"✓ Open index_dual.html in your browser to view results")
-    
+        print(f"Dashboard summary: {output_file}")
+
     def calculate_statistics(self, students):
-        """Calculate aggregate statistics"""
-        stats = {
-            'pattern': {
-                'avg_test_grade': 0,
-                'avg_impl_grade': 0,
-                'avg_combined_grade': 0,
-                'total_r1': 0,
-                'total_r2': 0,
-                'total_r3': 0,
-                'total_r4': 0,
-                'total_r5': 0,
-                'total_r6': 0
-            },
-            'rigorous': {
-                'avg_test_grade': 0,
-                'avg_impl_grade': 0,
-                'avg_combined_grade': 0,
-                'total_r1': 0,
-                'total_r2': 0,
-                'total_r3': 0,
-                'total_r4': 0,
-                'total_r5': 0,
-                'total_r6': 0
+        stats = {}
+        for key in ('pattern', 'rigorous'):
+            grp = [s for s in students if s.get(key)]
+            if not grp:
+                stats[key] = {}
+                continue
+            stats[key] = {
+                'avg_test_grade':     round(sum(s[key]['test_grade']           for s in grp) / len(grp), 2),
+                'avg_impl_grade':     round(sum(s[key]['implementation_grade'] for s in grp) / len(grp), 2),
+                'avg_combined_grade': round(sum(s[key]['combined_grade']       for s in grp) / len(grp), 2),
             }
-        }
-        
-        if not students:
-            return stats
-        
-        # Pattern stats
-        pattern_students = [s for s in students if s.get('pattern')]
-        if pattern_students:
-            stats['pattern']['avg_test_grade'] = round(
-                sum(s['pattern']['test_grade'] for s in pattern_students) / len(pattern_students), 2
-            )
-            stats['pattern']['avg_impl_grade'] = round(
-                sum(s['pattern']['implementation_grade'] for s in pattern_students) / len(pattern_students), 2
-            )
-            stats['pattern']['avg_combined_grade'] = round(
-                sum(s['pattern']['combined_grade'] for s in pattern_students) / len(pattern_students), 2
-            )
-            
-            for req in ['R1', 'R2', 'R3', 'R4', 'R5', 'R6']:
-                stats['pattern'][f'total_{req.lower()}'] = sum(
-                    1 for s in pattern_students 
-                    if req in s['pattern']['requirements_satisfied']
+            for req in ['R1','R2','R3','R4','R5','R6']:
+                stats[key][f'total_{req.lower()}'] = sum(
+                    1 for s in grp if req in s[key]['requirements_satisfied']
                 )
-        
-        # Rigorous stats
-        rigorous_students = [s for s in students if s.get('rigorous')]
-        if rigorous_students:
-            stats['rigorous']['avg_test_grade'] = round(
-                sum(s['rigorous']['test_grade'] for s in rigorous_students) / len(rigorous_students), 2
-            )
-            stats['rigorous']['avg_impl_grade'] = round(
-                sum(s['rigorous']['implementation_grade'] for s in rigorous_students) / len(rigorous_students), 2
-            )
-            stats['rigorous']['avg_combined_grade'] = round(
-                sum(s['rigorous']['combined_grade'] for s in rigorous_students) / len(rigorous_students), 2
-            )
-            
-            for req in ['R1', 'R2', 'R3', 'R4', 'R5', 'R6']:
-                stats['rigorous'][f'total_{req.lower()}'] = sum(
-                    1 for s in rigorous_students 
-                    if req in s['rigorous']['requirements_satisfied']
-                )
-        
         return stats
 
 
 def main():
     if len(sys.argv) < 2:
         print("Usage: python main_dual.py <submissions_directory>")
-        print("\nExample:")
-        print("  python main_dual.py ../student_submissions")
         sys.exit(1)
-    
-    submissions_dir = sys.argv[1]
-    
     print("=" * 70)
-    print("DUAL GRADING SYSTEM")
-    print("Pattern-Based vs Rigorous Implementation Graders")
+    print("DUAL GRADING SYSTEM v3")
     print("=" * 70)
-    
-    grader = DualGradingSystem()
-    grader.grade_all(submissions_dir)
+    DualGradingSystem().grade_all(sys.argv[1])
 
 
 if __name__ == '__main__':

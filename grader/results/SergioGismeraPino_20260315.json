@@ -1,0 +1,144 @@
+{
+  "student_id": "SergioGismeraPino",
+  "timestamp": "2026-03-15T20:39:12.018561",
+  "success": true,
+  "test_file": "..\\student_submissions\\SergioGismeraPino\\src\\test\\java\\es\\upm\\grise\\profunduzacion\\cruiseController\\CruiseControlTest.java",
+  "implementation_file": "..\\student_submissions\\SergioGismeraPino\\src\\main\\java\\es\\upm\\grise\\profundizacion\\cruiseControl\\CruiseControl.java",
+  "test_analysis": {
+    "success": true,
+    "grade": 3.32,
+    "requirements_covered": [
+      "R3",
+      "R6"
+    ],
+    "requirements_missing": [
+      "R1",
+      "R2",
+      "R4",
+      "R5"
+    ],
+    "requirement_details": {
+      "R1": {
+        "tested": false,
+        "pattern_matching": {
+          "verified": false,
+          "test_methods": []
+        },
+        "holistic_coverage": {
+          "verified": false,
+          "confidence": 0.0,
+          "details": [
+            "Required code not exercised by tests"
+          ]
+        },
+        "verification_method": "none"
+      },
+      "R2": {
+        "tested": false,
+        "pattern_matching": {
+          "verified": false,
+          "test_methods": []
+        },
+        "holistic_coverage": {
+          "verified": false,
+          "confidence": 0.0,
+          "details": [
+            "Required code not exercised by tests"
+          ]
+        },
+        "verification_method": "none"
+      },
+      "R3": {
+        "tested": true,
+        "pattern_matching": {
+          "verified": true,
+          "test_methods": [
+            "getVelocidadCorrecta",
+            "getVelocidadMayorQueLaMaxima"
+          ]
+        },
+        "holistic_coverage": {
+          "verified": false,
+          "confidence": 0.0,
+          "details": [
+            "Required code not exercised by tests"
+          ]
+        },
+        "verification_method": "pattern_matching"
+      },
+      "R4": {
+        "tested": false,
+        "pattern_matching": {
+          "verified": false,
+          "test_methods": []
+        },
+        "holistic_coverage": {
+          "verified": false,
+          "confidence": 0.0,
+          "details": [
+            "Required code not exercised by tests"
+          ]
+        },
+        "verification_method": "none"
+      },
+      "R5": {
+        "tested": false,
+        "pattern_matching": {
+          "verified": false,
+          "test_methods": []
+        },
+        "holistic_coverage": {
+          "verified": false,
+          "confidence": 0.0,
+          "details": [
+            "Required code not exercised by tests"
+          ]
+        },
+        "verification_method": "none"
+      },
+      "R6": {
+        "tested": true,
+        "pattern_matching": {
+          "verified": false,
+          "test_methods": []
+        },
+        "holistic_coverage": {
+          "verified": true,
+          "confidence": 0.7,
+          "details": [
+            "Methods called: ['setSpeedSet']",
+            "Warning: Code path verification inconclusive"
+          ]
+        },
+        "verification_method": "holistic_coverage"
+      }
+    },
+    "total_test_methods": 3,
+    "requirements_found": 2,
+    "coverage_percentage": 33.33,
+    "analysis_methods_used": [
+      "pattern_matching",
+      "holistic_coverage"
+    ]
+  },
+  "implementation_analysis": {
+    "success": false,
+    "error": "Compilation failed: Compilation failed:\nes\\upm\\grise\\profundizacion\\cruiseControl\\CruiseControl.java:24: error: ';' expected\n\tpublic void setSpeedSet(int speedSet) extends ExcepcionesCreadas{\n\t                                     ^\nes\\upm\\grise\\profundizacion\\cruiseControl\\CruiseControl.java:32: error: illegal start of type\n\t\t}else{\n\t\t ^\nes\\upm\\grise\\profundizacion\\cruiseControl\\CruiseControl.java:40: error: unnamed classes are a preview feature and are disabled by default.\n\tpublic Integer getSpeedLimit() {\n\t       ^\n  (use --enable-preview to enable unnamed classes)\nes\\upm\\grise\\profundizacion\\cruiseControl\\CruiseControl.java:52: error: class, interface, enum, or record expected\n}\n^\nes\\upm\\grise\\profundizacion\\cruiseControl\\CruiseControl.java:1: error: unnamed class should not have package declaration\npackage es.upm.grise.profundizacion.cruiseControl;\n^\n5 errors\n",
+    "requirements_satisfied": [],
+    "requirements_missing": [
+      "R1",
+      "R2",
+      "R3",
+      "R4",
+      "R5",
+      "R6"
+    ],
+    "total_requirements": 6,
+    "requirements_found": 0,
+    "satisfaction_percentage": 0.0
+  },
+  "test_coverage_grade": 3.32,
+  "implementation_grade": 0.0,
+  "combined_grade": 1.66,
+  "error": null
+}

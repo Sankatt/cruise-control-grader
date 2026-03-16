@@ -1,0 +1,233 @@
+{
+  "student_id": "TaigaSeven",
+  "grader_type": "Pattern-Based Execution Grader",
+  "timestamp": "2026-03-15T22:32:42.074216",
+  "test_coverage": {
+    "grade": 8.33,
+    "requirements_covered": [
+      "R1",
+      "R2",
+      "R3",
+      "R4",
+      "R6"
+    ],
+    "requirements_missing": [
+      "R5"
+    ],
+    "coverage_percentage": 83.33,
+    "requirement_details": {
+      "R1": {
+        "tested": true,
+        "passing_tests": [
+          "valoresNulosTest"
+        ],
+        "details": [
+          {
+            "method": "valoresNulosTest",
+            "reason": "assertNull on getSpeedSet() after construction"
+          }
+        ],
+        "verification_method": "strict_combination"
+      },
+      "R2": {
+        "tested": true,
+        "passing_tests": [
+          "valoresNulosTest"
+        ],
+        "details": [
+          {
+            "method": "valoresNulosTest",
+            "reason": "assertNull on getSpeedLimit() after construction"
+          }
+        ],
+        "verification_method": "strict_combination"
+      },
+      "R3": {
+        "tested": true,
+        "passing_tests": [
+          "speedSetCorrectTest"
+        ],
+        "details": [
+          {
+            "method": "speedSetCorrectTest",
+            "reason": "setSpeedSet called with positive value, result asserted"
+          }
+        ],
+        "verification_method": "strict_combination"
+      },
+      "R4": {
+        "tested": true,
+        "passing_tests": [
+          "incorrectSpeedSetTest"
+        ],
+        "details": [
+          {
+            "method": "incorrectSpeedSetTest",
+            "reason": "assertThrows IncorrectSpeedSetException with zero/negative input"
+          }
+        ],
+        "verification_method": "strict_combination"
+      },
+      "R5": {
+        "tested": false,
+        "passing_tests": [],
+        "details": [],
+        "verification_method": "strict_combination"
+      },
+      "R6": {
+        "tested": true,
+        "passing_tests": [
+          "speedSetAboveSpeedLimitTest"
+        ],
+        "details": [
+          {
+            "method": "speedSetAboveSpeedLimitTest",
+            "reason": "setSpeedLimit set, assertThrows SpeedSetAboveSpeedLimitException"
+          }
+        ],
+        "verification_method": "strict_combination"
+      }
+    },
+    "original_covered": [
+      "R1",
+      "R2",
+      "R3",
+      "R4",
+      "R6"
+    ],
+    "improved_covered": [
+      "R1",
+      "R2",
+      "R3",
+      "R4",
+      "R6"
+    ],
+    "mutation_covered": [
+      "R1",
+      "R2",
+      "R3",
+      "R4",
+      "R6"
+    ],
+    "mutation_available": true
+  },
+  "implementation": {
+    "success": true,
+    "requirements_satisfied": [
+      "R1",
+      "R2",
+      "R3",
+      "R4",
+      "R5",
+      "R6"
+    ],
+    "requirements_missing": [],
+    "requirement_details": {
+      "R1": {
+        "satisfied": true,
+        "status": "PASS",
+        "description": "speedSet initializes to null",
+        "pattern_matched": true,
+        "pattern_details": {
+          "by_lines": false,
+          "by_paths": false,
+          "by_entirety": true,
+          "matched_patterns": [
+            "declarations:flexible"
+          ]
+        },
+        "execution_passed": true,
+        "reason": "Implementation correct"
+      },
+      "R2": {
+        "satisfied": true,
+        "status": "PASS",
+        "description": "speedLimit initializes to null",
+        "pattern_matched": true,
+        "pattern_details": {
+          "by_lines": false,
+          "by_paths": false,
+          "by_entirety": true,
+          "matched_patterns": [
+            "declarations:flexible"
+          ]
+        },
+        "execution_passed": true,
+        "reason": "Implementation correct"
+      },
+      "R3": {
+        "satisfied": true,
+        "status": "PASS",
+        "description": "setSpeedSet accepts positive values",
+        "pattern_matched": true,
+        "pattern_details": {
+          "by_lines": true,
+          "by_paths": false,
+          "by_entirety": true,
+          "matched_patterns": [
+            "method_signature:found",
+            "assignment:found"
+          ]
+        },
+        "execution_passed": true,
+        "reason": "Implementation correct"
+      },
+      "R4": {
+        "satisfied": true,
+        "status": "PASS",
+        "description": "Throws IncorrectSpeedSetException for zero/negative",
+        "pattern_matched": true,
+        "pattern_details": {
+          "by_lines": false,
+          "by_paths": true,
+          "by_entirety": false,
+          "matched_patterns": [
+            "validation:found",
+            "exception:found"
+          ]
+        },
+        "execution_passed": true,
+        "reason": "Implementation correct"
+      },
+      "R5": {
+        "satisfied": true,
+        "status": "PASS",
+        "description": "speedSet respects speedLimit",
+        "pattern_matched": true,
+        "pattern_details": {
+          "by_lines": false,
+          "by_paths": false,
+          "by_entirety": true,
+          "matched_patterns": [
+            "null_check:found"
+          ]
+        },
+        "execution_passed": true,
+        "reason": "Implementation correct"
+      },
+      "R6": {
+        "satisfied": true,
+        "status": "PASS",
+        "description": "Throws SpeedSetAboveSpeedLimitException when exceeding",
+        "pattern_matched": true,
+        "pattern_details": {
+          "by_lines": false,
+          "by_paths": false,
+          "by_entirety": true,
+          "matched_patterns": [
+            "exception:found"
+          ]
+        },
+        "execution_passed": true,
+        "reason": "Implementation correct"
+      }
+    },
+    "total_requirements": 6,
+    "requirements_found": 6,
+    "satisfaction_percentage": 100.0,
+    "pattern_matching_used": true,
+    "test_details": []
+  },
+  "implementation_grade": 10.0,
+  "combined_grade": 9.16
+}
