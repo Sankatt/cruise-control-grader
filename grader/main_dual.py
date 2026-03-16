@@ -83,6 +83,40 @@ class DualGradingSystem:
         grade = sum(self.REQUIREMENT_WEIGHTS.get(req, 0) for req in requirements)
         return min(round(grade, 2), 10.0)
 
+    def build_mutation_analysis(self, mutation_result: dict) -> dict:
+        """Build a clean mutation_analysis section for the student JSON output."""
+        if not mutation_result or not mutation_result.get('success'):
+            return {
+                "success": False,
+                "grade": None,
+                "requirements_covered": [],
+                "requirements_missing": ["R1", "R2", "R3", "R4", "R5", "R6"],
+                "total_tests_run": 0,
+                "mutants": {},
+                "error": mutation_result.get('error', 'Mutation testing did not run') if mutation_result else 'Mutation testing did not run'
+            }
+
+        mutants = {}
+        for req, detail in mutation_result.get('requirement_details', {}).items():
+            mutants[req] = {
+                "status": detail.get("status", "UNKNOWN"),
+                "tests_failed": detail.get("mutant_tests_failed", 0),
+                "tests_passed": detail.get("mutant_tests_passed", 0),
+                "failing_tests": detail.get("failing_tests", []),
+                "details": detail.get("details", ""),
+            }
+
+        return {
+            "success": True,
+            "grade": mutation_result.get("grade", 0.0),
+            "requirements_covered": mutation_result.get("requirements_covered", []),
+            "requirements_missing": mutation_result.get("requirements_missing", []),
+            "total_tests_run": mutation_result.get("reference_tests_total", 0),
+            "all_test_methods": mutation_result.get("reference_test_methods", []),
+            "mutants": mutants,
+            "error": None,
+        }
+
     def analyze_tests(self, test_file: Path, student_dir: Path, student_id: str = 'Unknown'):
         """Run all available test analyzers and return a combined result."""
         results = {}
@@ -236,6 +270,7 @@ class DualGradingSystem:
                     "mutation_covered": (test_result.get('mutation_result') or {}).get('requirements_covered', []),
                     "mutation_available": test_result.get('mutation_available', False),
                 },
+                "mutation_analysis": self.build_mutation_analysis(test_result.get('mutation_result')),
                 "implementation": pattern_result,
                 "implementation_grade": pattern_grade,
                 "combined_grade": pattern_combined
@@ -279,11 +314,10 @@ class DualGradingSystem:
                     "requirements_missing": test_result.get('requirements_missing', []),
                     "coverage_percentage": test_result.get('coverage_percentage', 0),
                     "requirement_details": test_result.get('requirement_details', {}),
-                    "original_covered": (test_result.get('original_result') or {}).get('requirements_covered', []),
-                    "improved_covered": (test_result.get('improved_result') or {}).get('requirements_covered', []),
                     "mutation_covered": (test_result.get('mutation_result') or {}).get('requirements_covered', []),
                     "mutation_available": test_result.get('mutation_available', False),
                 },
+                "mutation_analysis": self.build_mutation_analysis(test_result.get('mutation_result')),
                 "implementation": {
                     "overall_result": {
                         "grade": rigorous_grade,

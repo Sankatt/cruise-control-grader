@@ -349,6 +349,9 @@ class MutationTestAnalyzer:
             print(f"        [debug] ref_results raw: {ref_results}")
             return self._error_result("No tests found or all tests errored on reference.")
 
+        ref_test_names = ref_results.get("failing_tests", [])  # should be empty on reference
+        all_test_names = ref_results.get("all_tests", [])
+
         # Step 2: run against each MUTANT
         requirement_results = {}
         for req, mutant_code in MUTANTS.items():
@@ -359,12 +362,17 @@ class MutationTestAnalyzer:
                     "tested": False,
                     "status": "MUTANT_COMPILE_ERROR",
                     "details": "Mutant did not compile",
+                    "failing_tests": [],
+                    "passing_tests": [],
+                    "mutant_tests_failed": 0,
+                    "mutant_tests_passed": 0,
                 }
                 continue
 
             mut_results  = self._run_tests(workdir, student_project_dir)
             mut_passed   = mut_results.get("passed", 0)
             mut_failed   = mut_results.get("failed", 0) + mut_results.get("errors", 0)
+            mut_failing  = mut_results.get("failing_tests", [])
 
             killed = mut_failed > 0
 
@@ -373,8 +381,9 @@ class MutationTestAnalyzer:
                 "status": "KILLED" if killed else "SURVIVED",
                 "mutant_tests_failed": mut_failed,
                 "mutant_tests_passed": mut_passed,
+                "failing_tests": mut_failing,
                 "details": (
-                    f"Mutant killed — {mut_failed} test(s) failed" if killed
+                    f"Mutant killed — {mut_failed} test(s) failed: {', '.join(mut_failing)}" if killed
                     else "Mutant survived — no test caught this bug"
                 ),
             }
@@ -390,6 +399,7 @@ class MutationTestAnalyzer:
             "requirements_missing": missing,
             "requirement_details": requirement_results,
             "total_test_methods": total_tests,
+            "reference_test_methods": ref_results.get("failing_tests", []),
             "requirements_found": len(covered),
             "coverage_percentage": round(len(covered) / 6 * 100, 2),
             "reference_tests_passed": ref_passed,
@@ -615,10 +625,12 @@ class MutationTestAnalyzer:
 
     def _parse_junit_output(self, output: str) -> dict:
         """
-        Parse JUnit console output to extract pass/fail counts.
+        Parse JUnit console output to extract pass/fail counts AND
+        the names of failing test methods.
         Handles both JUnit 4 and JUnit Platform output formats.
         """
         total = passed = failed = errors = 0
+        failing_tests = []
 
         # JUnit Platform format: "[         3 tests successful ]"
         m = re.search(r"(\d+) tests? successful", output)
@@ -630,6 +642,17 @@ class MutationTestAnalyzer:
         m = re.search(r"(\d+) tests? aborted", output)
         if m:
             errors += int(m.group(1))
+
+        # JUnit Platform failing test names: "✘ methodName()" or "  [X] methodName"
+        for pattern in [
+            r"[✘✗☓×]\s+(\w+)\s*\(",
+            r"\[X\]\s+(\w+)\s*\(",
+            r"FAILED\s+(\w+)\s*\(",
+        ]:
+            for match in re.finditer(pattern, output):
+                name = match.group(1)
+                if name not in failing_tests:
+                    failing_tests.append(name)
 
         # JUnit 4 format: "Tests run: X, Failures: Y"
         m4 = re.search(r"Tests run:\s*(\d+).*?Failures:\s*(\d+)", output)
@@ -645,10 +668,23 @@ class MutationTestAnalyzer:
             passed = total
             failed = 0
 
+        # JUnit 4 failing test names: "methodName(fully.qualified.ClassName)"
+        for match in re.finditer(r"(\w+)\([\.\w]+\)", output):
+            name = match.group(1)
+            # Filter out non-test-method noise
+            if name not in ("run", "at", "Caused", "Tests") and name not in failing_tests:
+                failing_tests.append(name)
+
         if total == 0:
             total = passed + failed + errors
 
-        return {"total": total, "passed": passed, "failed": failed, "errors": errors}
+        return {
+            "total": total,
+            "passed": passed,
+            "failed": failed,
+            "errors": errors,
+            "failing_tests": failing_tests,
+        }
 
     def _collect_dependency_jars(self, student_project_dir: Optional[Path] = None) -> List[str]:
         """Return list of jar paths for compilation and test execution."""
