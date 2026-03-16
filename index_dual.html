@@ -216,6 +216,10 @@
                 <div class="stat-label">Avg Test Coverage</div>
             </div>
             <div class="stat-card">
+                <div class="stat-value" id="avgMutationScore">-</div>
+                <div class="stat-label">Avg Mutation Score</div>
+            </div>
+            <div class="stat-card">
                 <div class="stat-value" id="avgImplSatisfaction">-</div>
                 <div class="stat-label">Avg Impl Satisfaction</div>
             </div>
@@ -278,6 +282,7 @@
                 <thead>
                     <tr>
                         <th>Student ID</th>
+                        <th>Mutation Score</th>
                         <th>Test Grade</th>
                         <th>Impl Grade</th>
                         <th>Combined Grade</th>
@@ -355,12 +360,18 @@ python -m http.server 8000</pre>
                     sum + (r.test_analysis?.coverage_percentage || 0), 0) / count;
                 const avgImplSat = successful.reduce((sum, r) => 
                     sum + (r.implementation_analysis?.satisfaction_percentage || 0), 0) / count;
-                
+
+                const mutationResults = successful.filter(r => r.test_analysis?.mutation_used);
+                const avgMutation = mutationResults.length > 0
+                    ? mutationResults.reduce((sum, r) => sum + (r.test_analysis?.mutation_grade || 0), 0) / mutationResults.length
+                    : null;
+
                 document.getElementById('avgTestGrade').textContent = avgTest.toFixed(1);
                 document.getElementById('avgImplGrade').textContent = avgImpl.toFixed(1);
                 document.getElementById('avgCombined').textContent = avgComb.toFixed(1);
                 document.getElementById('avgTestCoverage').textContent = avgTestCov.toFixed(1) + '%';
                 document.getElementById('avgImplSatisfaction').textContent = avgImplSat.toFixed(1) + '%';
+                document.getElementById('avgMutationScore').textContent = avgMutation != null ? avgMutation.toFixed(1) : 'N/A';
             }
         }
         
@@ -441,6 +452,16 @@ python -m http.server 8000</pre>
                 const row = tbody.insertRow();
                 
                 row.insertCell().textContent = result.student_id;
+
+                // Mutation score column
+                const mutationCell = row.insertCell();
+                const mutationUsed = result.test_analysis?.mutation_used;
+                const mutationGrade = result.test_analysis?.mutation_grade;
+                if (mutationUsed && mutationGrade != null) {
+                    mutationCell.innerHTML = `<span class="grade grade-${getGradeClass(mutationGrade)}">${mutationGrade.toFixed(1)}</span>`;
+                } else {
+                    mutationCell.innerHTML = `<span style="color:#999; font-size:0.85em;">static only</span>`;
+                }
                 
                 const testGradeCell = row.insertCell();
                 const testGrade = result.test_coverage_grade || 0;

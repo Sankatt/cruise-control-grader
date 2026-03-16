@@ -1,155 +1,158 @@
 {
-  "generated": "2026-03-15T22:32:42.080796",
+  "generated": "2026-03-16T10:10:08.485001",
   "total_students": 10,
+  "successful_students": 10,
+  "averages": {
+    "test_coverage_grade": 7.66,
+    "implementation_grade": 8.17,
+    "combined_grade": 7.91
+  },
   "results": [
     {
-      "success": true,
       "student_id": "ADHunter",
-      "test_coverage_grade": 5.01,
+      "timestamp": "2026-03-15T20:39:04.171495",
+      "success": true,
+      "test_file": "..\\student_submissions\\ADHunter\\src\\test\\java\\es\\upm\\grise\\profunduzacion\\cruiseController\\CruiseControlTest.java",
+      "implementation_file": "..\\student_submissions\\ADHunter\\src\\main\\java\\es\\upm\\grise\\profundizacion\\cruiseControl\\CruiseControl.java",
       "test_analysis": {
-        "coverage_percentage": 50.0,
-        "requirements_found": 3,
+        "success": true,
+        "grade": 8.33,
         "requirements_covered": [
-          "R1",
-          "R2",
-          "R3"
-        ]
-      },
-      "implementation_grade": 8.33,
-      "implementation_analysis": {
-        "satisfaction_percentage": 83.33,
-        "requirements_satisfied": [
-          "R1",
-          "R2",
-          "R3",
-          "R5",
-          "R6"
-        ]
-      },
-      "combined_grade": 6.67,
-      "pattern": {
-        "test_grade": 5.01,
-        "implementation_grade": 8.33,
-        "combined_grade": 6.67,
-        "requirements_covered": [
-          "R1",
-          "R2",
-          "R3"
-        ],
-        "requirements_satisfied": [
           "R1",
           "R2",
           "R3",
           "R5",
           "R6"
         ],
-        "test_details": {
+        "requirements_missing": [
+          "R4"
+        ],
+        "requirement_details": {
           "R1": {
             "tested": true,
-            "status": "PASS",
-            "covered_by_tests": [
-              "testConstructor"
-            ],
-            "description": "R1-INICIALIZACION: speedSet should initialize to null",
             "pattern_matching": {
-              "patterns_matched": 1,
-              "details": [
-                {
-                  "tested": true,
-                  "method_name": "testConstructor",
-                  "matched_patterns": [
-                    "assertion_patterns:getSpeedSet\\(\\)\\s*==\\s*null"
-                  ],
-                  "confidence": 2,
-                  "by_lines": false,
-                  "by_paths": false,
-                  "by_entirety": true
-                }
+              "verified": true,
+              "test_methods": [
+                "testConstructor"
               ]
-            }
+            },
+            "holistic_coverage": {
+              "verified": true,
+              "confidence": 0.9,
+              "details": [
+                "Methods called: ['CruiseControl']",
+                "Code paths exercised"
+              ]
+            },
+            "verification_method": "pattern_matching"
           },
           "R2": {
             "tested": true,
-            "status": "PASS",
-            "covered_by_tests": [
-              "testConstructor"
-            ],
-            "description": "R2-INICIALIZACION: speedLimit should initialize to null",
             "pattern_matching": {
-              "patterns_matched": 1,
-              "details": [
-                {
-                  "tested": true,
-                  "method_name": "testConstructor",
-                  "matched_patterns": [
-                    "assertion_patterns:getSpeedLimit\\(\\)\\s*==\\s*null"
-                  ],
-                  "confidence": 2,
-                  "by_lines": false,
-                  "by_paths": false,
-                  "by_entirety": true
-                }
+              "verified": true,
+              "test_methods": [
+                "testConstructor"
               ]
-            }
+            },
+            "holistic_coverage": {
+              "verified": true,
+              "confidence": 0.9,
+              "details": [
+                "Methods called: ['CruiseControl']",
+                "Code paths exercised"
+              ]
+            },
+            "verification_method": "pattern_matching"
           },
           "R3": {
             "tested": true,
-            "status": "PASS",
-            "covered_by_tests": [
-              "testSpeedSet"
-            ],
-            "description": "R3: speedSet can adopt any positive value (> 0)",
             "pattern_matching": {
-              "patterns_matched": 1,
-              "details": [
-                {
-                  "tested": true,
-                  "method_name": "testSpeedSet",
-                  "matched_patterns": [
-                    "method_calls:setSpeedSet\\s*\\(\\s*[1-9]\\d*\\s*"
-                  ],
-                  "confidence": 1,
-                  "by_lines": true,
-                  "by_paths": false,
-                  "by_entirety": false,
-                  "logic_verified": true,
-                  "verification_reason": "Sets positive value (50) and verifies storage"
-                }
+              "verified": true,
+              "test_methods": [
+                "testSpeedSet"
               ]
-            }
+            },
+            "holistic_coverage": {
+              "verified": true,
+              "confidence": 0.9,
+              "details": [
+                "Methods called: ['setSpeedSet']",
+                "Code paths exercised"
+              ]
+            },
+            "verification_method": "pattern_matching"
           },
           "R4": {
             "tested": false,
-            "status": "NOT_TESTED",
-            "covered_by_tests": [],
-            "description": "R4-ERROR: Throw IncorrectSpeedSetException if speedSet <= 0",
             "pattern_matching": {
-              "patterns_matched": 0,
-              "details": []
-            }
+              "verified": false,
+              "test_methods": []
+            },
+            "holistic_coverage": {
+              "verified": false,
+              "confidence": 0.0,
+              "details": [
+                "Required code not exercised by tests"
+              ]
+            },
+            "verification_method": "none"
           },
           "R5": {
-            "tested": false,
-            "status": "NOT_TESTED",
-            "covered_by_tests": [],
-            "description": "R5-ALTERNATIVO: If speedLimit is set, speedSet cannot exceed it",
+            "tested": true,
             "pattern_matching": {
-              "patterns_matched": 0,
-              "details": []
-            }
+              "verified": false,
+              "test_methods": []
+            },
+            "holistic_coverage": {
+              "verified": true,
+              "confidence": 0.7,
+              "details": [
+                "Methods called: ['setSpeedSet']",
+                "Warning: Code path verification inconclusive"
+              ]
+            },
+            "verification_method": "holistic_coverage"
           },
           "R6": {
-            "tested": false,
-            "status": "NOT_TESTED",
-            "covered_by_tests": [],
-            "description": "R6-ERROR: Throw SpeedSetAboveSpeedLimitException if speedSet > speedLimit",
+            "tested": true,
             "pattern_matching": {
-              "patterns_matched": 0,
-              "details": []
-            }
+              "verified": false,
+              "test_methods": []
+            },
+            "holistic_coverage": {
+              "verified": true,
+              "confidence": 0.9,
+              "details": [
+                "Methods called: ['setSpeedSet']",
+                "Code paths exercised"
+              ]
+            },
+            "verification_method": "holistic_coverage"
           }
         },
-        "impl_details": {
+        "total_test_methods": 5,
+        "requirements_found": 5,
+        "coverage_percentage": 83.33,
+        "analysis_methods_used": [
+          "pattern_matching",
+          "holistic_coverage"
+        ],
+        "mutation_used": false,
+        "mutation_grade": null
+      },
+      "implementation_analysis": {
+        "success": true,
+        "requirements_satisfied": [
+          "R1",
+          "R2",
+          "R3",
+          "R5",
+          "R6"
+        ],
+        "requirements_missing": [
+          "R4"
+        ],
+        "requirement_details": {
           "R1": {
             "satisfied": true,
             "status": "PASS",
@@ -248,493 +251,32 @@
             "reason": "Implementation correct"
           }
         },
-        "test_original_covered": [],
-        "test_improved_covered": [],
-        "test_mutation_covered": [],
-        "mutation_available": false
-      },
-      "rigorous": {
-        "test_grade": 5.01,
-        "implementation_grade": 8.33,
-        "combined_grade": 6.67,
-        "requirements_covered": [
-          "R1",
-          "R2",
-          "R3"
-        ],
-        "requirements_satisfied": [
-          "R1",
-          "R2",
-          "R3",
-          "R5",
-          "R6"
-        ],
-        "test_details": {
-          "R1": {
-            "tested": true,
-            "status": "PASS",
-            "covered_by_tests": [
-              "testConstructor"
-            ],
-            "description": "R1-INICIALIZACION: speedSet should initialize to null",
-            "pattern_matching": {
-              "patterns_matched": 1,
-              "details": [
-                {
-                  "tested": true,
-                  "method_name": "testConstructor",
-                  "matched_patterns": [
-                    "assertion_patterns:getSpeedSet\\(\\)\\s*==\\s*null"
-                  ],
-                  "confidence": 2,
-                  "by_lines": false,
-                  "by_paths": false,
-                  "by_entirety": true
-                }
-              ]
-            }
-          },
-          "R2": {
-            "tested": true,
-            "status": "PASS",
-            "covered_by_tests": [
-              "testConstructor"
-            ],
-            "description": "R2-INICIALIZACION: speedLimit should initialize to null",
-            "pattern_matching": {
-              "patterns_matched": 1,
-              "details": [
-                {
-                  "tested": true,
-                  "method_name": "testConstructor",
-                  "matched_patterns": [
-                    "assertion_patterns:getSpeedLimit\\(\\)\\s*==\\s*null"
-                  ],
-                  "confidence": 2,
-                  "by_lines": false,
-                  "by_paths": false,
-                  "by_entirety": true
-                }
-              ]
-            }
-          },
-          "R3": {
-            "tested": true,
-            "status": "PASS",
-            "covered_by_tests": [
-              "testSpeedSet"
-            ],
-            "description": "R3: speedSet can adopt any positive value (> 0)",
-            "pattern_matching": {
-              "patterns_matched": 1,
-              "details": [
-                {
-                  "tested": true,
-                  "method_name": "testSpeedSet",
-                  "matched_patterns": [
-                    "method_calls:setSpeedSet\\s*\\(\\s*[1-9]\\d*\\s*"
-                  ],
-                  "confidence": 1,
-                  "by_lines": true,
-                  "by_paths": false,
-                  "by_entirety": false,
-                  "logic_verified": true,
-                  "verification_reason": "Sets positive value (50) and verifies storage"
-                }
-              ]
-            }
-          },
-          "R4": {
-            "tested": false,
-            "status": "NOT_TESTED",
-            "covered_by_tests": [],
-            "description": "R4-ERROR: Throw IncorrectSpeedSetException if speedSet <= 0",
-            "pattern_matching": {
-              "patterns_matched": 0,
-              "details": []
-            }
-          },
-          "R5": {
-            "tested": false,
-            "status": "NOT_TESTED",
-            "covered_by_tests": [],
-            "description": "R5-ALTERNATIVO: If speedLimit is set, speedSet cannot exceed it",
-            "pattern_matching": {
-              "patterns_matched": 0,
-              "details": []
-            }
-          },
-          "R6": {
-            "tested": false,
-            "status": "NOT_TESTED",
-            "covered_by_tests": [],
-            "description": "R6-ERROR: Throw SpeedSetAboveSpeedLimitException if speedSet > speedLimit",
-            "pattern_matching": {
-              "patterns_matched": 0,
-              "details": []
-            }
-          }
-        },
-        "impl_details": {
-          "R1": {
-            "requirement": "R1",
-            "description": "speedSet initializes to null",
-            "status": "✓ SATISFIED",
-            "satisfied": true,
-            "tests_run": 1,
-            "tests_passed": 1,
-            "tests_failed": 0,
-            "pass_rate": "100.0%",
-            "threshold": "80% required",
-            "result": "Checked that speedSet initializes to null in constructor",
-            "what_was_checked": [
-              "Different types of input values (valid/invalid partitions)"
-            ],
-            "what_passed": [
-              "Constructor correctly sets speedSet = null"
-            ],
-            "what_failed": [],
-            "explanation": ""
-          },
-          "R2": {
-            "requirement": "R2",
-            "description": "speedLimit initializes to null",
-            "status": "✓ SATISFIED",
-            "satisfied": true,
-            "tests_run": 1,
-            "tests_passed": 1,
-            "tests_failed": 0,
-            "pass_rate": "100.0%",
-            "threshold": "80% required",
-            "result": "Checked that speedLimit initializes to null in constructor",
-            "what_was_checked": [
-              "Different types of input values (valid/invalid partitions)"
-            ],
-            "what_passed": [
-              "Constructor correctly sets speedLimit = null"
-            ],
-            "what_failed": [],
-            "explanation": ""
-          },
-          "R3": {
-            "requirement": "R3",
-            "description": "setSpeedSet accepts positive values",
-            "status": "✓ SATISFIED",
-            "satisfied": true,
-            "tests_run": 4,
-            "tests_passed": 4,
-            "tests_failed": 0,
-            "pass_rate": "100.0%",
-            "threshold": "80% required",
-            "result": "Tested 4 positive values (1, 50, 100, 1000)",
-            "what_was_checked": [
-              "Different types of input values (valid/invalid partitions)"
-            ],
-            "what_passed": [
-              "All 4 positive values were accepted correctly"
-            ],
-            "what_failed": [],
-            "explanation": ""
-          },
-          "R4": {
+        "total_requirements": 6,
+        "requirements_found": 5,
+        "satisfaction_percentage": 83.33,
+        "pattern_matching_used": true,
+        "test_details": [
+          {
             "requirement": "R4",
-            "description": "Throws IncorrectSpeedSetException for speedSet <= 0",
-            "status": "✗ NOT SATISFIED",
-            "satisfied": false,
-            "tests_run": 5,
-            "tests_passed": 0,
-            "tests_failed": 5,
-            "pass_rate": "0.0%",
-            "threshold": "80% required",
-            "result": "Tested 5 invalid values including negatives and zero",
-            "what_was_checked": [
-              "Edge cases at boundaries (e.g., zero, limit±1)",
-              "State consistency after operations"
-            ],
-            "what_passed": [],
-            "what_failed": [
-              "Only 0/5 tests passed (below 80% threshold)",
-              "⚠️ CRITICAL: Zero (0) does not throw exception - likely using < instead of <=",
-              "Test with value 0: Expected exception but none was thrown"
-            ],
-            "explanation": "Common bug: Code uses 'if (speedSet < 0)' instead of 'if (speedSet <= 0)', missing the zero case"
-          },
-          "R5": {
-            "requirement": "R5",
-            "description": "speedSet respects speedLimit when set",
-            "status": "✓ SATISFIED",
-            "satisfied": true,
-            "tests_run": 4,
-            "tests_passed": 4,
-            "tests_failed": 0,
-            "pass_rate": "100.0%",
-            "threshold": "80% required",
-            "result": "Tested 4 scenarios with speedLimit set",
-            "what_was_checked": [
-              "Different types of input values (valid/invalid partitions)",
-              "Edge cases at boundaries (e.g., zero, limit±1)"
-            ],
-            "what_passed": [
-              "speedSet correctly stays below or equal to speedLimit",
-              "Boundary case (speedSet = speedLimit) handled correctly"
-            ],
-            "what_failed": [],
-            "explanation": ""
-          },
-          "R6": {
-            "requirement": "R6",
-            "description": "Throws SpeedSetAboveSpeedLimitException when speedSet > speedLimit",
-            "status": "✓ SATISFIED",
-            "satisfied": true,
-            "tests_run": 3,
-            "tests_passed": 3,
-            "tests_failed": 0,
-            "pass_rate": "100.0%",
-            "threshold": "80% required",
-            "result": "Tested 3 scenarios exceeding speedLimit",
-            "what_was_checked": [
-              "Edge cases at boundaries (e.g., zero, limit±1)"
-            ],
-            "what_passed": [
-              "Correctly throws SpeedSetAboveSpeedLimitException when speedSet > speedLimit",
-              "Boundary test passed (limit + 1)"
-            ],
-            "what_failed": [],
-            "explanation": ""
+            "reason": "NO_EXCEPTION"
           }
-        },
-        "test_mutation_covered": [],
-        "mutation_available": false
-      }
+        ]
+      },
+      "test_coverage_grade": 8.33,
+      "implementation_grade": 8.33,
+      "combined_grade": 8.33,
+      "error": null
     },
     {
-      "success": true,
       "student_id": "AlejandroBartolomÃ©",
-      "test_coverage_grade": 1.65,
+      "timestamp": "2026-03-15T20:39:05.287965",
+      "success": true,
+      "test_file": "..\\student_submissions\\AlejandroBartolomÃ©\\src\\test\\java\\es\\upm\\grise\\profunduzacion\\cruiseController\\CruiseControlTest.java",
+      "implementation_file": "..\\student_submissions\\AlejandroBartolomÃ©\\src\\main\\java\\es\\upm\\grise\\profundizacion\\cruiseControl\\CruiseControl.java",
       "test_analysis": {
-        "coverage_percentage": 16.67,
-        "requirements_found": 1,
+        "success": true,
+        "grade": 10.0,
         "requirements_covered": [
-          "R6"
-        ]
-      },
-      "implementation_grade": 8.33,
-      "implementation_analysis": {
-        "satisfaction_percentage": 83.33,
-        "requirements_satisfied": [
-          "R1",
-          "R2",
-          "R3",
-          "R5",
-          "R6"
-        ]
-      },
-      "combined_grade": 4.99,
-      "pattern": {
-        "test_grade": 1.65,
-        "implementation_grade": 8.33,
-        "combined_grade": 4.99,
-        "requirements_covered": [
-          "R6"
-        ],
-        "requirements_satisfied": [
-          "R1",
-          "R2",
-          "R3",
-          "R5",
-          "R6"
-        ],
-        "test_details": {
-          "R1": {
-            "tested": false,
-            "status": "NOT_TESTED",
-            "covered_by_tests": [],
-            "description": "R1-INICIALIZACION: speedSet should initialize to null",
-            "pattern_matching": {
-              "patterns_matched": 0,
-              "details": []
-            }
-          },
-          "R2": {
-            "tested": false,
-            "status": "NOT_TESTED",
-            "covered_by_tests": [],
-            "description": "R2-INICIALIZACION: speedLimit should initialize to null",
-            "pattern_matching": {
-              "patterns_matched": 0,
-              "details": []
-            }
-          },
-          "R3": {
-            "tested": false,
-            "status": "NOT_TESTED",
-            "covered_by_tests": [],
-            "description": "R3: speedSet can adopt any positive value (> 0)",
-            "pattern_matching": {
-              "patterns_matched": 0,
-              "details": []
-            }
-          },
-          "R4": {
-            "tested": false,
-            "status": "NOT_TESTED",
-            "covered_by_tests": [],
-            "description": "R4-ERROR: Throw IncorrectSpeedSetException if speedSet <= 0",
-            "pattern_matching": {
-              "patterns_matched": 0,
-              "details": []
-            }
-          },
-          "R5": {
-            "tested": false,
-            "status": "NOT_TESTED",
-            "covered_by_tests": [],
-            "description": "R5-ALTERNATIVO: If speedLimit is set, speedSet cannot exceed it",
-            "pattern_matching": {
-              "patterns_matched": 0,
-              "details": []
-            }
-          },
-          "R6": {
-            "tested": true,
-            "status": "PASS",
-            "covered_by_tests": [
-              "setSpeedAboveSpeedLimitTest"
-            ],
-            "description": "R6-ERROR: Throw SpeedSetAboveSpeedLimitException if speedSet > speedLimit",
-            "pattern_matching": {
-              "patterns_matched": 1,
-              "details": [
-                {
-                  "tested": true,
-                  "method_name": "setSpeedAboveSpeedLimitTest",
-                  "matched_patterns": [
-                    "exception_patterns:assertThrows\\s*\\(\\s*SpeedSetAb",
-                    "method_calls:setSpeedLimit"
-                  ],
-                  "confidence": 3,
-                  "by_lines": true,
-                  "by_paths": false,
-                  "by_entirety": true,
-                  "logic_verified": true,
-                  "verification_reason": "Tests exceeding limit: setSpeedSet(6) > setSpeedLimit(5)"
-                }
-              ]
-            }
-          }
-        },
-        "impl_details": {
-          "R1": {
-            "satisfied": true,
-            "status": "PASS",
-            "description": "speedSet initializes to null",
-            "pattern_matched": true,
-            "pattern_details": {
-              "by_lines": false,
-              "by_paths": true,
-              "by_entirety": false,
-              "matched_patterns": [
-                "constructor:parsed"
-              ]
-            },
-            "execution_passed": true,
-            "reason": "Implementation correct"
-          },
-          "R2": {
-            "satisfied": true,
-            "status": "PASS",
-            "description": "speedLimit initializes to null",
-            "pattern_matched": true,
-            "pattern_details": {
-              "by_lines": false,
-              "by_paths": true,
-              "by_entirety": false,
-              "matched_patterns": [
-                "constructor:parsed"
-              ]
-            },
-            "execution_passed": true,
-            "reason": "Implementation correct"
-          },
-          "R3": {
-            "satisfied": true,
-            "status": "PASS",
-            "description": "setSpeedSet accepts positive values",
-            "pattern_matched": true,
-            "pattern_details": {
-              "by_lines": true,
-              "by_paths": false,
-              "by_entirety": true,
-              "matched_patterns": [
-                "method_signature:found",
-                "assignment:found"
-              ]
-            },
-            "execution_passed": true,
-            "reason": "Implementation correct"
-          },
-          "R4": {
-            "satisfied": false,
-            "status": "FAIL",
-            "description": "Throws IncorrectSpeedSetException for zero/negative",
-            "pattern_matched": true,
-            "pattern_details": {
-              "by_lines": false,
-              "by_paths": false,
-              "by_entirety": true,
-              "matched_patterns": [
-                "exception:found"
-              ]
-            },
-            "execution_passed": false,
-            "reason": "NO_EXCEPTION"
-          },
-          "R5": {
-            "satisfied": true,
-            "status": "PASS",
-            "description": "speedSet respects speedLimit",
-            "pattern_matched": true,
-            "pattern_details": {
-              "by_lines": false,
-              "by_paths": false,
-              "by_entirety": true,
-              "matched_patterns": [
-                "null_check:found"
-              ]
-            },
-            "execution_passed": true,
-            "reason": "Implementation correct"
-          },
-          "R6": {
-            "satisfied": true,
-            "status": "PASS",
-            "description": "Throws SpeedSetAboveSpeedLimitException when exceeding",
-            "pattern_matched": true,
-            "pattern_details": {
-              "by_lines": false,
-              "by_paths": false,
-              "by_entirety": true,
-              "matched_patterns": [
-                "exception:found"
-              ]
-            },
-            "execution_passed": true,
-            "reason": "Implementation correct"
-          }
-        },
-        "test_original_covered": [],
-        "test_improved_covered": [],
-        "test_mutation_covered": [],
-        "mutation_available": false
-      },
-      "rigorous": {
-        "test_grade": 1.65,
-        "implementation_grade": 10.0,
-        "combined_grade": 5.83,
-        "requirements_covered": [
-          "R6"
-        ],
-        "requirements_satisfied": [
           "R1",
           "R2",
           "R3",
@@ -742,352 +284,391 @@
           "R5",
           "R6"
         ],
-        "test_details": {
+        "requirements_missing": [],
+        "requirement_details": {
           "R1": {
-            "tested": false,
-            "status": "NOT_TESTED",
-            "covered_by_tests": [],
-            "description": "R1-INICIALIZACION: speedSet should initialize to null",
+            "tested": true,
             "pattern_matching": {
-              "patterns_matched": 0,
-              "details": []
-            }
+              "verified": false,
+              "test_methods": []
+            },
+            "holistic_coverage": {
+              "verified": true,
+              "confidence": 0.9,
+              "details": [
+                "Methods called: ['CruiseControl']",
+                "Code paths exercised"
+              ]
+            },
+            "verification_method": "holistic_coverage"
           },
           "R2": {
-            "tested": false,
-            "status": "NOT_TESTED",
-            "covered_by_tests": [],
-            "description": "R2-INICIALIZACION: speedLimit should initialize to null",
+            "tested": true,
             "pattern_matching": {
-              "patterns_matched": 0,
-              "details": []
-            }
+              "verified": false,
+              "test_methods": []
+            },
+            "holistic_coverage": {
+              "verified": true,
+              "confidence": 0.9,
+              "details": [
+                "Methods called: ['CruiseControl']",
+                "Code paths exercised"
+              ]
+            },
+            "verification_method": "holistic_coverage"
           },
           "R3": {
-            "tested": false,
-            "status": "NOT_TESTED",
-            "covered_by_tests": [],
-            "description": "R3: speedSet can adopt any positive value (> 0)",
+            "tested": true,
             "pattern_matching": {
-              "patterns_matched": 0,
-              "details": []
-            }
+              "verified": false,
+              "test_methods": []
+            },
+            "holistic_coverage": {
+              "verified": true,
+              "confidence": 0.9,
+              "details": [
+                "Methods called: ['setSpeedSet']",
+                "Code paths exercised"
+              ]
+            },
+            "verification_method": "holistic_coverage"
           },
           "R4": {
-            "tested": false,
-            "status": "NOT_TESTED",
-            "covered_by_tests": [],
-            "description": "R4-ERROR: Throw IncorrectSpeedSetException if speedSet <= 0",
+            "tested": true,
             "pattern_matching": {
-              "patterns_matched": 0,
-              "details": []
-            }
+              "verified": true,
+              "test_methods": [
+                "setSpeedIncorrectValueTest"
+              ]
+            },
+            "holistic_coverage": {
+              "verified": true,
+              "confidence": 0.9,
+              "details": [
+                "Methods called: ['setSpeedSet']",
+                "Code paths exercised"
+              ]
+            },
+            "verification_method": "pattern_matching"
           },
           "R5": {
-            "tested": false,
-            "status": "NOT_TESTED",
-            "covered_by_tests": [],
-            "description": "R5-ALTERNATIVO: If speedLimit is set, speedSet cannot exceed it",
+            "tested": true,
             "pattern_matching": {
-              "patterns_matched": 0,
-              "details": []
-            }
+              "verified": false,
+              "test_methods": []
+            },
+            "holistic_coverage": {
+              "verified": true,
+              "confidence": 0.7,
+              "details": [
+                "Methods called: ['setSpeedSet']",
+                "Warning: Code path verification inconclusive"
+              ]
+            },
+            "verification_method": "holistic_coverage"
           },
           "R6": {
             "tested": true,
-            "status": "PASS",
-            "covered_by_tests": [
-              "setSpeedAboveSpeedLimitTest"
-            ],
-            "description": "R6-ERROR: Throw SpeedSetAboveSpeedLimitException if speedSet > speedLimit",
             "pattern_matching": {
-              "patterns_matched": 1,
-              "details": [
-                {
-                  "tested": true,
-                  "method_name": "setSpeedAboveSpeedLimitTest",
-                  "matched_patterns": [
-                    "exception_patterns:assertThrows\\s*\\(\\s*SpeedSetAb",
-                    "method_calls:setSpeedLimit"
-                  ],
-                  "confidence": 3,
-                  "by_lines": true,
-                  "by_paths": false,
-                  "by_entirety": true,
-                  "logic_verified": true,
-                  "verification_reason": "Tests exceeding limit: setSpeedSet(6) > setSpeedLimit(5)"
-                }
+              "verified": true,
+              "test_methods": [
+                "setSpeedAboveSpeedLimitTest"
               ]
-            }
+            },
+            "holistic_coverage": {
+              "verified": true,
+              "confidence": 0.9,
+              "details": [
+                "Methods called: ['setSpeedSet']",
+                "Code paths exercised"
+              ]
+            },
+            "verification_method": "pattern_matching"
           }
         },
-        "impl_details": {
+        "total_test_methods": 3,
+        "requirements_found": 6,
+        "coverage_percentage": 100.0,
+        "analysis_methods_used": [
+          "pattern_matching",
+          "holistic_coverage"
+        ],
+        "mutation_used": false,
+        "mutation_grade": null
+      },
+      "implementation_analysis": {
+        "success": true,
+        "requirements_satisfied": [
+          "R1",
+          "R2",
+          "R3",
+          "R5",
+          "R6"
+        ],
+        "requirements_missing": [
+          "R4"
+        ],
+        "requirement_details": {
           "R1": {
-            "requirement": "R1",
-            "description": "speedSet initializes to null",
-            "status": "✓ SATISFIED",
             "satisfied": true,
-            "tests_run": 1,
-            "tests_passed": 1,
-            "tests_failed": 0,
-            "pass_rate": "100.0%",
-            "threshold": "80% required",
-            "result": "Checked that speedSet initializes to null in constructor",
-            "what_was_checked": [
-              "Different types of input values (valid/invalid partitions)"
-            ],
-            "what_passed": [
-              "Constructor correctly sets speedSet = null"
-            ],
-            "what_failed": [],
-            "explanation": ""
+            "status": "PASS",
+            "description": "speedSet initializes to null",
+            "pattern_matched": true,
+            "pattern_details": {
+              "by_lines": false,
+              "by_paths": true,
+              "by_entirety": false,
+              "matched_patterns": [
+                "constructor:parsed"
+              ]
+            },
+            "execution_passed": true,
+            "reason": "Implementation correct"
           },
           "R2": {
-            "requirement": "R2",
-            "description": "speedLimit initializes to null",
-            "status": "✓ SATISFIED",
             "satisfied": true,
-            "tests_run": 1,
-            "tests_passed": 1,
-            "tests_failed": 0,
-            "pass_rate": "100.0%",
-            "threshold": "80% required",
-            "result": "Checked that speedLimit initializes to null in constructor",
-            "what_was_checked": [
-              "Different types of input values (valid/invalid partitions)"
-            ],
-            "what_passed": [
-              "Constructor correctly sets speedLimit = null"
-            ],
-            "what_failed": [],
-            "explanation": ""
+            "status": "PASS",
+            "description": "speedLimit initializes to null",
+            "pattern_matched": true,
+            "pattern_details": {
+              "by_lines": false,
+              "by_paths": true,
+              "by_entirety": false,
+              "matched_patterns": [
+                "constructor:parsed"
+              ]
+            },
+            "execution_passed": true,
+            "reason": "Implementation correct"
           },
           "R3": {
-            "requirement": "R3",
-            "description": "setSpeedSet accepts positive values",
-            "status": "✓ SATISFIED",
             "satisfied": true,
-            "tests_run": 4,
-            "tests_passed": 4,
-            "tests_failed": 0,
-            "pass_rate": "100.0%",
-            "threshold": "80% required",
-            "result": "Tested 4 positive values (1, 50, 100, 1000)",
-            "what_was_checked": [
-              "Different types of input values (valid/invalid partitions)"
-            ],
-            "what_passed": [
-              "All 4 positive values were accepted correctly"
-            ],
-            "what_failed": [],
-            "explanation": ""
+            "status": "PASS",
+            "description": "setSpeedSet accepts positive values",
+            "pattern_matched": true,
+            "pattern_details": {
+              "by_lines": true,
+              "by_paths": false,
+              "by_entirety": true,
+              "matched_patterns": [
+                "method_signature:found",
+                "assignment:found"
+              ]
+            },
+            "execution_passed": true,
+            "reason": "Implementation correct"
           },
           "R4": {
-            "requirement": "R4",
-            "description": "Throws IncorrectSpeedSetException for speedSet <= 0",
-            "status": "✓ SATISFIED",
-            "satisfied": true,
-            "tests_run": 5,
-            "tests_passed": 4,
-            "tests_failed": 1,
-            "pass_rate": "80.0%",
-            "threshold": "80% required",
-            "result": "Tested 5 invalid values including negatives and zero",
-            "what_was_checked": [
-              "Edge cases at boundaries (e.g., zero, limit±1)",
-              "State consistency after operations"
-            ],
-            "what_passed": [
-              "4/5 tests passed (≥80% threshold met)"
-            ],
-            "what_failed": [
-              "Test R4_INVALID_0000: Did not throw exception"
-            ],
-            "explanation": ""
+            "satisfied": false,
+            "status": "FAIL",
+            "description": "Throws IncorrectSpeedSetException for zero/negative",
+            "pattern_matched": true,
+            "pattern_details": {
+              "by_lines": false,
+              "by_paths": false,
+              "by_entirety": true,
+              "matched_patterns": [
+                "exception:found"
+              ]
+            },
+            "execution_passed": false,
+            "reason": "NO_EXCEPTION"
           },
           "R5": {
-            "requirement": "R5",
-            "description": "speedSet respects speedLimit when set",
-            "status": "✓ SATISFIED",
             "satisfied": true,
-            "tests_run": 4,
-            "tests_passed": 4,
-            "tests_failed": 0,
-            "pass_rate": "100.0%",
-            "threshold": "80% required",
-            "result": "Tested 4 scenarios with speedLimit set",
-            "what_was_checked": [
-              "Different types of input values (valid/invalid partitions)",
-              "Edge cases at boundaries (e.g., zero, limit±1)"
-            ],
-            "what_passed": [
-              "speedSet correctly stays below or equal to speedLimit",
-              "Boundary case (speedSet = speedLimit) handled correctly"
-            ],
-            "what_failed": [],
-            "explanation": ""
+            "status": "PASS",
+            "description": "speedSet respects speedLimit",
+            "pattern_matched": true,
+            "pattern_details": {
+              "by_lines": false,
+              "by_paths": false,
+              "by_entirety": true,
+              "matched_patterns": [
+                "null_check:found"
+              ]
+            },
+            "execution_passed": true,
+            "reason": "Implementation correct"
           },
           "R6": {
-            "requirement": "R6",
-            "description": "Throws SpeedSetAboveSpeedLimitException when speedSet > speedLimit",
-            "status": "✓ SATISFIED",
             "satisfied": true,
-            "tests_run": 3,
-            "tests_passed": 3,
-            "tests_failed": 0,
-            "pass_rate": "100.0%",
-            "threshold": "80% required",
-            "result": "Tested 3 scenarios exceeding speedLimit",
-            "what_was_checked": [
-              "Edge cases at boundaries (e.g., zero, limit±1)"
-            ],
-            "what_passed": [
-              "Correctly throws SpeedSetAboveSpeedLimitException when speedSet > speedLimit",
-              "Boundary test passed (limit + 1)"
-            ],
-            "what_failed": [],
-            "explanation": ""
+            "status": "PASS",
+            "description": "Throws SpeedSetAboveSpeedLimitException when exceeding",
+            "pattern_matched": true,
+            "pattern_details": {
+              "by_lines": false,
+              "by_paths": false,
+              "by_entirety": true,
+              "matched_patterns": [
+                "exception:found"
+              ]
+            },
+            "execution_passed": true,
+            "reason": "Implementation correct"
           }
         },
-        "test_mutation_covered": [],
-        "mutation_available": false
-      }
+        "total_requirements": 6,
+        "requirements_found": 5,
+        "satisfaction_percentage": 83.33,
+        "pattern_matching_used": true,
+        "test_details": [
+          {
+            "requirement": "R4",
+            "reason": "NO_EXCEPTION"
+          }
+        ]
+      },
+      "test_coverage_grade": 10.0,
+      "implementation_grade": 8.33,
+      "combined_grade": 9.16,
+      "error": null
     },
     {
-      "success": true,
       "student_id": "DavidGimenez",
-      "test_coverage_grade": 3.32,
+      "timestamp": "2026-03-15T20:39:06.376645",
+      "success": true,
+      "test_file": "..\\student_submissions\\DavidGimenez\\src\\test\\java\\es\\upm\\grise\\profunduzacion\\cruiseController\\CruiseControlTest.java",
+      "implementation_file": "..\\student_submissions\\DavidGimenez\\src\\main\\java\\es\\upm\\grise\\profundizacion\\cruiseControl\\CruiseControl.java",
       "test_analysis": {
-        "coverage_percentage": 33.33,
-        "requirements_found": 2,
+        "success": true,
+        "grade": 10.0,
         "requirements_covered": [
-          "R3",
-          "R6"
-        ]
-      },
-      "implementation_grade": 8.33,
-      "implementation_analysis": {
-        "satisfaction_percentage": 83.33,
-        "requirements_satisfied": [
           "R1",
           "R2",
           "R3",
-          "R5",
-          "R6"
-        ]
-      },
-      "combined_grade": 5.83,
-      "pattern": {
-        "test_grade": 3.32,
-        "implementation_grade": 8.33,
-        "combined_grade": 5.83,
-        "requirements_covered": [
-          "R3",
-          "R6"
-        ],
-        "requirements_satisfied": [
-          "R1",
-          "R2",
-          "R3",
+          "R4",
           "R5",
           "R6"
         ],
-        "test_details": {
+        "requirements_missing": [],
+        "requirement_details": {
           "R1": {
-            "tested": false,
-            "status": "NOT_TESTED",
-            "covered_by_tests": [],
-            "description": "R1-INICIALIZACION: speedSet should initialize to null",
+            "tested": true,
             "pattern_matching": {
-              "patterns_matched": 0,
-              "details": []
-            }
+              "verified": false,
+              "test_methods": []
+            },
+            "holistic_coverage": {
+              "verified": true,
+              "confidence": 0.9,
+              "details": [
+                "Methods called: ['CruiseControl']",
+                "Code paths exercised"
+              ]
+            },
+            "verification_method": "holistic_coverage"
           },
           "R2": {
-            "tested": false,
-            "status": "NOT_TESTED",
-            "covered_by_tests": [],
-            "description": "R2-INICIALIZACION: speedLimit should initialize to null",
+            "tested": true,
             "pattern_matching": {
-              "patterns_matched": 0,
-              "details": []
-            }
+              "verified": false,
+              "test_methods": []
+            },
+            "holistic_coverage": {
+              "verified": true,
+              "confidence": 0.9,
+              "details": [
+                "Methods called: ['CruiseControl']",
+                "Code paths exercised"
+              ]
+            },
+            "verification_method": "holistic_coverage"
           },
           "R3": {
             "tested": true,
-            "status": "PASS",
-            "covered_by_tests": [
-              "workingCruiseControlTest"
-            ],
-            "description": "R3: speedSet can adopt any positive value (> 0)",
             "pattern_matching": {
-              "patterns_matched": 1,
-              "details": [
-                {
-                  "tested": true,
-                  "method_name": "workingCruiseControlTest",
-                  "matched_patterns": [
-                    "method_calls:setSpeedSet\\s*\\(\\s*[1-9]\\d*\\s*"
-                  ],
-                  "confidence": 1,
-                  "by_lines": true,
-                  "by_paths": false,
-                  "by_entirety": false,
-                  "logic_verified": true,
-                  "verification_reason": "Sets positive value (50) and verifies storage"
-                }
+              "verified": true,
+              "test_methods": [
+                "workingCruiseControlTest"
               ]
-            }
+            },
+            "holistic_coverage": {
+              "verified": true,
+              "confidence": 0.9,
+              "details": [
+                "Methods called: ['setSpeedSet']",
+                "Code paths exercised"
+              ]
+            },
+            "verification_method": "pattern_matching"
           },
           "R4": {
-            "tested": false,
-            "status": "NOT_TESTED",
-            "covered_by_tests": [],
-            "description": "R4-ERROR: Throw IncorrectSpeedSetException if speedSet <= 0",
+            "tested": true,
             "pattern_matching": {
-              "patterns_matched": 0,
-              "details": []
-            }
+              "verified": true,
+              "test_methods": [
+                "negativeCruiseControlTest"
+              ]
+            },
+            "holistic_coverage": {
+              "verified": true,
+              "confidence": 0.9,
+              "details": [
+                "Methods called: ['setSpeedSet']",
+                "Code paths exercised"
+              ]
+            },
+            "verification_method": "pattern_matching"
           },
           "R5": {
-            "tested": false,
-            "status": "NOT_TESTED",
-            "covered_by_tests": [],
-            "description": "R5-ALTERNATIVO: If speedLimit is set, speedSet cannot exceed it",
+            "tested": true,
             "pattern_matching": {
-              "patterns_matched": 0,
-              "details": []
-            }
+              "verified": false,
+              "test_methods": []
+            },
+            "holistic_coverage": {
+              "verified": true,
+              "confidence": 0.9,
+              "details": [
+                "Methods called: ['setSpeedSet']",
+                "Code paths exercised"
+              ]
+            },
+            "verification_method": "holistic_coverage"
           },
           "R6": {
             "tested": true,
-            "status": "PASS",
-            "covered_by_tests": [
-              "greaterCruiseControlTest"
-            ],
-            "description": "R6-ERROR: Throw SpeedSetAboveSpeedLimitException if speedSet > speedLimit",
             "pattern_matching": {
-              "patterns_matched": 1,
-              "details": [
-                {
-                  "tested": true,
-                  "method_name": "greaterCruiseControlTest",
-                  "matched_patterns": [
-                    "exception_patterns:assertThrows\\s*\\(\\s*SpeedSetAb",
-                    "method_calls:setSpeedLimit"
-                  ],
-                  "confidence": 3,
-                  "by_lines": true,
-                  "by_paths": false,
-                  "by_entirety": true,
-                  "logic_verified": true,
-                  "verification_reason": "Tests exceeding limit: setSpeedSet(500) > setSpeedLimit(100)"
-                }
+              "verified": true,
+              "test_methods": [
+                "greaterCruiseControlTest"
               ]
-            }
+            },
+            "holistic_coverage": {
+              "verified": true,
+              "confidence": 0.9,
+              "details": [
+                "Methods called: ['setSpeedSet']",
+                "Code paths exercised"
+              ]
+            },
+            "verification_method": "pattern_matching"
           }
         },
-        "impl_details": {
+        "total_test_methods": 3,
+        "requirements_found": 6,
+        "coverage_percentage": 100.0,
+        "analysis_methods_used": [
+          "pattern_matching",
+          "holistic_coverage"
+        ],
+        "mutation_used": false,
+        "mutation_grade": null
+      },
+      "implementation_analysis": {
+        "success": true,
+        "requirements_satisfied": [
+          "R1",
+          "R2",
+          "R3",
+          "R5",
+          "R6"
+        ],
+        "requirements_missing": [
+          "R4"
+        ],
+        "requirement_details": {
           "R1": {
             "satisfied": true,
             "status": "PASS",
@@ -1190,369 +771,162 @@
             "reason": "Implementation correct"
           }
         },
-        "test_original_covered": [],
-        "test_improved_covered": [],
-        "test_mutation_covered": [],
-        "mutation_available": false
-      },
-      "rigorous": {
-        "test_grade": 3.32,
-        "implementation_grade": 10.0,
-        "combined_grade": 6.66,
-        "requirements_covered": [
-          "R3",
-          "R6"
-        ],
-        "requirements_satisfied": [
-          "R1",
-          "R2",
-          "R3",
-          "R4",
-          "R5",
-          "R6"
-        ],
-        "test_details": {
-          "R1": {
-            "tested": false,
-            "status": "NOT_TESTED",
-            "covered_by_tests": [],
-            "description": "R1-INICIALIZACION: speedSet should initialize to null",
-            "pattern_matching": {
-              "patterns_matched": 0,
-              "details": []
-            }
-          },
-          "R2": {
-            "tested": false,
-            "status": "NOT_TESTED",
-            "covered_by_tests": [],
-            "description": "R2-INICIALIZACION: speedLimit should initialize to null",
-            "pattern_matching": {
-              "patterns_matched": 0,
-              "details": []
-            }
-          },
-          "R3": {
-            "tested": true,
-            "status": "PASS",
-            "covered_by_tests": [
-              "workingCruiseControlTest"
-            ],
-            "description": "R3: speedSet can adopt any positive value (> 0)",
-            "pattern_matching": {
-              "patterns_matched": 1,
-              "details": [
-                {
-                  "tested": true,
-                  "method_name": "workingCruiseControlTest",
-                  "matched_patterns": [
-                    "method_calls:setSpeedSet\\s*\\(\\s*[1-9]\\d*\\s*"
-                  ],
-                  "confidence": 1,
-                  "by_lines": true,
-                  "by_paths": false,
-                  "by_entirety": false,
-                  "logic_verified": true,
-                  "verification_reason": "Sets positive value (50) and verifies storage"
-                }
-              ]
-            }
-          },
-          "R4": {
-            "tested": false,
-            "status": "NOT_TESTED",
-            "covered_by_tests": [],
-            "description": "R4-ERROR: Throw IncorrectSpeedSetException if speedSet <= 0",
-            "pattern_matching": {
-              "patterns_matched": 0,
-              "details": []
-            }
-          },
-          "R5": {
-            "tested": false,
-            "status": "NOT_TESTED",
-            "covered_by_tests": [],
-            "description": "R5-ALTERNATIVO: If speedLimit is set, speedSet cannot exceed it",
-            "pattern_matching": {
-              "patterns_matched": 0,
-              "details": []
-            }
-          },
-          "R6": {
-            "tested": true,
-            "status": "PASS",
-            "covered_by_tests": [
-              "greaterCruiseControlTest"
-            ],
-            "description": "R6-ERROR: Throw SpeedSetAboveSpeedLimitException if speedSet > speedLimit",
-            "pattern_matching": {
-              "patterns_matched": 1,
-              "details": [
-                {
-                  "tested": true,
-                  "method_name": "greaterCruiseControlTest",
-                  "matched_patterns": [
-                    "exception_patterns:assertThrows\\s*\\(\\s*SpeedSetAb",
-                    "method_calls:setSpeedLimit"
-                  ],
-                  "confidence": 3,
-                  "by_lines": true,
-                  "by_paths": false,
-                  "by_entirety": true,
-                  "logic_verified": true,
-                  "verification_reason": "Tests exceeding limit: setSpeedSet(500) > setSpeedLimit(100)"
-                }
-              ]
-            }
-          }
-        },
-        "impl_details": {
-          "R1": {
-            "requirement": "R1",
-            "description": "speedSet initializes to null",
-            "status": "✓ SATISFIED",
-            "satisfied": true,
-            "tests_run": 1,
-            "tests_passed": 1,
-            "tests_failed": 0,
-            "pass_rate": "100.0%",
-            "threshold": "80% required",
-            "result": "Checked that speedSet initializes to null in constructor",
-            "what_was_checked": [
-              "Different types of input values (valid/invalid partitions)"
-            ],
-            "what_passed": [
-              "Constructor correctly sets speedSet = null"
-            ],
-            "what_failed": [],
-            "explanation": ""
-          },
-          "R2": {
-            "requirement": "R2",
-            "description": "speedLimit initializes to null",
-            "status": "✓ SATISFIED",
-            "satisfied": true,
-            "tests_run": 1,
-            "tests_passed": 1,
-            "tests_failed": 0,
-            "pass_rate": "100.0%",
-            "threshold": "80% required",
-            "result": "Checked that speedLimit initializes to null in constructor",
-            "what_was_checked": [
-              "Different types of input values (valid/invalid partitions)"
-            ],
-            "what_passed": [
-              "Constructor correctly sets speedLimit = null"
-            ],
-            "what_failed": [],
-            "explanation": ""
-          },
-          "R3": {
-            "requirement": "R3",
-            "description": "setSpeedSet accepts positive values",
-            "status": "✓ SATISFIED",
-            "satisfied": true,
-            "tests_run": 4,
-            "tests_passed": 4,
-            "tests_failed": 0,
-            "pass_rate": "100.0%",
-            "threshold": "80% required",
-            "result": "Tested 4 positive values (1, 50, 100, 1000)",
-            "what_was_checked": [
-              "Different types of input values (valid/invalid partitions)"
-            ],
-            "what_passed": [
-              "All 4 positive values were accepted correctly"
-            ],
-            "what_failed": [],
-            "explanation": ""
-          },
-          "R4": {
+        "total_requirements": 6,
+        "requirements_found": 5,
+        "satisfaction_percentage": 83.33,
+        "pattern_matching_used": true,
+        "test_details": [
+          {
             "requirement": "R4",
-            "description": "Throws IncorrectSpeedSetException for speedSet <= 0",
-            "status": "✓ SATISFIED",
-            "satisfied": true,
-            "tests_run": 5,
-            "tests_passed": 4,
-            "tests_failed": 1,
-            "pass_rate": "80.0%",
-            "threshold": "80% required",
-            "result": "Tested 5 invalid values including negatives and zero",
-            "what_was_checked": [
-              "Edge cases at boundaries (e.g., zero, limit±1)",
-              "State consistency after operations"
-            ],
-            "what_passed": [
-              "4/5 tests passed (≥80% threshold met)"
-            ],
-            "what_failed": [
-              "Test R4_INVALID_0000: Did not throw exception"
-            ],
-            "explanation": ""
-          },
-          "R5": {
-            "requirement": "R5",
-            "description": "speedSet respects speedLimit when set",
-            "status": "✓ SATISFIED",
-            "satisfied": true,
-            "tests_run": 4,
-            "tests_passed": 4,
-            "tests_failed": 0,
-            "pass_rate": "100.0%",
-            "threshold": "80% required",
-            "result": "Tested 4 scenarios with speedLimit set",
-            "what_was_checked": [
-              "Different types of input values (valid/invalid partitions)",
-              "Edge cases at boundaries (e.g., zero, limit±1)"
-            ],
-            "what_passed": [
-              "speedSet correctly stays below or equal to speedLimit",
-              "Boundary case (speedSet = speedLimit) handled correctly"
-            ],
-            "what_failed": [],
-            "explanation": ""
-          },
-          "R6": {
-            "requirement": "R6",
-            "description": "Throws SpeedSetAboveSpeedLimitException when speedSet > speedLimit",
-            "status": "✓ SATISFIED",
-            "satisfied": true,
-            "tests_run": 3,
-            "tests_passed": 3,
-            "tests_failed": 0,
-            "pass_rate": "100.0%",
-            "threshold": "80% required",
-            "result": "Tested 3 scenarios exceeding speedLimit",
-            "what_was_checked": [
-              "Edge cases at boundaries (e.g., zero, limit±1)"
-            ],
-            "what_passed": [
-              "Correctly throws SpeedSetAboveSpeedLimitException when speedSet > speedLimit",
-              "Boundary test passed (limit + 1)"
-            ],
-            "what_failed": [],
-            "explanation": ""
+            "reason": "NO_EXCEPTION"
           }
-        },
-        "test_mutation_covered": [],
-        "mutation_available": false
-      }
+        ]
+      },
+      "test_coverage_grade": 10.0,
+      "implementation_grade": 8.33,
+      "combined_grade": 9.16,
+      "error": null
     },
     {
-      "success": true,
       "student_id": "ELiJuY",
-      "test_coverage_grade": 1.67,
+      "timestamp": "2026-03-15T20:39:07.501228",
+      "success": true,
+      "test_file": "..\\student_submissions\\ELiJuY\\src\\test\\java\\es\\upm\\grise\\profunduzacion\\cruiseController\\CruiseControlTest.java",
+      "implementation_file": "..\\student_submissions\\ELiJuY\\src\\main\\java\\es\\upm\\grise\\profundizacion\\cruiseControl\\CruiseControl.java",
       "test_analysis": {
-        "coverage_percentage": 16.67,
-        "requirements_found": 1,
+        "success": true,
+        "grade": 6.66,
         "requirements_covered": [
-          "R4"
-        ]
-      },
-      "implementation_grade": 6.66,
-      "implementation_analysis": {
-        "satisfaction_percentage": 66.67,
-        "requirements_satisfied": [
-          "R1",
-          "R2",
-          "R4",
-          "R6"
-        ]
-      },
-      "combined_grade": 4.17,
-      "pattern": {
-        "test_grade": 1.67,
-        "implementation_grade": 6.66,
-        "combined_grade": 4.17,
-        "requirements_covered": [
-          "R4"
-        ],
-        "requirements_satisfied": [
           "R1",
           "R2",
           "R4",
           "R6"
         ],
-        "test_details": {
+        "requirements_missing": [
+          "R3",
+          "R5"
+        ],
+        "requirement_details": {
           "R1": {
-            "tested": false,
-            "status": "NOT_TESTED",
-            "covered_by_tests": [],
-            "description": "R1-INICIALIZACION: speedSet should initialize to null",
+            "tested": true,
             "pattern_matching": {
-              "patterns_matched": 0,
-              "details": []
-            }
+              "verified": false,
+              "test_methods": []
+            },
+            "holistic_coverage": {
+              "verified": true,
+              "confidence": 0.9,
+              "details": [
+                "Methods called: ['CruiseControl']",
+                "Code paths exercised"
+              ]
+            },
+            "verification_method": "holistic_coverage"
           },
           "R2": {
-            "tested": false,
-            "status": "NOT_TESTED",
-            "covered_by_tests": [],
-            "description": "R2-INICIALIZACION: speedLimit should initialize to null",
+            "tested": true,
             "pattern_matching": {
-              "patterns_matched": 0,
-              "details": []
-            }
+              "verified": false,
+              "test_methods": []
+            },
+            "holistic_coverage": {
+              "verified": true,
+              "confidence": 0.9,
+              "details": [
+                "Methods called: ['CruiseControl']",
+                "Code paths exercised"
+              ]
+            },
+            "verification_method": "holistic_coverage"
           },
           "R3": {
             "tested": false,
-            "status": "NOT_TESTED",
-            "covered_by_tests": [],
-            "description": "R3: speedSet can adopt any positive value (> 0)",
             "pattern_matching": {
-              "patterns_matched": 0,
-              "details": []
-            }
+              "verified": false,
+              "test_methods": []
+            },
+            "holistic_coverage": {
+              "verified": false,
+              "confidence": 0.0,
+              "details": [
+                "Required code not exercised by tests"
+              ]
+            },
+            "verification_method": "none"
           },
           "R4": {
             "tested": true,
-            "status": "PASS",
-            "covered_by_tests": [
-              "speedSetCantBeNegativeOrCero"
-            ],
-            "description": "R4-ERROR: Throw IncorrectSpeedSetException if speedSet <= 0",
             "pattern_matching": {
-              "patterns_matched": 1,
-              "details": [
-                {
-                  "tested": true,
-                  "method_name": "speedSetCantBeNegativeOrCero",
-                  "matched_patterns": [
-                    "exception_patterns:assertThrows\\s*\\(\\s*IncorrectS",
-                    "method_calls:setSpeedSet\\s*\\(\\s*0\\s*\\)"
-                  ],
-                  "confidence": 3,
-                  "by_lines": true,
-                  "by_paths": false,
-                  "by_entirety": true,
-                  "logic_verified": true,
-                  "verification_reason": "Tests zero (critical boundary) and expects exception"
-                }
+              "verified": true,
+              "test_methods": [
+                "speedSetCantBeNegativeOrCero"
               ]
-            }
+            },
+            "holistic_coverage": {
+              "verified": true,
+              "confidence": 0.9,
+              "details": [
+                "Methods called: ['setSpeedSet']",
+                "Code paths exercised"
+              ]
+            },
+            "verification_method": "pattern_matching"
           },
           "R5": {
             "tested": false,
-            "status": "NOT_TESTED",
-            "covered_by_tests": [],
-            "description": "R5-ALTERNATIVO: If speedLimit is set, speedSet cannot exceed it",
             "pattern_matching": {
-              "patterns_matched": 0,
-              "details": []
-            }
+              "verified": false,
+              "test_methods": []
+            },
+            "holistic_coverage": {
+              "verified": false,
+              "confidence": 0.0,
+              "details": [
+                "Required code not exercised by tests"
+              ]
+            },
+            "verification_method": "none"
           },
           "R6": {
-            "tested": false,
-            "status": "NOT_TESTED",
-            "covered_by_tests": [],
-            "description": "R6-ERROR: Throw SpeedSetAboveSpeedLimitException if speedSet > speedLimit",
+            "tested": true,
             "pattern_matching": {
-              "patterns_matched": 0,
-              "details": []
-            }
+              "verified": false,
+              "test_methods": []
+            },
+            "holistic_coverage": {
+              "verified": true,
+              "confidence": 0.9,
+              "details": [
+                "Methods called: ['setSpeedSet']",
+                "Code paths exercised"
+              ]
+            },
+            "verification_method": "holistic_coverage"
           }
         },
-        "impl_details": {
+        "total_test_methods": 4,
+        "requirements_found": 4,
+        "coverage_percentage": 66.67,
+        "analysis_methods_used": [
+          "pattern_matching",
+          "holistic_coverage"
+        ],
+        "mutation_used": false,
+        "mutation_grade": null
+      },
+      "implementation_analysis": {
+        "success": true,
+        "requirements_satisfied": [
+          "R1",
+          "R2",
+          "R4",
+          "R6"
+        ],
+        "requirements_missing": [
+          "R3",
+          "R5"
+        ],
+        "requirement_details": {
           "R1": {
             "satisfied": true,
             "status": "PASS",
@@ -1655,345 +1029,164 @@
             "reason": "Implementation correct"
           }
         },
-        "test_original_covered": [],
-        "test_improved_covered": [],
-        "test_mutation_covered": [],
-        "mutation_available": false
-      },
-      "rigorous": {
-        "test_grade": 1.67,
-        "implementation_grade": 6.66,
-        "combined_grade": 4.17,
-        "requirements_covered": [
-          "R4"
-        ],
-        "requirements_satisfied": [
-          "R1",
-          "R2",
-          "R4",
-          "R6"
-        ],
-        "test_details": {
-          "R1": {
-            "tested": false,
-            "status": "NOT_TESTED",
-            "covered_by_tests": [],
-            "description": "R1-INICIALIZACION: speedSet should initialize to null",
-            "pattern_matching": {
-              "patterns_matched": 0,
-              "details": []
-            }
-          },
-          "R2": {
-            "tested": false,
-            "status": "NOT_TESTED",
-            "covered_by_tests": [],
-            "description": "R2-INICIALIZACION: speedLimit should initialize to null",
-            "pattern_matching": {
-              "patterns_matched": 0,
-              "details": []
-            }
-          },
-          "R3": {
-            "tested": false,
-            "status": "NOT_TESTED",
-            "covered_by_tests": [],
-            "description": "R3: speedSet can adopt any positive value (> 0)",
-            "pattern_matching": {
-              "patterns_matched": 0,
-              "details": []
-            }
-          },
-          "R4": {
-            "tested": true,
-            "status": "PASS",
-            "covered_by_tests": [
-              "speedSetCantBeNegativeOrCero"
-            ],
-            "description": "R4-ERROR: Throw IncorrectSpeedSetException if speedSet <= 0",
-            "pattern_matching": {
-              "patterns_matched": 1,
-              "details": [
-                {
-                  "tested": true,
-                  "method_name": "speedSetCantBeNegativeOrCero",
-                  "matched_patterns": [
-                    "exception_patterns:assertThrows\\s*\\(\\s*IncorrectS",
-                    "method_calls:setSpeedSet\\s*\\(\\s*0\\s*\\)"
-                  ],
-                  "confidence": 3,
-                  "by_lines": true,
-                  "by_paths": false,
-                  "by_entirety": true,
-                  "logic_verified": true,
-                  "verification_reason": "Tests zero (critical boundary) and expects exception"
-                }
-              ]
-            }
-          },
-          "R5": {
-            "tested": false,
-            "status": "NOT_TESTED",
-            "covered_by_tests": [],
-            "description": "R5-ALTERNATIVO: If speedLimit is set, speedSet cannot exceed it",
-            "pattern_matching": {
-              "patterns_matched": 0,
-              "details": []
-            }
-          },
-          "R6": {
-            "tested": false,
-            "status": "NOT_TESTED",
-            "covered_by_tests": [],
-            "description": "R6-ERROR: Throw SpeedSetAboveSpeedLimitException if speedSet > speedLimit",
-            "pattern_matching": {
-              "patterns_matched": 0,
-              "details": []
-            }
-          }
-        },
-        "impl_details": {
-          "R1": {
-            "requirement": "R1",
-            "description": "speedSet initializes to null",
-            "status": "✓ SATISFIED",
-            "satisfied": true,
-            "tests_run": 1,
-            "tests_passed": 1,
-            "tests_failed": 0,
-            "pass_rate": "100.0%",
-            "threshold": "80% required",
-            "result": "Checked that speedSet initializes to null in constructor",
-            "what_was_checked": [
-              "Different types of input values (valid/invalid partitions)"
-            ],
-            "what_passed": [
-              "Constructor correctly sets speedSet = null"
-            ],
-            "what_failed": [],
-            "explanation": ""
-          },
-          "R2": {
-            "requirement": "R2",
-            "description": "speedLimit initializes to null",
-            "status": "✓ SATISFIED",
-            "satisfied": true,
-            "tests_run": 1,
-            "tests_passed": 1,
-            "tests_failed": 0,
-            "pass_rate": "100.0%",
-            "threshold": "80% required",
-            "result": "Checked that speedLimit initializes to null in constructor",
-            "what_was_checked": [
-              "Different types of input values (valid/invalid partitions)"
-            ],
-            "what_passed": [
-              "Constructor correctly sets speedLimit = null"
-            ],
-            "what_failed": [],
-            "explanation": ""
-          },
-          "R3": {
+        "total_requirements": 6,
+        "requirements_found": 4,
+        "satisfaction_percentage": 66.67,
+        "pattern_matching_used": true,
+        "test_details": [
+          {
             "requirement": "R3",
-            "description": "setSpeedSet accepts positive values",
-            "status": "✗ NOT SATISFIED",
-            "satisfied": false,
-            "tests_run": 0,
-            "tests_passed": 0,
-            "tests_failed": 0,
-            "pass_rate": "0%",
-            "threshold": "80% required",
-            "result": "Tested 0 positive values (1, 50, 100, 1000)",
-            "what_was_checked": [],
-            "what_passed": [],
-            "what_failed": [
-              "0 positive value(s) were rejected or caused errors"
-            ],
-            "explanation": "Pass rate 0% is below the 80% threshold needed to satisfy this requirement"
+            "reason": "NOT_CORRECT"
           },
-          "R4": {
-            "requirement": "R4",
-            "description": "Throws IncorrectSpeedSetException for speedSet <= 0",
-            "status": "✓ SATISFIED",
-            "satisfied": true,
-            "tests_run": 5,
-            "tests_passed": 5,
-            "tests_failed": 0,
-            "pass_rate": "100.0%",
-            "threshold": "80% required",
-            "result": "Tested 5 invalid values including negatives and zero",
-            "what_was_checked": [
-              "Edge cases at boundaries (e.g., zero, limit±1)",
-              "State consistency after operations"
-            ],
-            "what_passed": [
-              "All negative and zero values correctly throw IncorrectSpeedSetException"
-            ],
-            "what_failed": [],
-            "explanation": ""
-          },
-          "R5": {
+          {
             "requirement": "R5",
-            "description": "speedSet respects speedLimit when set",
-            "status": "✗ NOT SATISFIED",
-            "satisfied": false,
-            "tests_run": 0,
-            "tests_passed": 0,
-            "tests_failed": 0,
-            "pass_rate": "0%",
-            "threshold": "80% required",
-            "result": "Tested 0 scenarios with speedLimit set",
-            "what_was_checked": [],
-            "what_passed": [],
-            "what_failed": [
-              "Only 0/0 tests passed"
-            ],
-            "explanation": "Pass rate 0% is below the 80% threshold needed to satisfy this requirement"
-          },
-          "R6": {
-            "requirement": "R6",
-            "description": "Throws SpeedSetAboveSpeedLimitException when speedSet > speedLimit",
-            "status": "✓ SATISFIED",
-            "satisfied": true,
-            "tests_run": 3,
-            "tests_passed": 3,
-            "tests_failed": 0,
-            "pass_rate": "100.0%",
-            "threshold": "80% required",
-            "result": "Tested 3 scenarios exceeding speedLimit",
-            "what_was_checked": [
-              "Edge cases at boundaries (e.g., zero, limit±1)"
-            ],
-            "what_passed": [
-              "Correctly throws SpeedSetAboveSpeedLimitException when speedSet > speedLimit",
-              "Boundary test passed (limit + 1)"
-            ],
-            "what_failed": [],
-            "explanation": ""
+            "reason": "NOT_CORRECT"
           }
-        },
-        "test_mutation_covered": [],
-        "mutation_available": false
-      }
+        ]
+      },
+      "test_coverage_grade": 6.66,
+      "implementation_grade": 6.66,
+      "combined_grade": 6.66,
+      "error": null
     },
     {
-      "success": true,
       "student_id": "JorgeMoreno",
-      "test_coverage_grade": 1.67,
+      "timestamp": "2026-03-15T20:39:08.684728",
+      "success": true,
+      "test_file": "..\\student_submissions\\JorgeMoreno\\src\\test\\java\\es\\upm\\grise\\profunduzacion\\cruiseController\\CruiseControlTest.java",
+      "implementation_file": "..\\student_submissions\\JorgeMoreno\\src\\main\\java\\es\\upm\\grise\\profundizacion\\cruiseControl\\CruiseControl.java",
       "test_analysis": {
-        "coverage_percentage": 16.67,
-        "requirements_found": 1,
+        "success": true,
+        "grade": 4.99,
         "requirements_covered": [
-          "R3"
-        ]
-      },
-      "implementation_grade": 10.0,
-      "implementation_analysis": {
-        "satisfaction_percentage": 100.0,
-        "requirements_satisfied": [
-          "R1",
-          "R2",
           "R3",
-          "R4",
-          "R5",
-          "R6"
-        ]
-      },
-      "combined_grade": 5.83,
-      "pattern": {
-        "test_grade": 1.67,
-        "implementation_grade": 10.0,
-        "combined_grade": 5.83,
-        "requirements_covered": [
-          "R3"
-        ],
-        "requirements_satisfied": [
-          "R1",
-          "R2",
-          "R3",
-          "R4",
           "R5",
           "R6"
         ],
-        "test_details": {
+        "requirements_missing": [
+          "R1",
+          "R2",
+          "R4"
+        ],
+        "requirement_details": {
           "R1": {
             "tested": false,
-            "status": "NOT_TESTED",
-            "covered_by_tests": [],
-            "description": "R1-INICIALIZACION: speedSet should initialize to null",
             "pattern_matching": {
-              "patterns_matched": 0,
-              "details": []
-            }
+              "verified": false,
+              "test_methods": []
+            },
+            "holistic_coverage": {
+              "verified": false,
+              "confidence": 0.0,
+              "details": [
+                "Required code not exercised by tests"
+              ]
+            },
+            "verification_method": "none"
           },
           "R2": {
             "tested": false,
-            "status": "NOT_TESTED",
-            "covered_by_tests": [],
-            "description": "R2-INICIALIZACION: speedLimit should initialize to null",
             "pattern_matching": {
-              "patterns_matched": 0,
-              "details": []
-            }
+              "verified": false,
+              "test_methods": []
+            },
+            "holistic_coverage": {
+              "verified": false,
+              "confidence": 0.0,
+              "details": [
+                "Required code not exercised by tests"
+              ]
+            },
+            "verification_method": "none"
           },
           "R3": {
             "tested": true,
-            "status": "PASS",
-            "covered_by_tests": [
-              "testSetSpeedSetWithinLimit"
-            ],
-            "description": "R3: speedSet can adopt any positive value (> 0)",
             "pattern_matching": {
-              "patterns_matched": 1,
-              "details": [
-                {
-                  "tested": true,
-                  "method_name": "testSetSpeedSetWithinLimit",
-                  "matched_patterns": [
-                    "method_calls:setSpeedSet\\s*\\(\\s*[1-9]\\d*\\s*"
-                  ],
-                  "confidence": 1,
-                  "by_lines": true,
-                  "by_paths": false,
-                  "by_entirety": false,
-                  "logic_verified": true,
-                  "verification_reason": "Sets positive value (100) and verifies storage"
-                }
+              "verified": true,
+              "test_methods": [
+                "testSetSpeedSetWithinLimit"
               ]
-            }
+            },
+            "holistic_coverage": {
+              "verified": true,
+              "confidence": 0.9,
+              "details": [
+                "Methods called: ['setSpeedSet']",
+                "Code paths exercised"
+              ]
+            },
+            "verification_method": "pattern_matching"
           },
           "R4": {
             "tested": false,
-            "status": "NOT_TESTED",
-            "covered_by_tests": [],
-            "description": "R4-ERROR: Throw IncorrectSpeedSetException if speedSet <= 0",
             "pattern_matching": {
-              "patterns_matched": 0,
-              "details": []
-            }
+              "verified": false,
+              "test_methods": []
+            },
+            "holistic_coverage": {
+              "verified": false,
+              "confidence": 0.0,
+              "details": [
+                "Required code not exercised by tests"
+              ]
+            },
+            "verification_method": "none"
           },
           "R5": {
-            "tested": false,
-            "status": "NOT_TESTED",
-            "covered_by_tests": [],
-            "description": "R5-ALTERNATIVO: If speedLimit is set, speedSet cannot exceed it",
+            "tested": true,
             "pattern_matching": {
-              "patterns_matched": 0,
-              "details": []
-            }
+              "verified": false,
+              "test_methods": []
+            },
+            "holistic_coverage": {
+              "verified": true,
+              "confidence": 0.7,
+              "details": [
+                "Methods called: ['setSpeedSet']",
+                "Warning: Code path verification inconclusive"
+              ]
+            },
+            "verification_method": "holistic_coverage"
           },
           "R6": {
-            "tested": false,
-            "status": "NOT_TESTED",
-            "covered_by_tests": [],
-            "description": "R6-ERROR: Throw SpeedSetAboveSpeedLimitException if speedSet > speedLimit",
+            "tested": true,
             "pattern_matching": {
-              "patterns_matched": 0,
-              "details": []
-            }
+              "verified": false,
+              "test_methods": []
+            },
+            "holistic_coverage": {
+              "verified": true,
+              "confidence": 0.9,
+              "details": [
+                "Methods called: ['setSpeedSet']",
+                "Code paths exercised"
+              ]
+            },
+            "verification_method": "holistic_coverage"
           }
         },
-        "impl_details": {
+        "total_test_methods": 3,
+        "requirements_found": 3,
+        "coverage_percentage": 50.0,
+        "analysis_methods_used": [
+          "pattern_matching",
+          "holistic_coverage"
+        ],
+        "mutation_used": false,
+        "mutation_grade": null
+      },
+      "implementation_analysis": {
+        "success": true,
+        "requirements_satisfied": [
+          "R1",
+          "R2",
+          "R3",
+          "R4",
+          "R5",
+          "R6"
+        ],
+        "requirements_missing": [],
+        "requirement_details": {
           "R1": {
             "satisfied": true,
             "status": "PASS",
@@ -2097,270 +1290,27 @@
             "reason": "Implementation correct"
           }
         },
-        "test_original_covered": [],
-        "test_improved_covered": [],
-        "test_mutation_covered": [],
-        "mutation_available": false
+        "total_requirements": 6,
+        "requirements_found": 6,
+        "satisfaction_percentage": 100.0,
+        "pattern_matching_used": true,
+        "test_details": []
       },
-      "rigorous": {
-        "test_grade": 1.67,
-        "implementation_grade": 8.33,
-        "combined_grade": 5.0,
-        "requirements_covered": [
-          "R3"
-        ],
-        "requirements_satisfied": [
-          "R1",
-          "R2",
-          "R3",
-          "R5",
-          "R6"
-        ],
-        "test_details": {
-          "R1": {
-            "tested": false,
-            "status": "NOT_TESTED",
-            "covered_by_tests": [],
-            "description": "R1-INICIALIZACION: speedSet should initialize to null",
-            "pattern_matching": {
-              "patterns_matched": 0,
-              "details": []
-            }
-          },
-          "R2": {
-            "tested": false,
-            "status": "NOT_TESTED",
-            "covered_by_tests": [],
-            "description": "R2-INICIALIZACION: speedLimit should initialize to null",
-            "pattern_matching": {
-              "patterns_matched": 0,
-              "details": []
-            }
-          },
-          "R3": {
-            "tested": true,
-            "status": "PASS",
-            "covered_by_tests": [
-              "testSetSpeedSetWithinLimit"
-            ],
-            "description": "R3: speedSet can adopt any positive value (> 0)",
-            "pattern_matching": {
-              "patterns_matched": 1,
-              "details": [
-                {
-                  "tested": true,
-                  "method_name": "testSetSpeedSetWithinLimit",
-                  "matched_patterns": [
-                    "method_calls:setSpeedSet\\s*\\(\\s*[1-9]\\d*\\s*"
-                  ],
-                  "confidence": 1,
-                  "by_lines": true,
-                  "by_paths": false,
-                  "by_entirety": false,
-                  "logic_verified": true,
-                  "verification_reason": "Sets positive value (100) and verifies storage"
-                }
-              ]
-            }
-          },
-          "R4": {
-            "tested": false,
-            "status": "NOT_TESTED",
-            "covered_by_tests": [],
-            "description": "R4-ERROR: Throw IncorrectSpeedSetException if speedSet <= 0",
-            "pattern_matching": {
-              "patterns_matched": 0,
-              "details": []
-            }
-          },
-          "R5": {
-            "tested": false,
-            "status": "NOT_TESTED",
-            "covered_by_tests": [],
-            "description": "R5-ALTERNATIVO: If speedLimit is set, speedSet cannot exceed it",
-            "pattern_matching": {
-              "patterns_matched": 0,
-              "details": []
-            }
-          },
-          "R6": {
-            "tested": false,
-            "status": "NOT_TESTED",
-            "covered_by_tests": [],
-            "description": "R6-ERROR: Throw SpeedSetAboveSpeedLimitException if speedSet > speedLimit",
-            "pattern_matching": {
-              "patterns_matched": 0,
-              "details": []
-            }
-          }
-        },
-        "impl_details": {
-          "R1": {
-            "requirement": "R1",
-            "description": "speedSet initializes to null",
-            "status": "✓ SATISFIED",
-            "satisfied": true,
-            "tests_run": 1,
-            "tests_passed": 1,
-            "tests_failed": 0,
-            "pass_rate": "100.0%",
-            "threshold": "80% required",
-            "result": "Checked that speedSet initializes to null in constructor",
-            "what_was_checked": [
-              "Different types of input values (valid/invalid partitions)"
-            ],
-            "what_passed": [
-              "Constructor correctly sets speedSet = null"
-            ],
-            "what_failed": [],
-            "explanation": ""
-          },
-          "R2": {
-            "requirement": "R2",
-            "description": "speedLimit initializes to null",
-            "status": "✓ SATISFIED",
-            "satisfied": true,
-            "tests_run": 1,
-            "tests_passed": 1,
-            "tests_failed": 0,
-            "pass_rate": "100.0%",
-            "threshold": "80% required",
-            "result": "Checked that speedLimit initializes to null in constructor",
-            "what_was_checked": [
-              "Different types of input values (valid/invalid partitions)"
-            ],
-            "what_passed": [
-              "Constructor correctly sets speedLimit = null"
-            ],
-            "what_failed": [],
-            "explanation": ""
-          },
-          "R3": {
-            "requirement": "R3",
-            "description": "setSpeedSet accepts positive values",
-            "status": "✓ SATISFIED",
-            "satisfied": true,
-            "tests_run": 4,
-            "tests_passed": 4,
-            "tests_failed": 0,
-            "pass_rate": "100.0%",
-            "threshold": "80% required",
-            "result": "Tested 4 positive values (1, 50, 100, 1000)",
-            "what_was_checked": [
-              "Different types of input values (valid/invalid partitions)"
-            ],
-            "what_passed": [
-              "All 4 positive values were accepted correctly"
-            ],
-            "what_failed": [],
-            "explanation": ""
-          },
-          "R4": {
-            "requirement": "R4",
-            "description": "Throws IncorrectSpeedSetException for speedSet <= 0",
-            "status": "✗ NOT SATISFIED",
-            "satisfied": false,
-            "tests_run": 5,
-            "tests_passed": 0,
-            "tests_failed": 5,
-            "pass_rate": "0.0%",
-            "threshold": "80% required",
-            "result": "Tested 5 invalid values including negatives and zero",
-            "what_was_checked": [
-              "Edge cases at boundaries (e.g., zero, limit±1)",
-              "State consistency after operations"
-            ],
-            "what_passed": [],
-            "what_failed": [
-              "Only 0/5 tests passed (below 80% threshold)",
-              "⚠️ CRITICAL: Zero (0) does not throw exception - likely using < instead of <="
-            ],
-            "explanation": "Common bug: Code uses 'if (speedSet < 0)' instead of 'if (speedSet <= 0)', missing the zero case"
-          },
-          "R5": {
-            "requirement": "R5",
-            "description": "speedSet respects speedLimit when set",
-            "status": "✓ SATISFIED",
-            "satisfied": true,
-            "tests_run": 4,
-            "tests_passed": 4,
-            "tests_failed": 0,
-            "pass_rate": "100.0%",
-            "threshold": "80% required",
-            "result": "Tested 4 scenarios with speedLimit set",
-            "what_was_checked": [
-              "Different types of input values (valid/invalid partitions)",
-              "Edge cases at boundaries (e.g., zero, limit±1)"
-            ],
-            "what_passed": [
-              "speedSet correctly stays below or equal to speedLimit",
-              "Boundary case (speedSet = speedLimit) handled correctly"
-            ],
-            "what_failed": [],
-            "explanation": ""
-          },
-          "R6": {
-            "requirement": "R6",
-            "description": "Throws SpeedSetAboveSpeedLimitException when speedSet > speedLimit",
-            "status": "✓ SATISFIED",
-            "satisfied": true,
-            "tests_run": 3,
-            "tests_passed": 3,
-            "tests_failed": 0,
-            "pass_rate": "100.0%",
-            "threshold": "80% required",
-            "result": "Tested 3 scenarios exceeding speedLimit",
-            "what_was_checked": [
-              "Edge cases at boundaries (e.g., zero, limit±1)"
-            ],
-            "what_passed": [
-              "Correctly throws SpeedSetAboveSpeedLimitException when speedSet > speedLimit",
-              "Boundary test passed (limit + 1)"
-            ],
-            "what_failed": [],
-            "explanation": ""
-          }
-        },
-        "test_mutation_covered": [],
-        "mutation_available": false
-      }
+      "test_coverage_grade": 4.99,
+      "implementation_grade": 10.0,
+      "combined_grade": 7.5,
+      "error": null
     },
     {
-      "success": true,
       "student_id": "MarioAlonsoCuero",
-      "test_coverage_grade": 5.01,
+      "timestamp": "2026-03-15T20:39:09.766748",
+      "success": true,
+      "test_file": "..\\student_submissions\\MarioAlonsoCuero\\src\\test\\java\\es\\upm\\grise\\profunduzacion\\cruiseController\\CruiseControlTest.java",
+      "implementation_file": "..\\student_submissions\\MarioAlonsoCuero\\src\\main\\java\\es\\upm\\grise\\profundizacion\\cruiseControl\\CruiseControl.java",
       "test_analysis": {
-        "coverage_percentage": 50.0,
-        "requirements_found": 3,
+        "success": true,
+        "grade": 10.0,
         "requirements_covered": [
-          "R3",
-          "R4",
-          "R5"
-        ]
-      },
-      "implementation_grade": 10.0,
-      "implementation_analysis": {
-        "satisfaction_percentage": 100.0,
-        "requirements_satisfied": [
-          "R1",
-          "R2",
-          "R3",
-          "R4",
-          "R5",
-          "R6"
-        ]
-      },
-      "combined_grade": 7.5,
-      "pattern": {
-        "test_grade": 5.01,
-        "implementation_grade": 10.0,
-        "combined_grade": 7.5,
-        "requirements_covered": [
-          "R3",
-          "R4",
-          "R5"
-        ],
-        "requirements_satisfied": [
           "R1",
           "R2",
           "R3",
@@ -2368,129 +1318,132 @@
           "R5",
           "R6"
         ],
-        "test_details": {
+        "requirements_missing": [],
+        "requirement_details": {
           "R1": {
-            "tested": false,
-            "status": "NOT_TESTED",
-            "covered_by_tests": [],
-            "description": "R1-INICIALIZACION: speedSet should initialize to null",
+            "tested": true,
             "pattern_matching": {
-              "patterns_matched": 0,
-              "details": []
-            }
+              "verified": false,
+              "test_methods": []
+            },
+            "holistic_coverage": {
+              "verified": true,
+              "confidence": 0.9,
+              "details": [
+                "Methods called: ['CruiseControl']",
+                "Code paths exercised"
+              ]
+            },
+            "verification_method": "holistic_coverage"
           },
           "R2": {
-            "tested": false,
-            "status": "NOT_TESTED",
-            "covered_by_tests": [],
-            "description": "R2-INICIALIZACION: speedLimit should initialize to null",
+            "tested": true,
             "pattern_matching": {
-              "patterns_matched": 0,
-              "details": []
-            }
+              "verified": false,
+              "test_methods": []
+            },
+            "holistic_coverage": {
+              "verified": true,
+              "confidence": 0.9,
+              "details": [
+                "Methods called: ['CruiseControl']",
+                "Code paths exercised"
+              ]
+            },
+            "verification_method": "holistic_coverage"
           },
           "R3": {
             "tested": true,
-            "status": "PASS",
-            "covered_by_tests": [
-              "settingValidSpeedStoresValue",
-              "settingAtOrBelowLimitAllowed"
-            ],
-            "description": "R3: speedSet can adopt any positive value (> 0)",
             "pattern_matching": {
-              "patterns_matched": 2,
-              "details": [
-                {
-                  "tested": true,
-                  "method_name": "settingValidSpeedStoresValue",
-                  "matched_patterns": [
-                    "method_calls:setSpeedSet\\s*\\(\\s*[1-9]\\d*\\s*"
-                  ],
-                  "confidence": 1,
-                  "by_lines": true,
-                  "by_paths": false,
-                  "by_entirety": false,
-                  "logic_verified": true,
-                  "verification_reason": "Sets positive value (50) and verifies storage"
-                },
-                {
-                  "tested": true,
-                  "method_name": "settingAtOrBelowLimitAllowed",
-                  "matched_patterns": [
-                    "method_calls:setSpeedSet\\s*\\(\\s*[1-9]\\d*\\s*"
-                  ],
-                  "confidence": 1,
-                  "by_lines": true,
-                  "by_paths": false,
-                  "by_entirety": false,
-                  "logic_verified": true,
-                  "verification_reason": "Sets positive value (100) and verifies storage"
-                }
+              "verified": true,
+              "test_methods": [
+                "settingValidSpeedStoresValue",
+                "settingAtOrBelowLimitAllowed"
               ]
-            }
+            },
+            "holistic_coverage": {
+              "verified": true,
+              "confidence": 0.9,
+              "details": [
+                "Methods called: ['setSpeedSet']",
+                "Code paths exercised"
+              ]
+            },
+            "verification_method": "pattern_matching"
           },
           "R4": {
             "tested": true,
-            "status": "PASS",
-            "covered_by_tests": [
-              "settingZeroOrNegativeThrowsIncorrectSpeedSetException"
-            ],
-            "description": "R4-ERROR: Throw IncorrectSpeedSetException if speedSet <= 0",
             "pattern_matching": {
-              "patterns_matched": 1,
-              "details": [
-                {
-                  "tested": true,
-                  "method_name": "settingZeroOrNegativeThrowsIncorrectSpeedSetException",
-                  "matched_patterns": [
-                    "method_calls:setSpeedSet\\s*\\(\\s*0\\s*\\)"
-                  ],
-                  "confidence": 1,
-                  "by_lines": true,
-                  "by_paths": false,
-                  "by_entirety": false,
-                  "logic_verified": true,
-                  "verification_reason": "Tests zero (critical boundary) and expects exception"
-                }
+              "verified": true,
+              "test_methods": [
+                "settingZeroOrNegativeThrowsIncorrectSpeedSetException"
               ]
-            }
+            },
+            "holistic_coverage": {
+              "verified": true,
+              "confidence": 0.9,
+              "details": [
+                "Methods called: ['setSpeedSet']",
+                "Code paths exercised"
+              ]
+            },
+            "verification_method": "pattern_matching"
           },
           "R5": {
             "tested": true,
-            "status": "PASS",
-            "covered_by_tests": [
-              "settingAtOrBelowLimitAllowed"
-            ],
-            "description": "R5-ALTERNATIVO: If speedLimit is set, speedSet cannot exceed it",
             "pattern_matching": {
-              "patterns_matched": 1,
+              "verified": false,
+              "test_methods": []
+            },
+            "holistic_coverage": {
+              "verified": true,
+              "confidence": 0.9,
               "details": [
-                {
-                  "tested": true,
-                  "method_name": "settingAtOrBelowLimitAllowed",
-                  "matched_patterns": [],
-                  "confidence": 3,
-                  "logic_verified": true,
-                  "verification_reason": "Tests boundary: setSpeedSet(100) == setSpeedLimit(100)",
-                  "by_lines": true,
-                  "by_paths": true,
-                  "by_entirety": true
-                }
+                "Methods called: ['setSpeedSet']",
+                "Code paths exercised"
               ]
-            }
+            },
+            "verification_method": "holistic_coverage"
           },
           "R6": {
-            "tested": false,
-            "status": "NOT_TESTED",
-            "covered_by_tests": [],
-            "description": "R6-ERROR: Throw SpeedSetAboveSpeedLimitException if speedSet > speedLimit",
+            "tested": true,
             "pattern_matching": {
-              "patterns_matched": 0,
-              "details": []
-            }
+              "verified": false,
+              "test_methods": []
+            },
+            "holistic_coverage": {
+              "verified": true,
+              "confidence": 0.9,
+              "details": [
+                "Methods called: ['setSpeedSet']",
+                "Code paths exercised"
+              ]
+            },
+            "verification_method": "holistic_coverage"
           }
         },
-        "impl_details": {
+        "total_test_methods": 5,
+        "requirements_found": 6,
+        "coverage_percentage": 100.0,
+        "analysis_methods_used": [
+          "pattern_matching",
+          "holistic_coverage"
+        ],
+        "mutation_used": false,
+        "mutation_grade": null
+      },
+      "implementation_analysis": {
+        "success": true,
+        "requirements_satisfied": [
+          "R1",
+          "R2",
+          "R3",
+          "R4",
+          "R5",
+          "R6"
+        ],
+        "requirements_missing": [],
+        "requirement_details": {
           "R1": {
             "satisfied": true,
             "status": "PASS",
@@ -2590,316 +1543,27 @@
             "reason": "Implementation correct"
           }
         },
-        "test_original_covered": [],
-        "test_improved_covered": [],
-        "test_mutation_covered": [],
-        "mutation_available": false
+        "total_requirements": 6,
+        "requirements_found": 6,
+        "satisfaction_percentage": 100.0,
+        "pattern_matching_used": true,
+        "test_details": []
       },
-      "rigorous": {
-        "test_grade": 5.01,
-        "implementation_grade": 10.0,
-        "combined_grade": 7.5,
-        "requirements_covered": [
-          "R3",
-          "R4",
-          "R5"
-        ],
-        "requirements_satisfied": [
-          "R1",
-          "R2",
-          "R3",
-          "R4",
-          "R5",
-          "R6"
-        ],
-        "test_details": {
-          "R1": {
-            "tested": false,
-            "status": "NOT_TESTED",
-            "covered_by_tests": [],
-            "description": "R1-INICIALIZACION: speedSet should initialize to null",
-            "pattern_matching": {
-              "patterns_matched": 0,
-              "details": []
-            }
-          },
-          "R2": {
-            "tested": false,
-            "status": "NOT_TESTED",
-            "covered_by_tests": [],
-            "description": "R2-INICIALIZACION: speedLimit should initialize to null",
-            "pattern_matching": {
-              "patterns_matched": 0,
-              "details": []
-            }
-          },
-          "R3": {
-            "tested": true,
-            "status": "PASS",
-            "covered_by_tests": [
-              "settingValidSpeedStoresValue",
-              "settingAtOrBelowLimitAllowed"
-            ],
-            "description": "R3: speedSet can adopt any positive value (> 0)",
-            "pattern_matching": {
-              "patterns_matched": 2,
-              "details": [
-                {
-                  "tested": true,
-                  "method_name": "settingValidSpeedStoresValue",
-                  "matched_patterns": [
-                    "method_calls:setSpeedSet\\s*\\(\\s*[1-9]\\d*\\s*"
-                  ],
-                  "confidence": 1,
-                  "by_lines": true,
-                  "by_paths": false,
-                  "by_entirety": false,
-                  "logic_verified": true,
-                  "verification_reason": "Sets positive value (50) and verifies storage"
-                },
-                {
-                  "tested": true,
-                  "method_name": "settingAtOrBelowLimitAllowed",
-                  "matched_patterns": [
-                    "method_calls:setSpeedSet\\s*\\(\\s*[1-9]\\d*\\s*"
-                  ],
-                  "confidence": 1,
-                  "by_lines": true,
-                  "by_paths": false,
-                  "by_entirety": false,
-                  "logic_verified": true,
-                  "verification_reason": "Sets positive value (100) and verifies storage"
-                }
-              ]
-            }
-          },
-          "R4": {
-            "tested": true,
-            "status": "PASS",
-            "covered_by_tests": [
-              "settingZeroOrNegativeThrowsIncorrectSpeedSetException"
-            ],
-            "description": "R4-ERROR: Throw IncorrectSpeedSetException if speedSet <= 0",
-            "pattern_matching": {
-              "patterns_matched": 1,
-              "details": [
-                {
-                  "tested": true,
-                  "method_name": "settingZeroOrNegativeThrowsIncorrectSpeedSetException",
-                  "matched_patterns": [
-                    "method_calls:setSpeedSet\\s*\\(\\s*0\\s*\\)"
-                  ],
-                  "confidence": 1,
-                  "by_lines": true,
-                  "by_paths": false,
-                  "by_entirety": false,
-                  "logic_verified": true,
-                  "verification_reason": "Tests zero (critical boundary) and expects exception"
-                }
-              ]
-            }
-          },
-          "R5": {
-            "tested": true,
-            "status": "PASS",
-            "covered_by_tests": [
-              "settingAtOrBelowLimitAllowed"
-            ],
-            "description": "R5-ALTERNATIVO: If speedLimit is set, speedSet cannot exceed it",
-            "pattern_matching": {
-              "patterns_matched": 1,
-              "details": [
-                {
-                  "tested": true,
-                  "method_name": "settingAtOrBelowLimitAllowed",
-                  "matched_patterns": [],
-                  "confidence": 3,
-                  "logic_verified": true,
-                  "verification_reason": "Tests boundary: setSpeedSet(100) == setSpeedLimit(100)",
-                  "by_lines": true,
-                  "by_paths": true,
-                  "by_entirety": true
-                }
-              ]
-            }
-          },
-          "R6": {
-            "tested": false,
-            "status": "NOT_TESTED",
-            "covered_by_tests": [],
-            "description": "R6-ERROR: Throw SpeedSetAboveSpeedLimitException if speedSet > speedLimit",
-            "pattern_matching": {
-              "patterns_matched": 0,
-              "details": []
-            }
-          }
-        },
-        "impl_details": {
-          "R1": {
-            "requirement": "R1",
-            "description": "speedSet initializes to null",
-            "status": "✓ SATISFIED",
-            "satisfied": true,
-            "tests_run": 1,
-            "tests_passed": 1,
-            "tests_failed": 0,
-            "pass_rate": "100.0%",
-            "threshold": "80% required",
-            "result": "Checked that speedSet initializes to null in constructor",
-            "what_was_checked": [
-              "Different types of input values (valid/invalid partitions)"
-            ],
-            "what_passed": [
-              "Constructor correctly sets speedSet = null"
-            ],
-            "what_failed": [],
-            "explanation": ""
-          },
-          "R2": {
-            "requirement": "R2",
-            "description": "speedLimit initializes to null",
-            "status": "✓ SATISFIED",
-            "satisfied": true,
-            "tests_run": 1,
-            "tests_passed": 1,
-            "tests_failed": 0,
-            "pass_rate": "100.0%",
-            "threshold": "80% required",
-            "result": "Checked that speedLimit initializes to null in constructor",
-            "what_was_checked": [
-              "Different types of input values (valid/invalid partitions)"
-            ],
-            "what_passed": [
-              "Constructor correctly sets speedLimit = null"
-            ],
-            "what_failed": [],
-            "explanation": ""
-          },
-          "R3": {
-            "requirement": "R3",
-            "description": "setSpeedSet accepts positive values",
-            "status": "✓ SATISFIED",
-            "satisfied": true,
-            "tests_run": 4,
-            "tests_passed": 4,
-            "tests_failed": 0,
-            "pass_rate": "100.0%",
-            "threshold": "80% required",
-            "result": "Tested 4 positive values (1, 50, 100, 1000)",
-            "what_was_checked": [
-              "Different types of input values (valid/invalid partitions)"
-            ],
-            "what_passed": [
-              "All 4 positive values were accepted correctly"
-            ],
-            "what_failed": [],
-            "explanation": ""
-          },
-          "R4": {
-            "requirement": "R4",
-            "description": "Throws IncorrectSpeedSetException for speedSet <= 0",
-            "status": "✓ SATISFIED",
-            "satisfied": true,
-            "tests_run": 5,
-            "tests_passed": 5,
-            "tests_failed": 0,
-            "pass_rate": "100.0%",
-            "threshold": "80% required",
-            "result": "Tested 5 invalid values including negatives and zero",
-            "what_was_checked": [
-              "Edge cases at boundaries (e.g., zero, limit±1)",
-              "State consistency after operations"
-            ],
-            "what_passed": [
-              "All negative and zero values correctly throw IncorrectSpeedSetException"
-            ],
-            "what_failed": [],
-            "explanation": ""
-          },
-          "R5": {
-            "requirement": "R5",
-            "description": "speedSet respects speedLimit when set",
-            "status": "✓ SATISFIED",
-            "satisfied": true,
-            "tests_run": 4,
-            "tests_passed": 4,
-            "tests_failed": 0,
-            "pass_rate": "100.0%",
-            "threshold": "80% required",
-            "result": "Tested 4 scenarios with speedLimit set",
-            "what_was_checked": [
-              "Different types of input values (valid/invalid partitions)",
-              "Edge cases at boundaries (e.g., zero, limit±1)"
-            ],
-            "what_passed": [
-              "speedSet correctly stays below or equal to speedLimit",
-              "Boundary case (speedSet = speedLimit) handled correctly"
-            ],
-            "what_failed": [],
-            "explanation": ""
-          },
-          "R6": {
-            "requirement": "R6",
-            "description": "Throws SpeedSetAboveSpeedLimitException when speedSet > speedLimit",
-            "status": "✓ SATISFIED",
-            "satisfied": true,
-            "tests_run": 3,
-            "tests_passed": 3,
-            "tests_failed": 0,
-            "pass_rate": "100.0%",
-            "threshold": "80% required",
-            "result": "Tested 3 scenarios exceeding speedLimit",
-            "what_was_checked": [
-              "Edge cases at boundaries (e.g., zero, limit±1)"
-            ],
-            "what_passed": [
-              "Correctly throws SpeedSetAboveSpeedLimitException when speedSet > speedLimit",
-              "Boundary test passed (limit + 1)"
-            ],
-            "what_failed": [],
-            "explanation": ""
-          }
-        },
-        "test_mutation_covered": [],
-        "mutation_available": false
-      }
+      "test_coverage_grade": 10.0,
+      "implementation_grade": 10.0,
+      "combined_grade": 10.0,
+      "error": null
     },
     {
-      "success": true,
       "student_id": "SergioFernÃ¡ndez",
-      "test_coverage_grade": 4.99,
+      "timestamp": "2026-03-15T20:39:10.886275",
+      "success": true,
+      "test_file": "..\\student_submissions\\SergioFernÃ¡ndez\\src\\test\\java\\es\\upm\\grise\\profunduzacion\\cruiseController\\CruiseControlTest.java",
+      "implementation_file": "..\\student_submissions\\SergioFernÃ¡ndez\\src\\main\\java\\es\\upm\\grise\\profundizacion\\cruiseControl\\CruiseControl.java",
       "test_analysis": {
-        "coverage_percentage": 50.0,
-        "requirements_found": 3,
+        "success": true,
+        "grade": 10.0,
         "requirements_covered": [
-          "R3",
-          "R4",
-          "R6"
-        ]
-      },
-      "implementation_grade": 10.0,
-      "implementation_analysis": {
-        "satisfaction_percentage": 100.0,
-        "requirements_satisfied": [
-          "R1",
-          "R2",
-          "R3",
-          "R4",
-          "R5",
-          "R6"
-        ]
-      },
-      "combined_grade": 7.5,
-      "pattern": {
-        "test_grade": 4.99,
-        "implementation_grade": 10.0,
-        "combined_grade": 7.5,
-        "requirements_covered": [
-          "R3",
-          "R4",
-          "R6"
-        ],
-        "requirements_satisfied": [
           "R1",
           "R2",
           "R3",
@@ -2907,120 +1571,135 @@
           "R5",
           "R6"
         ],
-        "test_details": {
+        "requirements_missing": [],
+        "requirement_details": {
           "R1": {
-            "tested": false,
-            "status": "NOT_TESTED",
-            "covered_by_tests": [],
-            "description": "R1-INICIALIZACION: speedSet should initialize to null",
+            "tested": true,
             "pattern_matching": {
-              "patterns_matched": 0,
-              "details": []
-            }
+              "verified": false,
+              "test_methods": []
+            },
+            "holistic_coverage": {
+              "verified": true,
+              "confidence": 0.9,
+              "details": [
+                "Methods called: ['CruiseControl']",
+                "Code paths exercised"
+              ]
+            },
+            "verification_method": "holistic_coverage"
           },
           "R2": {
-            "tested": false,
-            "status": "NOT_TESTED",
-            "covered_by_tests": [],
-            "description": "R2-INICIALIZACION: speedLimit should initialize to null",
+            "tested": true,
             "pattern_matching": {
-              "patterns_matched": 0,
-              "details": []
-            }
+              "verified": false,
+              "test_methods": []
+            },
+            "holistic_coverage": {
+              "verified": true,
+              "confidence": 0.9,
+              "details": [
+                "Methods called: ['CruiseControl']",
+                "Code paths exercised"
+              ]
+            },
+            "verification_method": "holistic_coverage"
           },
           "R3": {
             "tested": true,
-            "status": "PASS",
-            "covered_by_tests": [
-              "testSpeedSet"
-            ],
-            "description": "R3: speedSet can adopt any positive value (> 0)",
             "pattern_matching": {
-              "patterns_matched": 1,
-              "details": [
-                {
-                  "tested": true,
-                  "method_name": "testSpeedSet",
-                  "matched_patterns": [
-                    "method_calls:setSpeedSet\\s*\\(\\s*[1-9]\\d*\\s*",
-                    "assertion_patterns:assertEquals\\s*\\(\\s*\\d+\\s*,\\s*"
-                  ],
-                  "confidence": 3,
-                  "by_lines": true,
-                  "by_paths": false,
-                  "by_entirety": true,
-                  "logic_verified": true,
-                  "verification_reason": "Sets positive value (90) and verifies storage"
-                }
+              "verified": true,
+              "test_methods": [
+                "testSpeedSet"
               ]
-            }
+            },
+            "holistic_coverage": {
+              "verified": true,
+              "confidence": 0.9,
+              "details": [
+                "Methods called: ['setSpeedSet']",
+                "Code paths exercised"
+              ]
+            },
+            "verification_method": "pattern_matching"
           },
           "R4": {
             "tested": true,
-            "status": "PASS",
-            "covered_by_tests": [
-              "testIncorrectSpeedSetException"
-            ],
-            "description": "R4-ERROR: Throw IncorrectSpeedSetException if speedSet <= 0",
             "pattern_matching": {
-              "patterns_matched": 1,
-              "details": [
-                {
-                  "tested": true,
-                  "method_name": "testIncorrectSpeedSetException",
-                  "matched_patterns": [
-                    "exception_patterns:assertThrows\\s*\\(\\s*IncorrectS",
-                    "method_calls:setSpeedSet\\s*\\(\\s*0\\s*\\)"
-                  ],
-                  "confidence": 3,
-                  "by_lines": true,
-                  "by_paths": false,
-                  "by_entirety": true,
-                  "logic_verified": true,
-                  "verification_reason": "Tests zero (critical boundary) and expects exception"
-                }
+              "verified": true,
+              "test_methods": [
+                "testIncorrectSpeedSetException"
               ]
-            }
+            },
+            "holistic_coverage": {
+              "verified": true,
+              "confidence": 0.9,
+              "details": [
+                "Methods called: ['setSpeedSet']",
+                "Code paths exercised"
+              ]
+            },
+            "verification_method": "pattern_matching"
           },
           "R5": {
-            "tested": false,
-            "status": "NOT_TESTED",
-            "covered_by_tests": [],
-            "description": "R5-ALTERNATIVO: If speedLimit is set, speedSet cannot exceed it",
+            "tested": true,
             "pattern_matching": {
-              "patterns_matched": 0,
-              "details": []
-            }
+              "verified": true,
+              "test_methods": [
+                "testSpeedSet"
+              ]
+            },
+            "holistic_coverage": {
+              "verified": true,
+              "confidence": 0.7,
+              "details": [
+                "Methods called: ['setSpeedSet']",
+                "Warning: Code path verification inconclusive"
+              ]
+            },
+            "verification_method": "pattern_matching"
           },
           "R6": {
             "tested": true,
-            "status": "PASS",
-            "covered_by_tests": [
-              "testSpeedSetAboveSpeedLimitException"
-            ],
-            "description": "R6-ERROR: Throw SpeedSetAboveSpeedLimitException if speedSet > speedLimit",
             "pattern_matching": {
-              "patterns_matched": 1,
-              "details": [
-                {
-                  "tested": true,
-                  "method_name": "testSpeedSetAboveSpeedLimitException",
-                  "matched_patterns": [
-                    "exception_patterns:assertThrows\\s*\\(\\s*SpeedSetAb",
-                    "method_calls:setSpeedLimit"
-                  ],
-                  "confidence": 3,
-                  "by_lines": true,
-                  "by_paths": false,
-                  "by_entirety": true,
-                  "logic_verified": true,
-                  "verification_reason": "Tests exceeding limit: setSpeedSet(130) > setSpeedLimit(120)"
-                }
+              "verified": true,
+              "test_methods": [
+                "testSpeedSetAboveSpeedLimitException"
               ]
-            }
+            },
+            "holistic_coverage": {
+              "verified": true,
+              "confidence": 0.9,
+              "details": [
+                "Methods called: ['setSpeedSet']",
+                "Code paths exercised"
+              ]
+            },
+            "verification_method": "pattern_matching"
           }
         },
-        "impl_details": {
+        "total_test_methods": 3,
+        "requirements_found": 6,
+        "coverage_percentage": 100.0,
+        "analysis_methods_used": [
+          "pattern_matching",
+          "holistic_coverage"
+        ],
+        "mutation_used": false,
+        "mutation_grade": null
+      },
+      "implementation_analysis": {
+        "success": true,
+        "requirements_satisfied": [
+          "R1",
+          "R2",
+          "R3",
+          "R4",
+          "R5",
+          "R6"
+        ],
+        "requirements_missing": [],
+        "requirement_details": {
           "R1": {
             "satisfied": true,
             "status": "PASS",
@@ -3118,726 +1797,304 @@
             "reason": "Implementation correct"
           }
         },
-        "test_original_covered": [],
-        "test_improved_covered": [],
-        "test_mutation_covered": [],
-        "mutation_available": false
-      },
-      "rigorous": {
-        "test_grade": 4.99,
-        "implementation_grade": 10.0,
-        "combined_grade": 7.5,
-        "requirements_covered": [
-          "R3",
-          "R4",
-          "R6"
-        ],
-        "requirements_satisfied": [
-          "R1",
-          "R2",
-          "R3",
-          "R4",
-          "R5",
-          "R6"
-        ],
-        "test_details": {
-          "R1": {
-            "tested": false,
-            "status": "NOT_TESTED",
-            "covered_by_tests": [],
-            "description": "R1-INICIALIZACION: speedSet should initialize to null",
-            "pattern_matching": {
-              "patterns_matched": 0,
-              "details": []
-            }
-          },
-          "R2": {
-            "tested": false,
-            "status": "NOT_TESTED",
-            "covered_by_tests": [],
-            "description": "R2-INICIALIZACION: speedLimit should initialize to null",
-            "pattern_matching": {
-              "patterns_matched": 0,
-              "details": []
-            }
-          },
-          "R3": {
-            "tested": true,
-            "status": "PASS",
-            "covered_by_tests": [
-              "testSpeedSet"
-            ],
-            "description": "R3: speedSet can adopt any positive value (> 0)",
-            "pattern_matching": {
-              "patterns_matched": 1,
-              "details": [
-                {
-                  "tested": true,
-                  "method_name": "testSpeedSet",
-                  "matched_patterns": [
-                    "method_calls:setSpeedSet\\s*\\(\\s*[1-9]\\d*\\s*",
-                    "assertion_patterns:assertEquals\\s*\\(\\s*\\d+\\s*,\\s*"
-                  ],
-                  "confidence": 3,
-                  "by_lines": true,
-                  "by_paths": false,
-                  "by_entirety": true,
-                  "logic_verified": true,
-                  "verification_reason": "Sets positive value (90) and verifies storage"
-                }
-              ]
-            }
-          },
-          "R4": {
-            "tested": true,
-            "status": "PASS",
-            "covered_by_tests": [
-              "testIncorrectSpeedSetException"
-            ],
-            "description": "R4-ERROR: Throw IncorrectSpeedSetException if speedSet <= 0",
-            "pattern_matching": {
-              "patterns_matched": 1,
-              "details": [
-                {
-                  "tested": true,
-                  "method_name": "testIncorrectSpeedSetException",
-                  "matched_patterns": [
-                    "exception_patterns:assertThrows\\s*\\(\\s*IncorrectS",
-                    "method_calls:setSpeedSet\\s*\\(\\s*0\\s*\\)"
-                  ],
-                  "confidence": 3,
-                  "by_lines": true,
-                  "by_paths": false,
-                  "by_entirety": true,
-                  "logic_verified": true,
-                  "verification_reason": "Tests zero (critical boundary) and expects exception"
-                }
-              ]
-            }
-          },
-          "R5": {
-            "tested": false,
-            "status": "NOT_TESTED",
-            "covered_by_tests": [],
-            "description": "R5-ALTERNATIVO: If speedLimit is set, speedSet cannot exceed it",
-            "pattern_matching": {
-              "patterns_matched": 0,
-              "details": []
-            }
-          },
-          "R6": {
-            "tested": true,
-            "status": "PASS",
-            "covered_by_tests": [
-              "testSpeedSetAboveSpeedLimitException"
-            ],
-            "description": "R6-ERROR: Throw SpeedSetAboveSpeedLimitException if speedSet > speedLimit",
-            "pattern_matching": {
-              "patterns_matched": 1,
-              "details": [
-                {
-                  "tested": true,
-                  "method_name": "testSpeedSetAboveSpeedLimitException",
-                  "matched_patterns": [
-                    "exception_patterns:assertThrows\\s*\\(\\s*SpeedSetAb",
-                    "method_calls:setSpeedLimit"
-                  ],
-                  "confidence": 3,
-                  "by_lines": true,
-                  "by_paths": false,
-                  "by_entirety": true,
-                  "logic_verified": true,
-                  "verification_reason": "Tests exceeding limit: setSpeedSet(130) > setSpeedLimit(120)"
-                }
-              ]
-            }
-          }
-        },
-        "impl_details": {
-          "R1": {
-            "requirement": "R1",
-            "description": "speedSet initializes to null",
-            "status": "✓ SATISFIED",
-            "satisfied": true,
-            "tests_run": 1,
-            "tests_passed": 1,
-            "tests_failed": 0,
-            "pass_rate": "100.0%",
-            "threshold": "80% required",
-            "result": "Checked that speedSet initializes to null in constructor",
-            "what_was_checked": [
-              "Different types of input values (valid/invalid partitions)"
-            ],
-            "what_passed": [
-              "Constructor correctly sets speedSet = null"
-            ],
-            "what_failed": [],
-            "explanation": ""
-          },
-          "R2": {
-            "requirement": "R2",
-            "description": "speedLimit initializes to null",
-            "status": "✓ SATISFIED",
-            "satisfied": true,
-            "tests_run": 1,
-            "tests_passed": 1,
-            "tests_failed": 0,
-            "pass_rate": "100.0%",
-            "threshold": "80% required",
-            "result": "Checked that speedLimit initializes to null in constructor",
-            "what_was_checked": [
-              "Different types of input values (valid/invalid partitions)"
-            ],
-            "what_passed": [
-              "Constructor correctly sets speedLimit = null"
-            ],
-            "what_failed": [],
-            "explanation": ""
-          },
-          "R3": {
-            "requirement": "R3",
-            "description": "setSpeedSet accepts positive values",
-            "status": "✓ SATISFIED",
-            "satisfied": true,
-            "tests_run": 4,
-            "tests_passed": 4,
-            "tests_failed": 0,
-            "pass_rate": "100.0%",
-            "threshold": "80% required",
-            "result": "Tested 4 positive values (1, 50, 100, 1000)",
-            "what_was_checked": [
-              "Different types of input values (valid/invalid partitions)"
-            ],
-            "what_passed": [
-              "All 4 positive values were accepted correctly"
-            ],
-            "what_failed": [],
-            "explanation": ""
-          },
-          "R4": {
-            "requirement": "R4",
-            "description": "Throws IncorrectSpeedSetException for speedSet <= 0",
-            "status": "✓ SATISFIED",
-            "satisfied": true,
-            "tests_run": 5,
-            "tests_passed": 5,
-            "tests_failed": 0,
-            "pass_rate": "100.0%",
-            "threshold": "80% required",
-            "result": "Tested 5 invalid values including negatives and zero",
-            "what_was_checked": [
-              "Edge cases at boundaries (e.g., zero, limit±1)",
-              "State consistency after operations"
-            ],
-            "what_passed": [
-              "All negative and zero values correctly throw IncorrectSpeedSetException"
-            ],
-            "what_failed": [],
-            "explanation": ""
-          },
-          "R5": {
-            "requirement": "R5",
-            "description": "speedSet respects speedLimit when set",
-            "status": "✓ SATISFIED",
-            "satisfied": true,
-            "tests_run": 4,
-            "tests_passed": 4,
-            "tests_failed": 0,
-            "pass_rate": "100.0%",
-            "threshold": "80% required",
-            "result": "Tested 4 scenarios with speedLimit set",
-            "what_was_checked": [
-              "Different types of input values (valid/invalid partitions)",
-              "Edge cases at boundaries (e.g., zero, limit±1)"
-            ],
-            "what_passed": [
-              "speedSet correctly stays below or equal to speedLimit",
-              "Boundary case (speedSet = speedLimit) handled correctly"
-            ],
-            "what_failed": [],
-            "explanation": ""
-          },
-          "R6": {
-            "requirement": "R6",
-            "description": "Throws SpeedSetAboveSpeedLimitException when speedSet > speedLimit",
-            "status": "✓ SATISFIED",
-            "satisfied": true,
-            "tests_run": 3,
-            "tests_passed": 3,
-            "tests_failed": 0,
-            "pass_rate": "100.0%",
-            "threshold": "80% required",
-            "result": "Tested 3 scenarios exceeding speedLimit",
-            "what_was_checked": [
-              "Edge cases at boundaries (e.g., zero, limit±1)"
-            ],
-            "what_passed": [
-              "Correctly throws SpeedSetAboveSpeedLimitException when speedSet > speedLimit",
-              "Boundary test passed (limit + 1)"
-            ],
-            "what_failed": [],
-            "explanation": ""
-          }
-        },
-        "test_mutation_covered": [],
-        "mutation_available": false
-      }
-    },
-    {
-      "success": true,
-      "student_id": "SergioGismeraPino",
-      "test_coverage_grade": 1.67,
-      "test_analysis": {
-        "coverage_percentage": 16.67,
-        "requirements_found": 1,
-        "requirements_covered": [
-          "R3"
-        ]
-      },
-      "implementation_grade": 0,
-      "implementation_analysis": {
-        "satisfaction_percentage": 0.0,
-        "requirements_satisfied": []
-      },
-      "combined_grade": 0.83,
-      "pattern": {
-        "test_grade": 1.67,
-        "implementation_grade": 0,
-        "combined_grade": 0.83,
-        "requirements_covered": [
-          "R3"
-        ],
-        "requirements_satisfied": [],
-        "test_details": {
-          "R1": {
-            "tested": false,
-            "status": "NOT_TESTED",
-            "covered_by_tests": [],
-            "description": "R1-INICIALIZACION: speedSet should initialize to null",
-            "pattern_matching": {
-              "patterns_matched": 0,
-              "details": []
-            }
-          },
-          "R2": {
-            "tested": false,
-            "status": "NOT_TESTED",
-            "covered_by_tests": [],
-            "description": "R2-INICIALIZACION: speedLimit should initialize to null",
-            "pattern_matching": {
-              "patterns_matched": 0,
-              "details": []
-            }
-          },
-          "R3": {
-            "tested": true,
-            "status": "PASS",
-            "covered_by_tests": [
-              "getVelocidadCorrecta",
-              "getVelocidadMayorQueLaMaxima"
-            ],
-            "description": "R3: speedSet can adopt any positive value (> 0)",
-            "pattern_matching": {
-              "patterns_matched": 2,
-              "details": [
-                {
-                  "tested": true,
-                  "method_name": "getVelocidadCorrecta",
-                  "matched_patterns": [
-                    "method_calls:setSpeedSet\\s*\\(\\s*[1-9]\\d*\\s*"
-                  ],
-                  "confidence": 1,
-                  "by_lines": true,
-                  "by_paths": false,
-                  "by_entirety": false,
-                  "logic_verified": true,
-                  "verification_reason": "Sets positive value (90) and verifies storage"
-                },
-                {
-                  "tested": true,
-                  "method_name": "getVelocidadMayorQueLaMaxima",
-                  "matched_patterns": [
-                    "method_calls:setSpeedSet\\s*\\(\\s*[1-9]\\d*\\s*"
-                  ],
-                  "confidence": 1,
-                  "by_lines": true,
-                  "by_paths": false,
-                  "by_entirety": false,
-                  "logic_verified": true,
-                  "verification_reason": "Sets positive value (100) and verifies storage"
-                }
-              ]
-            }
-          },
-          "R4": {
-            "tested": false,
-            "status": "NOT_TESTED",
-            "covered_by_tests": [],
-            "description": "R4-ERROR: Throw IncorrectSpeedSetException if speedSet <= 0",
-            "pattern_matching": {
-              "patterns_matched": 0,
-              "details": []
-            }
-          },
-          "R5": {
-            "tested": false,
-            "status": "NOT_TESTED",
-            "covered_by_tests": [],
-            "description": "R5-ALTERNATIVO: If speedLimit is set, speedSet cannot exceed it",
-            "pattern_matching": {
-              "patterns_matched": 0,
-              "details": []
-            }
-          },
-          "R6": {
-            "tested": false,
-            "status": "NOT_TESTED",
-            "covered_by_tests": [],
-            "description": "R6-ERROR: Throw SpeedSetAboveSpeedLimitException if speedSet > speedLimit",
-            "pattern_matching": {
-              "patterns_matched": 0,
-              "details": []
-            }
-          }
-        },
-        "impl_details": {},
-        "test_original_covered": [],
-        "test_improved_covered": [],
-        "test_mutation_covered": [],
-        "mutation_available": false
-      },
-      "rigorous": {
-        "test_grade": 1.67,
-        "implementation_grade": 0,
-        "combined_grade": 0.83,
-        "requirements_covered": [
-          "R3"
-        ],
-        "requirements_satisfied": [],
-        "test_details": {
-          "R1": {
-            "tested": false,
-            "status": "NOT_TESTED",
-            "covered_by_tests": [],
-            "description": "R1-INICIALIZACION: speedSet should initialize to null",
-            "pattern_matching": {
-              "patterns_matched": 0,
-              "details": []
-            }
-          },
-          "R2": {
-            "tested": false,
-            "status": "NOT_TESTED",
-            "covered_by_tests": [],
-            "description": "R2-INICIALIZACION: speedLimit should initialize to null",
-            "pattern_matching": {
-              "patterns_matched": 0,
-              "details": []
-            }
-          },
-          "R3": {
-            "tested": true,
-            "status": "PASS",
-            "covered_by_tests": [
-              "getVelocidadCorrecta",
-              "getVelocidadMayorQueLaMaxima"
-            ],
-            "description": "R3: speedSet can adopt any positive value (> 0)",
-            "pattern_matching": {
-              "patterns_matched": 2,
-              "details": [
-                {
-                  "tested": true,
-                  "method_name": "getVelocidadCorrecta",
-                  "matched_patterns": [
-                    "method_calls:setSpeedSet\\s*\\(\\s*[1-9]\\d*\\s*"
-                  ],
-                  "confidence": 1,
-                  "by_lines": true,
-                  "by_paths": false,
-                  "by_entirety": false,
-                  "logic_verified": true,
-                  "verification_reason": "Sets positive value (90) and verifies storage"
-                },
-                {
-                  "tested": true,
-                  "method_name": "getVelocidadMayorQueLaMaxima",
-                  "matched_patterns": [
-                    "method_calls:setSpeedSet\\s*\\(\\s*[1-9]\\d*\\s*"
-                  ],
-                  "confidence": 1,
-                  "by_lines": true,
-                  "by_paths": false,
-                  "by_entirety": false,
-                  "logic_verified": true,
-                  "verification_reason": "Sets positive value (100) and verifies storage"
-                }
-              ]
-            }
-          },
-          "R4": {
-            "tested": false,
-            "status": "NOT_TESTED",
-            "covered_by_tests": [],
-            "description": "R4-ERROR: Throw IncorrectSpeedSetException if speedSet <= 0",
-            "pattern_matching": {
-              "patterns_matched": 0,
-              "details": []
-            }
-          },
-          "R5": {
-            "tested": false,
-            "status": "NOT_TESTED",
-            "covered_by_tests": [],
-            "description": "R5-ALTERNATIVO: If speedLimit is set, speedSet cannot exceed it",
-            "pattern_matching": {
-              "patterns_matched": 0,
-              "details": []
-            }
-          },
-          "R6": {
-            "tested": false,
-            "status": "NOT_TESTED",
-            "covered_by_tests": [],
-            "description": "R6-ERROR: Throw SpeedSetAboveSpeedLimitException if speedSet > speedLimit",
-            "pattern_matching": {
-              "patterns_matched": 0,
-              "details": []
-            }
-          }
-        },
-        "impl_details": {
-          "R1": {
-            "requirement": "R1",
-            "description": "",
-            "status": "✗ NOT SATISFIED",
-            "satisfied": false,
-            "tests_run": 0,
-            "tests_passed": 0,
-            "tests_failed": 0,
-            "pass_rate": "0%",
-            "threshold": "80% required",
-            "result": "Checked that speedSet initializes to null in constructor",
-            "what_was_checked": [],
-            "what_passed": [],
-            "what_failed": [
-              "speedSet is not null after construction"
-            ],
-            "explanation": "Pass rate 0% is below the 80% threshold needed to satisfy this requirement"
-          },
-          "R2": {
-            "requirement": "R2",
-            "description": "",
-            "status": "✗ NOT SATISFIED",
-            "satisfied": false,
-            "tests_run": 0,
-            "tests_passed": 0,
-            "tests_failed": 0,
-            "pass_rate": "0%",
-            "threshold": "80% required",
-            "result": "Checked that speedLimit initializes to null in constructor",
-            "what_was_checked": [],
-            "what_passed": [],
-            "what_failed": [
-              "speedLimit is not null after construction"
-            ],
-            "explanation": "Pass rate 0% is below the 80% threshold needed to satisfy this requirement"
-          },
-          "R3": {
-            "requirement": "R3",
-            "description": "",
-            "status": "✗ NOT SATISFIED",
-            "satisfied": false,
-            "tests_run": 0,
-            "tests_passed": 0,
-            "tests_failed": 0,
-            "pass_rate": "0%",
-            "threshold": "80% required",
-            "result": "Tested 0 positive values (1, 50, 100, 1000)",
-            "what_was_checked": [],
-            "what_passed": [],
-            "what_failed": [
-              "0 positive value(s) were rejected or caused errors"
-            ],
-            "explanation": "Pass rate 0% is below the 80% threshold needed to satisfy this requirement"
-          },
-          "R4": {
-            "requirement": "R4",
-            "description": "",
-            "status": "✗ NOT SATISFIED",
-            "satisfied": false,
-            "tests_run": 0,
-            "tests_passed": 0,
-            "tests_failed": 0,
-            "pass_rate": "0%",
-            "threshold": "80% required",
-            "result": "Tested 0 invalid values including negatives and zero",
-            "what_was_checked": [],
-            "what_passed": [],
-            "what_failed": [
-              "Only 0/0 tests passed (below 80% threshold)"
-            ],
-            "explanation": "Pass rate 0% is below the 80% threshold needed to satisfy this requirement"
-          },
-          "R5": {
-            "requirement": "R5",
-            "description": "",
-            "status": "✗ NOT SATISFIED",
-            "satisfied": false,
-            "tests_run": 0,
-            "tests_passed": 0,
-            "tests_failed": 0,
-            "pass_rate": "0%",
-            "threshold": "80% required",
-            "result": "Tested 0 scenarios with speedLimit set",
-            "what_was_checked": [],
-            "what_passed": [],
-            "what_failed": [
-              "Only 0/0 tests passed"
-            ],
-            "explanation": "Pass rate 0% is below the 80% threshold needed to satisfy this requirement"
-          },
-          "R6": {
-            "requirement": "R6",
-            "description": "",
-            "status": "✗ NOT SATISFIED",
-            "satisfied": false,
-            "tests_run": 0,
-            "tests_passed": 0,
-            "tests_failed": 0,
-            "pass_rate": "0%",
-            "threshold": "80% required",
-            "result": "Tested 0 scenarios exceeding speedLimit",
-            "what_was_checked": [],
-            "what_passed": [],
-            "what_failed": [
-              "Only 0/0 tests passed"
-            ],
-            "explanation": "Pass rate 0% is below the 80% threshold needed to satisfy this requirement"
-          }
-        },
-        "test_mutation_covered": [],
-        "mutation_available": false
-      }
-    },
-    {
-      "success": true,
-      "student_id": "StefaniScott",
-      "test_coverage_grade": 1.67,
-      "test_analysis": {
-        "coverage_percentage": 16.67,
-        "requirements_found": 1,
-        "requirements_covered": [
-          "R3"
-        ]
-      },
-      "implementation_grade": 10.0,
-      "implementation_analysis": {
+        "total_requirements": 6,
+        "requirements_found": 6,
         "satisfaction_percentage": 100.0,
-        "requirements_satisfied": [
-          "R1",
-          "R2",
-          "R3",
-          "R4",
-          "R5",
-          "R6"
-        ]
+        "pattern_matching_used": true,
+        "test_details": []
       },
-      "combined_grade": 5.83,
-      "pattern": {
-        "test_grade": 1.67,
-        "implementation_grade": 10.0,
-        "combined_grade": 5.83,
+      "test_coverage_grade": 10.0,
+      "implementation_grade": 10.0,
+      "combined_grade": 10.0,
+      "error": null
+    },
+    {
+      "student_id": "SergioGismeraPino",
+      "timestamp": "2026-03-15T20:39:12.018561",
+      "success": true,
+      "test_file": "..\\student_submissions\\SergioGismeraPino\\src\\test\\java\\es\\upm\\grise\\profunduzacion\\cruiseController\\CruiseControlTest.java",
+      "implementation_file": "..\\student_submissions\\SergioGismeraPino\\src\\main\\java\\es\\upm\\grise\\profundizacion\\cruiseControl\\CruiseControl.java",
+      "test_analysis": {
+        "success": true,
+        "grade": 3.32,
         "requirements_covered": [
-          "R3"
-        ],
-        "requirements_satisfied": [
-          "R1",
-          "R2",
           "R3",
-          "R4",
-          "R5",
           "R6"
         ],
-        "test_details": {
+        "requirements_missing": [
+          "R1",
+          "R2",
+          "R4",
+          "R5"
+        ],
+        "requirement_details": {
           "R1": {
             "tested": false,
-            "status": "NOT_TESTED",
-            "covered_by_tests": [],
-            "description": "R1-INICIALIZACION: speedSet should initialize to null",
             "pattern_matching": {
-              "patterns_matched": 0,
-              "details": []
-            }
+              "verified": false,
+              "test_methods": []
+            },
+            "holistic_coverage": {
+              "verified": false,
+              "confidence": 0.0,
+              "details": [
+                "Required code not exercised by tests"
+              ]
+            },
+            "verification_method": "none"
           },
           "R2": {
             "tested": false,
-            "status": "NOT_TESTED",
-            "covered_by_tests": [],
-            "description": "R2-INICIALIZACION: speedLimit should initialize to null",
             "pattern_matching": {
-              "patterns_matched": 0,
-              "details": []
-            }
+              "verified": false,
+              "test_methods": []
+            },
+            "holistic_coverage": {
+              "verified": false,
+              "confidence": 0.0,
+              "details": [
+                "Required code not exercised by tests"
+              ]
+            },
+            "verification_method": "none"
           },
           "R3": {
             "tested": true,
-            "status": "PASS",
-            "covered_by_tests": [
-              "testsetSpeedSetCorrect"
-            ],
-            "description": "R3: speedSet can adopt any positive value (> 0)",
             "pattern_matching": {
-              "patterns_matched": 1,
-              "details": [
-                {
-                  "tested": true,
-                  "method_name": "testsetSpeedSetCorrect",
-                  "matched_patterns": [
-                    "method_calls:setSpeedSet\\s*\\(\\s*[1-9]\\d*\\s*"
-                  ],
-                  "confidence": 1,
-                  "by_lines": true,
-                  "by_paths": false,
-                  "by_entirety": false,
-                  "logic_verified": true,
-                  "verification_reason": "Sets positive value (15) and verifies storage"
-                }
+              "verified": true,
+              "test_methods": [
+                "getVelocidadCorrecta",
+                "getVelocidadMayorQueLaMaxima"
               ]
-            }
+            },
+            "holistic_coverage": {
+              "verified": false,
+              "confidence": 0.0,
+              "details": [
+                "Required code not exercised by tests"
+              ]
+            },
+            "verification_method": "pattern_matching"
           },
           "R4": {
             "tested": false,
-            "status": "NOT_TESTED",
-            "covered_by_tests": [],
-            "description": "R4-ERROR: Throw IncorrectSpeedSetException if speedSet <= 0",
             "pattern_matching": {
-              "patterns_matched": 0,
-              "details": []
-            }
+              "verified": false,
+              "test_methods": []
+            },
+            "holistic_coverage": {
+              "verified": false,
+              "confidence": 0.0,
+              "details": [
+                "Required code not exercised by tests"
+              ]
+            },
+            "verification_method": "none"
           },
           "R5": {
             "tested": false,
-            "status": "NOT_TESTED",
-            "covered_by_tests": [],
-            "description": "R5-ALTERNATIVO: If speedLimit is set, speedSet cannot exceed it",
             "pattern_matching": {
-              "patterns_matched": 0,
-              "details": []
-            }
+              "verified": false,
+              "test_methods": []
+            },
+            "holistic_coverage": {
+              "verified": false,
+              "confidence": 0.0,
+              "details": [
+                "Required code not exercised by tests"
+              ]
+            },
+            "verification_method": "none"
           },
           "R6": {
-            "tested": false,
-            "status": "NOT_TESTED",
-            "covered_by_tests": [],
-            "description": "R6-ERROR: Throw SpeedSetAboveSpeedLimitException if speedSet > speedLimit",
+            "tested": true,
             "pattern_matching": {
-              "patterns_matched": 0,
-              "details": []
-            }
+              "verified": false,
+              "test_methods": []
+            },
+            "holistic_coverage": {
+              "verified": true,
+              "confidence": 0.7,
+              "details": [
+                "Methods called: ['setSpeedSet']",
+                "Warning: Code path verification inconclusive"
+              ]
+            },
+            "verification_method": "holistic_coverage"
           }
         },
-        "impl_details": {
+        "total_test_methods": 3,
+        "requirements_found": 2,
+        "coverage_percentage": 33.33,
+        "analysis_methods_used": [
+          "pattern_matching",
+          "holistic_coverage"
+        ],
+        "mutation_used": false,
+        "mutation_grade": null
+      },
+      "implementation_analysis": {
+        "success": false,
+        "error": "Compilation failed: Compilation failed:\nes\\upm\\grise\\profundizacion\\cruiseControl\\CruiseControl.java:24: error: ';' expected\n\tpublic void setSpeedSet(int speedSet) extends ExcepcionesCreadas{\n\t                                     ^\nes\\upm\\grise\\profundizacion\\cruiseControl\\CruiseControl.java:32: error: illegal start of type\n\t\t}else{\n\t\t ^\nes\\upm\\grise\\profundizacion\\cruiseControl\\CruiseControl.java:40: error: unnamed classes are a preview feature and are disabled by default.\n\tpublic Integer getSpeedLimit() {\n\t       ^\n  (use --enable-preview to enable unnamed classes)\nes\\upm\\grise\\profundizacion\\cruiseControl\\CruiseControl.java:52: error: class, interface, enum, or record expected\n}\n^\nes\\upm\\grise\\profundizacion\\cruiseControl\\CruiseControl.java:1: error: unnamed class should not have package declaration\npackage es.upm.grise.profundizacion.cruiseControl;\n^\n5 errors\n",
+        "requirements_satisfied": [],
+        "requirements_missing": [
+          "R1",
+          "R2",
+          "R3",
+          "R4",
+          "R5",
+          "R6"
+        ],
+        "total_requirements": 6,
+        "requirements_found": 0,
+        "satisfaction_percentage": 0.0
+      },
+      "test_coverage_grade": 3.32,
+      "implementation_grade": 0.0,
+      "combined_grade": 1.66,
+      "error": null
+    },
+    {
+      "student_id": "StefaniScott",
+      "timestamp": "2026-03-15T20:39:12.408103",
+      "success": true,
+      "test_file": "..\\student_submissions\\StefaniScott\\src\\test\\java\\es\\upm\\grise\\profunduzacion\\cruiseController\\CruiseControlTest.java",
+      "implementation_file": "..\\student_submissions\\StefaniScott\\src\\main\\java\\es\\upm\\grise\\profundizacion\\cruiseControl\\CruiseControl.java",
+      "test_analysis": {
+        "success": true,
+        "grade": 6.66,
+        "requirements_covered": [
+          "R3",
+          "R4",
+          "R5",
+          "R6"
+        ],
+        "requirements_missing": [
+          "R1",
+          "R2"
+        ],
+        "requirement_details": {
+          "R1": {
+            "tested": false,
+            "pattern_matching": {
+              "verified": false,
+              "test_methods": []
+            },
+            "holistic_coverage": {
+              "verified": false,
+              "confidence": 0.0,
+              "details": [
+                "Required code not exercised by tests"
+              ]
+            },
+            "verification_method": "none"
+          },
+          "R2": {
+            "tested": false,
+            "pattern_matching": {
+              "verified": false,
+              "test_methods": []
+            },
+            "holistic_coverage": {
+              "verified": false,
+              "confidence": 0.0,
+              "details": [
+                "Required code not exercised by tests"
+              ]
+            },
+            "verification_method": "none"
+          },
+          "R3": {
+            "tested": true,
+            "pattern_matching": {
+              "verified": true,
+              "test_methods": [
+                "testsetSpeedSetCorrect"
+              ]
+            },
+            "holistic_coverage": {
+              "verified": true,
+              "confidence": 0.9,
+              "details": [
+                "Methods called: ['setSpeedSet']",
+                "Code paths exercised"
+              ]
+            },
+            "verification_method": "pattern_matching"
+          },
+          "R4": {
+            "tested": true,
+            "pattern_matching": {
+              "verified": true,
+              "test_methods": [
+                "testIncorrectSpeedSetException"
+              ]
+            },
+            "holistic_coverage": {
+              "verified": true,
+              "confidence": 0.9,
+              "details": [
+                "Methods called: ['setSpeedSet']",
+                "Code paths exercised"
+              ]
+            },
+            "verification_method": "pattern_matching"
+          },
+          "R5": {
+            "tested": true,
+            "pattern_matching": {
+              "verified": false,
+              "test_methods": []
+            },
+            "holistic_coverage": {
+              "verified": true,
+              "confidence": 0.7,
+              "details": [
+                "Methods called: ['setSpeedSet']",
+                "Warning: Code path verification inconclusive"
+              ]
+            },
+            "verification_method": "holistic_coverage"
+          },
+          "R6": {
+            "tested": true,
+            "pattern_matching": {
+              "verified": false,
+              "test_methods": []
+            },
+            "holistic_coverage": {
+              "verified": true,
+              "confidence": 0.9,
+              "details": [
+                "Methods called: ['setSpeedSet']",
+                "Code paths exercised"
+              ]
+            },
+            "verification_method": "holistic_coverage"
+          }
+        },
+        "total_test_methods": 3,
+        "requirements_found": 4,
+        "coverage_percentage": 66.67,
+        "analysis_methods_used": [
+          "pattern_matching",
+          "holistic_coverage"
+        ],
+        "mutation_used": false,
+        "mutation_grade": null
+      },
+      "implementation_analysis": {
+        "success": true,
+        "requirements_satisfied": [
+          "R1",
+          "R2",
+          "R3",
+          "R4",
+          "R5",
+          "R6"
+        ],
+        "requirements_missing": [],
+        "requirement_details": {
           "R1": {
             "satisfied": true,
             "status": "PASS",
@@ -3941,261 +2198,144 @@
             "reason": "Implementation correct"
           }
         },
-        "test_original_covered": [],
-        "test_improved_covered": [],
-        "test_mutation_covered": [],
-        "mutation_available": false
+        "total_requirements": 6,
+        "requirements_found": 6,
+        "satisfaction_percentage": 100.0,
+        "pattern_matching_used": true,
+        "test_details": []
       },
-      "rigorous": {
-        "test_grade": 1.67,
-        "implementation_grade": 10.0,
-        "combined_grade": 5.83,
+      "test_coverage_grade": 6.66,
+      "implementation_grade": 10.0,
+      "combined_grade": 8.33,
+      "error": null
+    },
+    {
+      "student_id": "TaigaSeven",
+      "timestamp": "2026-03-15T20:39:13.518288",
+      "success": true,
+      "test_file": "..\\student_submissions\\TaigaSeven\\src\\test\\java\\es\\upm\\grise\\profunduzacion\\cruiseController\\CruiseControlTest.java",
+      "implementation_file": "..\\student_submissions\\TaigaSeven\\src\\main\\java\\es\\upm\\grise\\profundizacion\\cruiseControl\\CruiseControl.java",
+      "test_analysis": {
+        "success": true,
+        "grade": 6.66,
         "requirements_covered": [
-          "R3"
-        ],
-        "requirements_satisfied": [
-          "R1",
-          "R2",
           "R3",
           "R4",
           "R5",
           "R6"
         ],
-        "test_details": {
+        "requirements_missing": [
+          "R1",
+          "R2"
+        ],
+        "requirement_details": {
           "R1": {
             "tested": false,
-            "status": "NOT_TESTED",
-            "covered_by_tests": [],
-            "description": "R1-INICIALIZACION: speedSet should initialize to null",
             "pattern_matching": {
-              "patterns_matched": 0,
-              "details": []
-            }
+              "verified": false,
+              "test_methods": []
+            },
+            "holistic_coverage": {
+              "verified": false,
+              "confidence": 0.0,
+              "details": [
+                "Required code not exercised by tests"
+              ]
+            },
+            "verification_method": "none"
           },
           "R2": {
             "tested": false,
-            "status": "NOT_TESTED",
-            "covered_by_tests": [],
-            "description": "R2-INICIALIZACION: speedLimit should initialize to null",
             "pattern_matching": {
-              "patterns_matched": 0,
-              "details": []
-            }
+              "verified": false,
+              "test_methods": []
+            },
+            "holistic_coverage": {
+              "verified": false,
+              "confidence": 0.0,
+              "details": [
+                "Required code not exercised by tests"
+              ]
+            },
+            "verification_method": "none"
           },
           "R3": {
             "tested": true,
-            "status": "PASS",
-            "covered_by_tests": [
-              "testsetSpeedSetCorrect"
-            ],
-            "description": "R3: speedSet can adopt any positive value (> 0)",
             "pattern_matching": {
-              "patterns_matched": 1,
+              "verified": false,
+              "test_methods": []
+            },
+            "holistic_coverage": {
+              "verified": true,
+              "confidence": 0.9,
               "details": [
-                {
-                  "tested": true,
-                  "method_name": "testsetSpeedSetCorrect",
-                  "matched_patterns": [
-                    "method_calls:setSpeedSet\\s*\\(\\s*[1-9]\\d*\\s*"
-                  ],
-                  "confidence": 1,
-                  "by_lines": true,
-                  "by_paths": false,
-                  "by_entirety": false,
-                  "logic_verified": true,
-                  "verification_reason": "Sets positive value (15) and verifies storage"
-                }
+                "Methods called: ['setSpeedSet']",
+                "Code paths exercised"
               ]
-            }
+            },
+            "verification_method": "holistic_coverage"
           },
           "R4": {
-            "tested": false,
-            "status": "NOT_TESTED",
-            "covered_by_tests": [],
-            "description": "R4-ERROR: Throw IncorrectSpeedSetException if speedSet <= 0",
+            "tested": true,
             "pattern_matching": {
-              "patterns_matched": 0,
-              "details": []
-            }
+              "verified": false,
+              "test_methods": []
+            },
+            "holistic_coverage": {
+              "verified": true,
+              "confidence": 0.7,
+              "details": [
+                "Methods called: ['setSpeedSet']",
+                "Warning: Code path verification inconclusive"
+              ]
+            },
+            "verification_method": "holistic_coverage"
           },
           "R5": {
-            "tested": false,
-            "status": "NOT_TESTED",
-            "covered_by_tests": [],
-            "description": "R5-ALTERNATIVO: If speedLimit is set, speedSet cannot exceed it",
+            "tested": true,
             "pattern_matching": {
-              "patterns_matched": 0,
-              "details": []
-            }
+              "verified": false,
+              "test_methods": []
+            },
+            "holistic_coverage": {
+              "verified": true,
+              "confidence": 0.7,
+              "details": [
+                "Methods called: ['setSpeedSet']",
+                "Warning: Code path verification inconclusive"
+              ]
+            },
+            "verification_method": "holistic_coverage"
           },
           "R6": {
-            "tested": false,
-            "status": "NOT_TESTED",
-            "covered_by_tests": [],
-            "description": "R6-ERROR: Throw SpeedSetAboveSpeedLimitException if speedSet > speedLimit",
+            "tested": true,
             "pattern_matching": {
-              "patterns_matched": 0,
-              "details": []
-            }
+              "verified": false,
+              "test_methods": []
+            },
+            "holistic_coverage": {
+              "verified": true,
+              "confidence": 0.9,
+              "details": [
+                "Methods called: ['setSpeedSet']",
+                "Code paths exercised"
+              ]
+            },
+            "verification_method": "holistic_coverage"
           }
         },
-        "impl_details": {
-          "R1": {
-            "requirement": "R1",
-            "description": "speedSet initializes to null",
-            "status": "✓ SATISFIED",
-            "satisfied": true,
-            "tests_run": 1,
-            "tests_passed": 1,
-            "tests_failed": 0,
-            "pass_rate": "100.0%",
-            "threshold": "80% required",
-            "result": "Checked that speedSet initializes to null in constructor",
-            "what_was_checked": [
-              "Different types of input values (valid/invalid partitions)"
-            ],
-            "what_passed": [
-              "Constructor correctly sets speedSet = null"
-            ],
-            "what_failed": [],
-            "explanation": ""
-          },
-          "R2": {
-            "requirement": "R2",
-            "description": "speedLimit initializes to null",
-            "status": "✓ SATISFIED",
-            "satisfied": true,
-            "tests_run": 1,
-            "tests_passed": 1,
-            "tests_failed": 0,
-            "pass_rate": "100.0%",
-            "threshold": "80% required",
-            "result": "Checked that speedLimit initializes to null in constructor",
-            "what_was_checked": [
-              "Different types of input values (valid/invalid partitions)"
-            ],
-            "what_passed": [
-              "Constructor correctly sets speedLimit = null"
-            ],
-            "what_failed": [],
-            "explanation": ""
-          },
-          "R3": {
-            "requirement": "R3",
-            "description": "setSpeedSet accepts positive values",
-            "status": "✓ SATISFIED",
-            "satisfied": true,
-            "tests_run": 4,
-            "tests_passed": 4,
-            "tests_failed": 0,
-            "pass_rate": "100.0%",
-            "threshold": "80% required",
-            "result": "Tested 4 positive values (1, 50, 100, 1000)",
-            "what_was_checked": [
-              "Different types of input values (valid/invalid partitions)"
-            ],
-            "what_passed": [
-              "All 4 positive values were accepted correctly"
-            ],
-            "what_failed": [],
-            "explanation": ""
-          },
-          "R4": {
-            "requirement": "R4",
-            "description": "Throws IncorrectSpeedSetException for speedSet <= 0",
-            "status": "✓ SATISFIED",
-            "satisfied": true,
-            "tests_run": 5,
-            "tests_passed": 5,
-            "tests_failed": 0,
-            "pass_rate": "100.0%",
-            "threshold": "80% required",
-            "result": "Tested 5 invalid values including negatives and zero",
-            "what_was_checked": [
-              "Edge cases at boundaries (e.g., zero, limit±1)",
-              "State consistency after operations"
-            ],
-            "what_passed": [
-              "All negative and zero values correctly throw IncorrectSpeedSetException"
-            ],
-            "what_failed": [],
-            "explanation": ""
-          },
-          "R5": {
-            "requirement": "R5",
-            "description": "speedSet respects speedLimit when set",
-            "status": "✓ SATISFIED",
-            "satisfied": true,
-            "tests_run": 4,
-            "tests_passed": 4,
-            "tests_failed": 0,
-            "pass_rate": "100.0%",
-            "threshold": "80% required",
-            "result": "Tested 4 scenarios with speedLimit set",
-            "what_was_checked": [
-              "Different types of input values (valid/invalid partitions)",
-              "Edge cases at boundaries (e.g., zero, limit±1)"
-            ],
-            "what_passed": [
-              "speedSet correctly stays below or equal to speedLimit",
-              "Boundary case (speedSet = speedLimit) handled correctly"
-            ],
-            "what_failed": [],
-            "explanation": ""
-          },
-          "R6": {
-            "requirement": "R6",
-            "description": "Throws SpeedSetAboveSpeedLimitException when speedSet > speedLimit",
-            "status": "✓ SATISFIED",
-            "satisfied": true,
-            "tests_run": 3,
-            "tests_passed": 3,
-            "tests_failed": 0,
-            "pass_rate": "100.0%",
-            "threshold": "80% required",
-            "result": "Tested 3 scenarios exceeding speedLimit",
-            "what_was_checked": [
-              "Edge cases at boundaries (e.g., zero, limit±1)"
-            ],
-            "what_passed": [
-              "Correctly throws SpeedSetAboveSpeedLimitException when speedSet > speedLimit",
-              "Boundary test passed (limit + 1)"
-            ],
-            "what_failed": [],
-            "explanation": ""
-          }
-        },
-        "test_mutation_covered": [],
-        "mutation_available": false
-      }
-    },
-    {
-      "success": true,
-      "student_id": "TaigaSeven",
-      "test_coverage_grade": 0,
-      "test_analysis": {
-        "coverage_percentage": 0.0,
-        "requirements_found": 0,
-        "requirements_covered": []
+        "total_test_methods": 4,
+        "requirements_found": 4,
+        "coverage_percentage": 66.67,
+        "analysis_methods_used": [
+          "pattern_matching",
+          "holistic_coverage"
+        ],
+        "mutation_used": false,
+        "mutation_grade": null
       },
-      "implementation_grade": 10.0,
       "implementation_analysis": {
-        "satisfaction_percentage": 100.0,
-        "requirements_satisfied": [
-          "R1",
-          "R2",
-          "R3",
-          "R4",
-          "R5",
-          "R6"
-        ]
-      },
-      "combined_grade": 5.0,
-      "pattern": {
-        "test_grade": 0,
-        "implementation_grade": 10.0,
-        "combined_grade": 5.0,
-        "requirements_covered": [],
+        "success": true,
         "requirements_satisfied": [
           "R1",
           "R2",
@@ -4204,69 +2344,8 @@
           "R5",
           "R6"
         ],
-        "test_details": {
-          "R1": {
-            "tested": false,
-            "status": "NOT_TESTED",
-            "covered_by_tests": [],
-            "description": "R1-INICIALIZACION: speedSet should initialize to null",
-            "pattern_matching": {
-              "patterns_matched": 0,
-              "details": []
-            }
-          },
-          "R2": {
-            "tested": false,
-            "status": "NOT_TESTED",
-            "covered_by_tests": [],
-            "description": "R2-INICIALIZACION: speedLimit should initialize to null",
-            "pattern_matching": {
-              "patterns_matched": 0,
-              "details": []
-            }
-          },
-          "R3": {
-            "tested": false,
-            "status": "NOT_TESTED",
-            "covered_by_tests": [],
-            "description": "R3: speedSet can adopt any positive value (> 0)",
-            "pattern_matching": {
-              "patterns_matched": 0,
-              "details": []
-            }
-          },
-          "R4": {
-            "tested": false,
-            "status": "NOT_TESTED",
-            "covered_by_tests": [],
-            "description": "R4-ERROR: Throw IncorrectSpeedSetException if speedSet <= 0",
-            "pattern_matching": {
-              "patterns_matched": 0,
-              "details": []
-            }
-          },
-          "R5": {
-            "tested": false,
-            "status": "NOT_TESTED",
-            "covered_by_tests": [],
-            "description": "R5-ALTERNATIVO: If speedLimit is set, speedSet cannot exceed it",
-            "pattern_matching": {
-              "patterns_matched": 0,
-              "details": []
-            }
-          },
-          "R6": {
-            "tested": false,
-            "status": "NOT_TESTED",
-            "covered_by_tests": [],
-            "description": "R6-ERROR: Throw SpeedSetAboveSpeedLimitException if speedSet > speedLimit",
-            "pattern_matching": {
-              "patterns_matched": 0,
-              "details": []
-            }
-          }
-        },
-        "impl_details": {
+        "requirements_missing": [],
+        "requirement_details": {
           "R1": {
             "satisfied": true,
             "status": "PASS",
@@ -4366,239 +2445,16 @@
             "reason": "Implementation correct"
           }
         },
-        "test_original_covered": [],
-        "test_improved_covered": [],
-        "test_mutation_covered": [],
-        "mutation_available": false
+        "total_requirements": 6,
+        "requirements_found": 6,
+        "satisfaction_percentage": 100.0,
+        "pattern_matching_used": true,
+        "test_details": []
       },
-      "rigorous": {
-        "test_grade": 0,
-        "implementation_grade": 10.0,
-        "combined_grade": 5.0,
-        "requirements_covered": [],
-        "requirements_satisfied": [
-          "R1",
-          "R2",
-          "R3",
-          "R4",
-          "R5",
-          "R6"
-        ],
-        "test_details": {
-          "R1": {
-            "tested": false,
-            "status": "NOT_TESTED",
-            "covered_by_tests": [],
-            "description": "R1-INICIALIZACION: speedSet should initialize to null",
-            "pattern_matching": {
-              "patterns_matched": 0,
-              "details": []
-            }
-          },
-          "R2": {
-            "tested": false,
-            "status": "NOT_TESTED",
-            "covered_by_tests": [],
-            "description": "R2-INICIALIZACION: speedLimit should initialize to null",
-            "pattern_matching": {
-              "patterns_matched": 0,
-              "details": []
-            }
-          },
-          "R3": {
-            "tested": false,
-            "status": "NOT_TESTED",
-            "covered_by_tests": [],
-            "description": "R3: speedSet can adopt any positive value (> 0)",
-            "pattern_matching": {
-              "patterns_matched": 0,
-              "details": []
-            }
-          },
-          "R4": {
-            "tested": false,
-            "status": "NOT_TESTED",
-            "covered_by_tests": [],
-            "description": "R4-ERROR: Throw IncorrectSpeedSetException if speedSet <= 0",
-            "pattern_matching": {
-              "patterns_matched": 0,
-              "details": []
-            }
-          },
-          "R5": {
-            "tested": false,
-            "status": "NOT_TESTED",
-            "covered_by_tests": [],
-            "description": "R5-ALTERNATIVO: If speedLimit is set, speedSet cannot exceed it",
-            "pattern_matching": {
-              "patterns_matched": 0,
-              "details": []
-            }
-          },
-          "R6": {
-            "tested": false,
-            "status": "NOT_TESTED",
-            "covered_by_tests": [],
-            "description": "R6-ERROR: Throw SpeedSetAboveSpeedLimitException if speedSet > speedLimit",
-            "pattern_matching": {
-              "patterns_matched": 0,
-              "details": []
-            }
-          }
-        },
-        "impl_details": {
-          "R1": {
-            "requirement": "R1",
-            "description": "speedSet initializes to null",
-            "status": "✓ SATISFIED",
-            "satisfied": true,
-            "tests_run": 1,
-            "tests_passed": 1,
-            "tests_failed": 0,
-            "pass_rate": "100.0%",
-            "threshold": "80% required",
-            "result": "Checked that speedSet initializes to null in constructor",
-            "what_was_checked": [
-              "Different types of input values (valid/invalid partitions)"
-            ],
-            "what_passed": [
-              "Constructor correctly sets speedSet = null"
-            ],
-            "what_failed": [],
-            "explanation": ""
-          },
-          "R2": {
-            "requirement": "R2",
-            "description": "speedLimit initializes to null",
-            "status": "✓ SATISFIED",
-            "satisfied": true,
-            "tests_run": 1,
-            "tests_passed": 1,
-            "tests_failed": 0,
-            "pass_rate": "100.0%",
-            "threshold": "80% required",
-            "result": "Checked that speedLimit initializes to null in constructor",
-            "what_was_checked": [
-              "Different types of input values (valid/invalid partitions)"
-            ],
-            "what_passed": [
-              "Constructor correctly sets speedLimit = null"
-            ],
-            "what_failed": [],
-            "explanation": ""
-          },
-          "R3": {
-            "requirement": "R3",
-            "description": "setSpeedSet accepts positive values",
-            "status": "✓ SATISFIED",
-            "satisfied": true,
-            "tests_run": 4,
-            "tests_passed": 4,
-            "tests_failed": 0,
-            "pass_rate": "100.0%",
-            "threshold": "80% required",
-            "result": "Tested 4 positive values (1, 50, 100, 1000)",
-            "what_was_checked": [
-              "Different types of input values (valid/invalid partitions)"
-            ],
-            "what_passed": [
-              "All 4 positive values were accepted correctly"
-            ],
-            "what_failed": [],
-            "explanation": ""
-          },
-          "R4": {
-            "requirement": "R4",
-            "description": "Throws IncorrectSpeedSetException for speedSet <= 0",
-            "status": "✓ SATISFIED",
-            "satisfied": true,
-            "tests_run": 5,
-            "tests_passed": 5,
-            "tests_failed": 0,
-            "pass_rate": "100.0%",
-            "threshold": "80% required",
-            "result": "Tested 5 invalid values including negatives and zero",
-            "what_was_checked": [
-              "Edge cases at boundaries (e.g., zero, limit±1)",
-              "State consistency after operations"
-            ],
-            "what_passed": [
-              "All negative and zero values correctly throw IncorrectSpeedSetException"
-            ],
-            "what_failed": [],
-            "explanation": ""
-          },
-          "R5": {
-            "requirement": "R5",
-            "description": "speedSet respects speedLimit when set",
-            "status": "✓ SATISFIED",
-            "satisfied": true,
-            "tests_run": 4,
-            "tests_passed": 4,
-            "tests_failed": 0,
-            "pass_rate": "100.0%",
-            "threshold": "80% required",
-            "result": "Tested 4 scenarios with speedLimit set",
-            "what_was_checked": [
-              "Different types of input values (valid/invalid partitions)",
-              "Edge cases at boundaries (e.g., zero, limit±1)"
-            ],
-            "what_passed": [
-              "speedSet correctly stays below or equal to speedLimit",
-              "Boundary case (speedSet = speedLimit) handled correctly"
-            ],
-            "what_failed": [],
-            "explanation": ""
-          },
-          "R6": {
-            "requirement": "R6",
-            "description": "Throws SpeedSetAboveSpeedLimitException when speedSet > speedLimit",
-            "status": "✓ SATISFIED",
-            "satisfied": true,
-            "tests_run": 3,
-            "tests_passed": 3,
-            "tests_failed": 0,
-            "pass_rate": "100.0%",
-            "threshold": "80% required",
-            "result": "Tested 3 scenarios exceeding speedLimit",
-            "what_was_checked": [
-              "Edge cases at boundaries (e.g., zero, limit±1)"
-            ],
-            "what_passed": [
-              "Correctly throws SpeedSetAboveSpeedLimitException when speedSet > speedLimit",
-              "Boundary test passed (limit + 1)"
-            ],
-            "what_failed": [],
-            "explanation": ""
-          }
-        },
-        "test_mutation_covered": [],
-        "mutation_available": false
-      }
+      "test_coverage_grade": 6.66,
+      "implementation_grade": 10.0,
+      "combined_grade": 8.33,
+      "error": null
     }
-  ],
-  "statistics": {
-    "pattern": {
-      "avg_test_grade": 2.67,
-      "avg_impl_grade": 8.17,
-      "avg_combined_grade": 5.42,
-      "total_r1": 9,
-      "total_r2": 9,
-      "total_r3": 8,
-      "total_r4": 6,
-      "total_r5": 8,
-      "total_r6": 9
-    },
-    "rigorous": {
-      "avg_test_grade": 2.67,
-      "avg_impl_grade": 8.33,
-      "avg_combined_grade": 5.5,
-      "total_r1": 9,
-      "total_r2": 9,
-      "total_r3": 8,
-      "total_r4": 7,
-      "total_r5": 8,
-      "total_r6": 9
-    }
-  }
+  ]
 }

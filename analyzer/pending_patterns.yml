@@ -310,3 +310,19 @@ R5_candidate_039:
   requirement: R5
   status: NEEDS_MANUAL_REVIEW
   student: SergioFernÃ¡ndez
+R5_candidate_040:
+  code_snippet: No matching code found
+  date: '2026-03-16'
+  execution_result: PASSED
+  reason: Code passed execution but pattern not matched
+  requirement: R5
+  status: NEEDS_MANUAL_REVIEW
+  student: SergioFernÃ¡ndez
+R5_candidate_041:
+  code_snippet: No matching code found
+  date: '2026-03-16'
+  execution_result: PASSED
+  reason: Code passed execution but pattern not matched
+  requirement: R5
+  status: NEEDS_MANUAL_REVIEW
+  student: SergioFernÃ¡ndez
